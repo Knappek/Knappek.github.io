@@ -9,6 +9,10 @@ docs_dir: 'docs'
 nav:
 - Home: 
   - Welcome: index.md
+- vSphere with Tanzu:
+  - Tanzu Packages:
+    - Intro: vsphere-with-tanzu/tanzu-packages/index.md
+    - Airgapped Installation: vsphere-with-tanzu/tanzu-packages/deploy-packages-airgapped.md
 
 theme:
   name: material
