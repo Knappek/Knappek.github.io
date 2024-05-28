@@ -29,30 +29,44 @@ Run the following from a machine with access to the VMware public registry:
     imgpkg tag list -i projects.registry.vmware.com/tkg/kapp-controller
     ```
 
-2. Copy the version of choice to your local registry
-
-```shell
-imgpkg copy -i projects.registry.vmware.com/tkg/kapp-controller:v0.30.0_vmware.1 --to-repo 172.30.4.131/shared-services/kapp-controller --registry-ca-cert-path ./ca.crt
-            imgpkg copy -i projects.registry.vmware.com/tkg/kapp-controller:v0.41.7_vmware.1 --to-tar  ./kapp-controller_v0.41.7_vmware.1
-```
-
-3. Create the `tanzu-package-repo-global` namespace: `kubectl create ns tanzu-package-repo-global`
-4. create a secret to be able to pull images from the local registry with authentication
+1. Copy the version of choice to your local registry
 
     ```shell
-    kubectl create secret docker-registry embedded-harbor --docker-server=172.30.4.131 --docker-username=administrator@vsphere.local --docker-password=VMware1! -n tanzu-package-repo-global
+    imgpkg copy \
+      -i projects.registry.vmware.com/tkg/kapp-controller:v0.30.0_vmware.1 \
+      --to-repo 172.30.4.131/shared-services/kapp-controller \
+      --registry-ca-cert-path ./ca.crt
+    ```
+    
+    Alternatively, you can download the tar file to your filesystem
+
+    ```shell
+    imgpkg copy \
+      -i projects.registry.vmware.com/tkg/kapp-controller:v0.41.7_vmware.1 \
+      --to-tar  ./kapp-controller_v0.41.7_vmware.1
     ```
 
-5. Copy the content of the kapp-controller manifest from [here](https://docs.vmware.com/en/VMware-Tanzu-Packages/2024.4.12/tanzu-packages/kubectl-v7-kapp.html#manifest-for-kubernetes-v124-or-earlier-2) and make some changes:
+1. Create the `tanzu-package-repo-global` namespace: `kubectl create ns tanzu-package-repo-global`
+1. create a secret to be able to pull images from the local registry with authentication
+
+    ```shell
+    kubectl create secret docker-registry embedded-harbor \
+      --docker-server=172.30.4.131 \
+      --docker-username=administrator@vsphere.local \
+      --docker-password=VMware1! \
+      -n tanzu-package-repo-global
+    ```
+
+1. Copy the content of the kapp-controller manifest from [here](https://docs.vmware.com/en/VMware-Tanzu-Packages/2024.4.12/tanzu-packages/kubectl-v7-kapp.html#manifest-for-kubernetes-v124-or-earlier-2) and make some changes:
    1. update the `image:` accordingly to point to your image stored in your local container registry
-   2. add the following to `Deployment.spec.template.spec`
+   1. add the following to `Deployment.spec.template.spec`
 
         ```shell
         imagePullSecrets:
         - name: embedded-harbor
         ```
 
-6. Switch kubectl context to your shared services cluster and apply the manifest
+1. Switch kubectl context to your shared services cluster and apply the manifest
 
     ```shell
     kubectl apply -f kapp-controller.yaml
@@ -70,13 +84,16 @@ Run the following from a machine with access to the VMware public registry:
     imgpkg tag list -i projects.registry.vmware.com/tkg/packages/standard/repo
     ```
 
-2. Copy your version of choice to your registry
+1. Copy your version of choice to your registry
 
     ```shell
-    imgpkg copy -b projects.registry.vmware.com/tkg/packages/standard/repo:v1.6.1 --to-repo 172.30.4.131/shared-services/packages/standard/repo:v1.6.1 --registry-ca-cert-path ./ca.crt
+    imgpkg copy \
+      -b projects.registry.vmware.com/tkg/packages/standard/repo:v1.6.1 \
+        --to-repo 172.30.4.131/shared-services/packages/standard/repo:v1.6.1 \
+        --registry-ca-cert-path ./ca.crt
     ```
 
-3. Create a `PackageRepository` manifest and call it `packagerepo-v1.6.1.yaml`:
+1. Create a `PackageRepository` manifest and call it `packagerepo-v1.6.1.yaml`:
 
       ```yaml
       apiVersion: packaging.carvel.dev/v1alpha1
@@ -92,7 +109,7 @@ Run the following from a machine with access to the VMware public registry:
               name: embedded-harbor
       ```
 
-4. Switch kubectl context to your shared services cluster and apply the manifest
+1. Switch kubectl context to your shared services cluster and apply the manifest
 
     ```shell
     kubectl apply -f packagerepo-v1.6.1.yaml
@@ -106,13 +123,17 @@ Run the following from a machine with access to the VMware public registry:
     kubectl create ns tanzu-packages-user-managed
     ```
 
-2. Replicate the `embedded-harbor` secret from the `tanzu-package-repo-global` namespace to the `tanzu-packages-user-managed` namespace:
+1. Replicate the `embedded-harbor` secret from the `tanzu-package-repo-global` namespace to the `tanzu-packages-user-managed` namespace:
 
     ```shell
-    kubectl create secret docker-registry embedded-harbor --docker-server=172.30.4.131 --docker-username=administrator@vsphere.local --docker-password=VMware1! -n tanzu-packages-user-managed
+    kubectl create secret docker-registry embedded-harbor \
+      --docker-server=172.30.4.131 \
+      --docker-username=administrator@vsphere.local \
+      --docker-password=VMware1! \
+      -n tanzu-packages-user-managed
     ```
 
-3. To use the `embedded-harbor` in all cert-manager deployment's `spec.template.spec.imagePullSecrets` we have to create a ytt overlay and use that overlay in the `PackageInstall`. Create the overlay `image-pull-secrets-overlay-deployment.yaml`
+1. To use the `embedded-harbor` in all cert-manager deployment's `spec.template.spec.imagePullSecrets` we have to create a ytt overlay and use that overlay in the `PackageInstall`. Create the overlay `image-pull-secrets-overlay-deployment.yaml`
 
     ```yaml
     #@ load("@ytt:overlay", "overlay")
@@ -129,10 +150,12 @@ Run the following from a machine with access to the VMware public registry:
     and then create a Kubernetes secret:
 
     ```shell
-    kubectl -n tanzu-packages-user-managed create secret generic image-pull-secret-overlay-deployment --from-file=image-pull-secrets-overlay-deployment.yaml
+    kubectl create secret generic image-pull-secret-overlay-deployment \
+      --from-file=image-pull-secrets-overlay-deployment.yaml \
+      -n tanzu-packages-user-managed
     ```
 
-4. We do the same for DaemonSets. Create the overlay `image-pull-secrets-overlay-daemonset.yaml`
+1. We do the same for DaemonSets. Create the overlay `image-pull-secrets-overlay-daemonset.yaml`
 
     ```yaml
     #@ load("@ytt:overlay", "overlay")
@@ -149,10 +172,12 @@ Run the following from a machine with access to the VMware public registry:
     and then create a Kubernetes secret:
 
     ```shell
-    kubectl -n tanzu-packages-user-managed create secret generic image-pull-secret-overlay-daemonset --from-file=image-pull-secrets-overlay-daemonset.yaml
+    kubectl create secret generic image-pull-secret-overlay-daemonset \
+      --from-file=image-pull-secrets-overlay-daemonset.yaml \
+      -n tanzu-packages-user-managed
     ```
 
-5. We do the same for StatefulSets. Create the overlay `image-pull-secrets-overlay-statefulsets.yaml`
+1. We do the same for StatefulSets. Create the overlay `image-pull-secrets-overlay-statefulsets.yaml`
 
     ```yaml
     #@ load("@ytt:overlay", "overlay")
@@ -169,7 +194,9 @@ Run the following from a machine with access to the VMware public registry:
     and then create a Kubernetes secret:
 
     ```shell
-    kubectl -n tanzu-packages-user-managed create secret generic image-pull-secret-overlay-statefulsets --from-file=image-pull-secrets-overlay-statefulsets.yaml
+    kubectl create secret generic image-pull-secret-overlay-statefulsets \
+      --from-file=image-pull-secrets-overlay-statefulsets.yaml \
+      -n tanzu-packages-user-managed
     ```
 
 ### Install cert-manager
@@ -182,19 +209,23 @@ We are following the official docs [here](https://docs.vmware.com/en/VMware-Tanz
     kubectl create ns cert-manager
     ```
 
-2. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
+1. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
 
     ```shell
-    kubectl create secret docker-registry embedded-harbor --docker-server=172.30.4.131 --docker-username=administrator@vsphere.local --docker-password=VMware1! -n cert-manager
+    kubectl create secret docker-registry embedded-harbor \
+      --docker-server=172.30.4.131 \
+      --docker-username=administrator@vsphere.local \
+      --docker-password=VMware1! \
+      -n cert-manager
     ```
 
-3. List available version for cert-manager:
+1. List available version for cert-manager:
   
     ```shell
     kubectl get packages -n tanzu-packages-user-managed
     ```
 
-4. Create the manifest `cert-manager.yaml`:
+1. Create the manifest `cert-manager.yaml`:
 
     ```yaml
     apiVersion: v1
@@ -257,19 +288,23 @@ The process is very simlar to installing `cert-manager`. We are following the of
     kubectl create ns tanzu-system-ingress
     ```
 
-2. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
+1. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
 
     ```shell
-    kubectl create secret docker-registry embedded-harbor --docker-server=172.30.4.131 --docker-username=administrator@vsphere.local --docker-password=VMware1! -n tanzu-system-ingress
+    kubectl create secret docker-registry embedded-harbor \
+      --docker-server=172.30.4.131 \
+      --docker-username=administrator@vsphere.local \
+      --docker-password=VMware1! \
+      -n tanzu-system-ingress
     ```
 
-3. List available version for contour:
+1. List available version for contour:
   
     ```shell
     kubectl get packages -n tanzu-packages-user-managed
     ```
 
-4. Create the manifest `contour.yaml`
+1. Create the manifest `contour.yaml`
 
     ```yaml
     apiVersion: v1
@@ -358,19 +393,23 @@ The process is very simlar to installing `cert-manager`. We are following the of
     kubectl create ns tanzu-system-registry
     ```
 
-2. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
+1. Create the `embedded-harbor` secrets used in `imagePullSecrets` in each pod:
 
     ```shell
-    kubectl create secret docker-registry embedded-harbor --docker-server=172.30.4.131 --docker-username=administrator@vsphere.local --docker-password=VMware1! -n tanzu-system-registry
+    kubectl create secret docker-registry embedded-harbor \
+      --docker-server=172.30.4.131 \
+      --docker-username=administrator@vsphere.local \
+      --docker-password=VMware1! \
+      -n tanzu-system-registry
     ```
 
-3. List available version for harbor:
+1. List available version for harbor:
   
     ```shell
     kubectl get packages -n tanzu-packages-user-managed
     ```
 
-4. Create the manifest `harbor.yaml`:
+1. Create the manifest `harbor.yaml`:
 
     ```yaml
     apiVersion: v1
