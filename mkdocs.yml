@@ -1,4 +1,23 @@
-site_name: Andy's Random Stuff
+site_name: Andy's Technical Scratchpad
 site_url: https://knappek.github.io
+copyright: 'Copyright &copy; 2024 Andreas Knapp'
+repo_name: 'Knappek/Knappek.github.io'
+repo_url: 'https://github.com/Knappek/Knappek.github.io'
+
+docs_dir: 'docs'
+
+nav:
+- Home: 
+  - Welcome: index.md
+
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.tabs.sticky
+    - content.code.annotate
+    - content.code.copy
+    - toc.follow
+  language: 'en'
+
