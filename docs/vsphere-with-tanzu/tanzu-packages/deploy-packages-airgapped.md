@@ -25,7 +25,7 @@ Run the following from a machine with access to the VMware public registry:
 
 1. list available versions:
 
-    ```shell
+    ```
     imgpkg tag list -i projects.registry.vmware.com/tkg/kapp-controller
     ```
 
