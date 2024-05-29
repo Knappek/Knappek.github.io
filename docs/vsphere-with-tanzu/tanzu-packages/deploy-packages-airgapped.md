@@ -633,6 +633,8 @@ In order to have newer Package versions available, we first have to upgrade the 
     EOF
     ```
 
+### Upgrade cert-manager
+
 1. List available version for cert-manager:
   
     ```shell
@@ -647,6 +649,8 @@ In order to have newer Package versions available, we first have to upgrade the 
       -n tanzu-packages-user-managed
     ```
 
+### Upgrade contour
+
 1. List available version for contour:
   
     ```shell
@@ -660,6 +664,8 @@ In order to have newer Package versions available, we first have to upgrade the 
       --version 1.23.5+vmware.1-tkg.1 \
       -n tanzu-packages-user-managed
     ```
+
+### Upgrade harbor
 
 1. List available version for harbor:
   
