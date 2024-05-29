@@ -46,7 +46,12 @@ Run the following from a machine with access to the VMware public registry:
       --to-tar  ./kapp-controller_v0.41.7_vmware.1
     ```
 
-1. Create the `tanzu-package-repo-global` namespace: `kubectl create ns tanzu-package-repo-global`
+1. Create the `tanzu-package-repo-global` namespace: 
+
+    ```shell
+    kubectl create ns tanzu-package-repo-global
+    ```
+
 1. create a secret to be able to pull images from the local registry with authentication
 
     ```shell
