@@ -281,7 +281,11 @@ We are following the official docs [here](https://docs.vmware.com/en/VMware-Tanz
         namespace: cert-manager
     ```
 
-    and apply it to the cluster: `kubectl apply -f cert-manager.yaml`
+    and apply it to the cluster:
+
+    ```shell
+    kubectl apply -f cert-manager.yaml
+    ```
 
 ### Install Contour
 
@@ -388,7 +392,11 @@ The process is very simlar to installing `cert-manager`. We are following the of
           renewBefore: 360h
     ```
 
-    and apply it to the cluster: `kubectl apply -f contour.yaml`
+    and apply it to the cluster:
+
+    ```shell
+    kubectl apply -f contour.yaml
+    ```
 
 ### Install Harbor
 
@@ -540,4 +548,8 @@ The process is very simlar to installing `cert-manager`. We are following the of
           ipFamilies: ["IPv4", "IPv6"]
     ```
 
-    and apply it to the cluster: `kubectl apply -f harbor.yaml`
+    and apply it to the cluster:
+
+    ```sh
+    kubectl apply -f harbor.yaml
+    ```
