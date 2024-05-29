@@ -10,6 +10,7 @@ nav:
 - Home: 
   - Welcome: index.md
 - vSphere with Tanzu:
+  - Upgrade TKGS: vsphere-with-tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
   - Tanzu Packages:
     - Intro: vsphere-with-tanzu/tanzu-packages/index.md
     - Airgapped Installation: vsphere-with-tanzu/tanzu-packages/deploy-packages-airgapped.md

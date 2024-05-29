@@ -94,7 +94,7 @@ Run the following from a machine with access to the VMware public registry:
     ```shell
     imgpkg copy \
       -b projects.registry.vmware.com/tkg/packages/standard/repo:v1.6.1 \
-        --to-repo 172.30.4.131/shared-services/packages/standard/repo:v1.6.1 \
+        --to-repo 172.30.4.131/shared-services/packages/standard/repo \
         --registry-ca-cert-path ./ca.crt
     ```
 
