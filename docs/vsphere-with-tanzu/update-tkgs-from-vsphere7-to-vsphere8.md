@@ -24,7 +24,7 @@ We are following the official docs [here](https://docs.vmware.com/en/VMware-vSph
 ### Upgrade Supervisor cluster
 
 1. Update Supervisor cluster to `v1.25.6`
-2. update vCenter from 7 to 8 by following the official docs [here](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-upgrade/GUID-30485437-B107-42EC-A0A8-A03334CFC825.html).
-3. Update Supervisor cluster to `v1.25.13`. When upgrading the Supervisor cluster in vCenter 8u2c you have to apply a workaround to a [known issue](https://ikb.vmware.com/s/article/97660).
-4. Update Supervisor cluster to `v1.26.8`.
+1. update vCenter from 7 to 8 by following the official docs [here](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-upgrade/GUID-30485437-B107-42EC-A0A8-A03334CFC825.html).
+1. Update Supervisor cluster to `v1.25.13`. When upgrading the Supervisor cluster in vCenter 8u2c you have to apply a workaround to a [known issue](https://ikb.vmware.com/s/article/97660).
+1. Update Supervisor cluster to `v1.26.8`.
 

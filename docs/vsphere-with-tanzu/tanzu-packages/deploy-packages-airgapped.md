@@ -596,11 +596,11 @@ The process is very simlar to installing `cert-manager`. We are following the of
 
 We are updating the following packages:
 
-| Package      | Current Version               |
-| ------------ | --------------------- |
-| cert-manager | 1.10.2+vmware.1-tkg.1 |
-| contour      | 1.20.2+vmware.2-tkg.1 |
-| harbor       | 2.3.3+vmware.1-tkg.1  |
+| Package      | Current Version       | Target Version        |
+| ------------ | --------------------- | --------------------- |
+| cert-manager | 1.7.2+vmware.1-tkg.1  | 1.10.2+vmware.1-tkg.1 |
+| contour      | 1.20.2+vmware.2-tkg.1 | 1.23.5+vmware.1-tkg.1 |
+| harbor       | 2.3.3+vmware.1-tkg.1  | 2.5.3+vmware.1-tkg.1  |
 
 ### Upgrade Tanzu Package Repository
 
