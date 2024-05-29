@@ -5,7 +5,6 @@
 - TKGS Supervisor cluster running
 - embedded Harbor running
 - shared services cluster running
-- imgpkg installed
 
 ## Environment info
 
@@ -13,7 +12,46 @@
 - Supervisor cluster version v1.25.6+vmware.wcp.2
 - Guest Cluster version: v1.23.8---vmware.3-tkg.1
 
-## Procedure
+## Install Packages
+
+We are installing the following packages:
+
+| Package      | Version               |
+| ------------ | --------------------- |
+| cert-manager | 1.7.2+vmware.1-tkg.1  |
+| contour      | 1.20.2+vmware.2-tkg.1 |
+| harbor       | 2.3.3+vmware.1-tkg.1  |
+
+We deploy those packages on a Kubernetes cluster with version 1.23.8. This cluster has PodSecurityPolicies enabled. 
+Because we don't care, we allow all pods with
+
+```shell
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: psp:privileged
+rules:
+- apiGroups: ['policy']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - vmware-system-privileged
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: all:psp:privileged
+roleRef:
+  kind: ClusterRole
+  name: psp:privileged
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
 
 ### Deploy TKG Package Repository
 
@@ -25,7 +63,7 @@ Run the following from a machine with access to the VMware public registry:
 
 1. list available versions:
 
-    ```
+    ```sh
     imgpkg tag list -i projects.registry.vmware.com/tkg/kapp-controller
     ```
 
@@ -37,7 +75,7 @@ Run the following from a machine with access to the VMware public registry:
       --to-repo 172.30.4.131/shared-services/kapp-controller \
       --registry-ca-cert-path ./ca.crt
     ```
-    
+
     Alternatively, you can download the tar file to your filesystem
 
     ```shell
@@ -46,7 +84,7 @@ Run the following from a machine with access to the VMware public registry:
       --to-tar  ./kapp-controller_v0.41.7_vmware.1
     ```
 
-1. Create the `tanzu-package-repo-global` namespace: 
+1. Create the `tanzu-package-repo-global` namespace:
 
     ```shell
     kubectl create ns tanzu-package-repo-global
@@ -227,7 +265,7 @@ We are following the official docs [here](https://docs.vmware.com/en/VMware-Tanz
 1. List available version for cert-manager:
   
     ```shell
-    kubectl get packages -n tanzu-packages-user-managed
+    kubectl get packages -n tanzu-packages-user-managed | grep cert-manager
     ```
 
 1. Create the manifest `cert-manager.yaml`:
@@ -310,7 +348,7 @@ The process is very simlar to installing `cert-manager`. We are following the of
 1. List available version for contour:
   
     ```shell
-    kubectl get packages -n tanzu-packages-user-managed
+    kubectl get packages -n tanzu-packages-user-managed | grep contour
     ```
 
 1. Create the manifest `contour.yaml`
@@ -419,7 +457,7 @@ The process is very simlar to installing `cert-manager`. We are following the of
 1. List available version for harbor:
   
     ```shell
-    kubectl get packages -n tanzu-packages-user-managed
+    kubectl get packages -n tanzu-packages-user-managed | grep harbor
     ```
 
 1. Create the manifest `harbor.yaml`:
@@ -552,4 +590,87 @@ The process is very simlar to installing `cert-manager`. We are following the of
 
     ```sh
     kubectl apply -f harbor.yaml
+    ```
+
+## Update Packages
+
+We are updating the following packages:
+
+| Package      | Current Version               |
+| ------------ | --------------------- |
+| cert-manager | 1.10.2+vmware.1-tkg.1 |
+| contour      | 1.20.2+vmware.2-tkg.1 |
+| harbor       | 2.3.3+vmware.1-tkg.1  |
+
+### Upgrade Tanzu Package Repository
+
+In order to have newer Package versions available, we first have to upgrade the Tanzu Package Repository.
+
+1. Copy a new version to your local registry
+
+    ```shell
+    imgpkg copy \
+      -b projects.registry.vmware.com/tkg/packages/standard/repo:v2.2.0 \
+        --to-repo 172.30.4.131/shared-services/packages/standard/repo \
+        --registry-ca-cert-path ./ca.crt
+    ```
+
+1. Update the existing Package repository accordingly
+
+    ```shell
+    cat <<EOF | kubectl apply -f -
+    apiVersion: packaging.carvel.dev/v1alpha1
+    kind: PackageRepository
+    metadata:
+      name: tanzu-standard
+      namespace: tanzu-package-repo-global
+    spec:
+      fetch:
+        imgpkgBundle:
+          image: 172.30.4.131/shared-services/packages/standard/repo:v2.2.0
+          secretRef:
+            name: embedded-harbor
+    EOF
+    ```
+
+1. List available version for cert-manager:
+  
+    ```shell
+    kubectl get packages -n tanzu-packages-user-managed | grep cert-manager
+    ```
+
+1. Find a [compatible cert-manager version with your Kubernetes version](https://cert-manager.io/docs/releases/)  and update `cert-manager`:
+
+    ```shell
+    tanzu package installed update cert-manager \
+      --version 1.10.2+vmware.1-tkg.1 \
+      -n tanzu-packages-user-managed
+    ```
+
+1. List available version for contour:
+  
+    ```shell
+    kubectl get packages -n tanzu-packages-user-managed | grep contour
+    ```
+
+1. Find a [compatible contour version with your Kubernetes version](https://projectcontour.io/resources/compatibility-matrix/) and update `contour`:
+
+    ```shell
+    tanzu package installed update contour \
+      --version 1.23.5+vmware.1-tkg.1 \
+      -n tanzu-packages-user-managed
+    ```
+
+1. List available version for harbor:
+  
+    ```shell
+    kubectl get packages -n tanzu-packages-user-managed | grep harbor
+    ```
+
+1. Update `harbor`:
+
+    ```shell
+    tanzu package installed update harbor \
+      --version 2.5.3+vmware.1-tkg.1 \
+      -n tanzu-packages-user-managed
     ```
