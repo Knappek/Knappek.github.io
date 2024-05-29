@@ -606,6 +606,12 @@ We are updating the following packages:
 
 In order to have newer Package versions available, we first have to upgrade the Tanzu Package Repository.
 
+1. list available Package Repository versions:
+
+    ```shell
+    imgpkg tag list -i projects.registry.vmware.com/tkg/packages/standard/repo
+    ```
+
 1. Copy a new version to your local registry
 
     ```shell
