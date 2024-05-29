@@ -592,7 +592,7 @@ The process is very simlar to installing `cert-manager`. We are following the of
     kubectl apply -f harbor.yaml
     ```
 
-## Update Packages
+## Upgrade Packages
 
 We are updating the following packages:
 
