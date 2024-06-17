@@ -1,4 +1,4 @@
-# Setup
+# Homelab
 
 When I joined VMware in February 2021 I have built a homelab to be able to quickly spin up test environments using VMware products with a primary focus on Tanzu Labs product portfolio.
 
@@ -16,10 +16,29 @@ When I joined VMware in February 2021 I have built a homelab to be able to quick
 | Case        | Fractal Design Core 2500                                                           |
 | PSU         | Kolink Enclave 500W                                                                |
 
-## Nested Lab Setup
+## Setup
 
-My physical host is running ESXi. To bootstrap nested lab environments I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder), Kudos to Matt :clap:.
+There is a "Management vCenter" (vcenter-mgmt) VM deployed on the physical host that manages the physical host. Additionally, there is a VyOS router deployed as a VM that is responsible for the entire homelab networking & routing. My home router has a static IP route configured to forward requests to `172.20.0.0/22` and `172.30.0.0/22` to this VyOS router.
+
+As a result, the Management vCenter looks like this:
+
+![Management vCenter](vcenter-mgmt.png)
+
+Here you can see:
+
+- `192.168.178.100`: the physical ESXi host
+- `jumpbox01`: an Ubuntu jumpbox for testing purposes
+- VMs prefixed with `tkgs-`: a nested lab environment (more details see [Nested Lab Setup](#nested-lab-setup))
+- `vcenter-mgmt`: Management vCenter
+- `vrli`: vRealize Log Insight
+- `vrops`: vRealize Operations Manager
+- `vyos`: the VyOS Router
+- `windows`: a Windows VM
 
 ### Networking & Routing
 
-I have deployed a VyOS router as a virtual machine on my physical host. My home router has a static IP route configured to forward requests to `172.20.0.0/22` and `172.30.0.0/22` to the VyOS router.
+TODO
+
+### Nested Lab Setup
+
+My physical host is running ESXi. To bootstrap nested lab environments I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder), Kudos to Matt :clap:.

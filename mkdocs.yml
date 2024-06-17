@@ -38,5 +38,5 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-  - admonition
+  - admonition # info blocks starting with !!!, e.g. !!! warning
 
