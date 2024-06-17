@@ -1,4 +1,4 @@
-# Homelab
+# Setup
 
 When I joined VMware in February 2021 I have built a homelab to be able to quickly spin up test environments using VMware products with a primary focus on Tanzu Labs product portfolio.
 
