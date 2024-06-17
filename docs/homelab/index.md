@@ -70,7 +70,7 @@ vyos@vyos# show interfaces
 
 #### Enable Mac Learning
 
-Read [Native MAC Learning in vSphere 6.7 removes the need for Promiscuous mode for Nested ESXi](https://williamlam.com/2018/04/native-mac-learning-in-vsphere-6-7-removes-the-need-for-promiscuous-mode-for-nested-esxi.html) - I am not the best person to explain this ;). 
+Read [Native MAC Learning in vSphere 6.7 removes the need for Promiscuous mode for Nested ESXi](https://williamlam.com/2018/04/native-mac-learning-in-vsphere-6-7-removes-the-need-for-promiscuous-mode-for-nested-esxi.html) - I am not the best person to explain this :wink:.
 
 TL;DR: It's best to enable mac learning on all port groups deployed on the vDS `vds-internal` used for nested labs.
 
