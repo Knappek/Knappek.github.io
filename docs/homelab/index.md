@@ -110,7 +110,7 @@ I have create a distributed port group called `TKGM` with VLAN ID `12`:
 
 ![TKGM Port Group](images/tkgm-pg.png)
 
-As a consequence I have create a virtual interface `12` with an IP range of my choice:
+As a consequence I have created a virtual interface `12` with an IP range of my choice:
 
 ```sh
 vyos@vyos# show interfaces
@@ -348,3 +348,5 @@ nsx_alb:
 ```
 
 In this example you can see I am referring a distributed port group named `TKGM` with cidr `172.20.12.0/22` as mentioned in [Nested Lab network example](#nested-lab-network-example).
+
+I am using this config file to deploy my TKGm nested lab environment by running the Ansible playbook as explained [here](https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying).
