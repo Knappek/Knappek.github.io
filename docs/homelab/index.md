@@ -141,7 +141,7 @@ Then I specify this port group in my nested lab setup - see [details below](#nes
 
 ### Nested Lab Setup
 
-My physical host is running ESXi. To bootstrap nested lab environments I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder), Kudos to Matt :clap:.
+To bootstrap nested lab environments I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder), Kudos to Matt :clap:.
 
 An example config I am using to deploy a TKGm environment is
 
