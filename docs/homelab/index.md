@@ -18,7 +18,7 @@ When I joined VMware in February 2021 I have built a homelab to be able to quick
 
 ## Setup
 
-There is a "Management vCenter" (vcenter-mgmt) VM deployed on the physical host that manages the physical host.
+There is a "Management vCenter" (`vcenter-mgmt`) VM deployed on the physical host that manages the physical host.
 As a result, the Management vCenter looks like this:
 
 ![Management vCenter](images/vcenter-mgmt.png)
@@ -46,7 +46,7 @@ The VyOS router has another NIC in a trunk port group deployed on a virtual dist
 
 ![Trunk Port Group](images/trunk-pg.png)
 
-Looking into the vyos configuration we thus have two network interface - `eth0` is the `Home Network` and `eth1` is the trunk port group:
+Looking into the vyos configuration we thus have two network interfaces - `eth0` is the `Home Network` and `eth1` is the trunk port group:
 
 ```sh
 vyos@vyos# show interfaces
