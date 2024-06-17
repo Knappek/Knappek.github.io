@@ -23,5 +23,3 @@ My physical host is running ESXi. To bootstrap nested lab environments I am usin
 ### Networking & Routing
 
 I have deployed a VyOS router as a virtual machine on my physical host. My home router has a static IP route configured to forward requests to `172.20.0.0/22` and `172.30.0.0/22` to the VyOS router.
-
-

@@ -2,11 +2,12 @@
 
 We are following the official docs [here](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-F68DF779-F52E-4970-8460-6177BF601DC2.html).
 
-!!! warn
+!!! warning
     This page is still in progress.
 
-!!! note
-    This page explains updating vCenter from 7u3 to 8u2c, and updating the vSphere with Tanzu environment (Supervisor cluster and guest clusters) to the latest version. We do not upgrade the underlying ESXi host There is also a guest cluster deployed with various Tanzu packages deployed which are updated as well.
+:::note
+This page explains updating vCenter from 7u3 to 8u2c, and updating the vSphere with Tanzu environment (Supervisor cluster and guest clusters) to the latest version. We do not upgrade the underlying ESXi host There is also a guest cluster deployed with various Tanzu packages deployed which are updated as well.
+:::
 
 ## Versions
 
