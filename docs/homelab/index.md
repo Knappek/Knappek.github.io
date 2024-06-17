@@ -78,10 +78,24 @@ Steps:
 
 1. Install Powershell
 1. open it in a terminal emulator: `pwsh`
-1. Connect to vCenter: `Connect-VIServer -Server 192.168.178.102 -Protocol https -User administrator@vsphere.local -Password VMware1!`
+1. Connect to vCenter:
+
+    ```powershell
+    Connect-VIServer -Server 192.168.178.102 -Protocol https -User administrator@vsphere.local -Password VMware1!
+    ```
+
 1. download the powershell functions `Get-MacLearn` and `Set-MacLearn` from [here](https://github.com/lamw/vmware-scripts/blob/master/powershell/MacLearn.ps1)
-1. Set Mac learning on a port group: `Set-MacLearn -DVPortgroupName @("Nested-01-DVPG") -EnableMacLearn $true -EnablePromiscuous $false -EnableForgedTransmit $true -EnableMacChange $false`
-1. Get Mac learning details: `Get-MacLearn -DVPortgroupName @("Nested-01-DVPG")`
+1. Set Mac learning on a port group:
+
+    ```powershell
+    Set-MacLearn -DVPortgroupName @("Nested-01-DVPG") -EnableMacLearn $true -EnablePromiscuous $false -EnableForgedTransmit $true -EnableMacChange $false
+    ```
+
+1. Get Mac learning details: 
+
+    ```powershell
+    Get-MacLearn -DVPortgroupName @("Nested-01-DVPG")
+    ```
 
 #### Create a network for a nested lab environment
 
