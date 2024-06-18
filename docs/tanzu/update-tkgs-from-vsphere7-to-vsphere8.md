@@ -1,4 +1,4 @@
-# Updating vSphere with Tanzu from 7 to 8 to Support TKG Clusters on Supervisor
+# Updating vSphere with Tanzu from 7 to 8
 
 We are following the official docs [here](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-F68DF779-F52E-4970-8460-6177BF601DC2.html).
 
