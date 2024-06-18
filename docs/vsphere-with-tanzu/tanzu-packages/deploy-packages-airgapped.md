@@ -689,17 +689,10 @@ In order to have newer Package versions available, we first have to upgrade the 
 
 ## Things to note
 
-### Upgrade Harbor 
-
-See changes in Harbor data values "joblog": https://vmware.slack.com/archives/C01NFMJJ07Q/p1707338438818329?thread_ts=1707203758.931599&cid=C01NFMJJ07Q 
-
 ### Using local content library
 
-when using local content library, the name when importing in vCenter has to be the same name as in item.json. Otherwise you get the following error when using the TKR:
+when using local content library, the name when importing in vCenter has to be the same name as in `item.json`. Otherwise you get the following error when using the TKR:
 
 ```sh
 unable to resolve that TKR due to could not resolve TKR/OSImage for controlPlane
 ```
-
-See this thread: https://vmware.slack.com/archives/CQW2Q05DW/p1711136050546869?thread_ts=1711123476.323609&cid=CQW2Q05DW 
-

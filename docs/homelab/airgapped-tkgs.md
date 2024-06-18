@@ -28,7 +28,7 @@ vyos@vyos# show interfaces
      hw-id 00:0c:29:85:a5:3b
      offload {
          gro
-         gso                                                                                                                                                                                                                                [0/5471]
+         gso
          sg
          tso
      }
