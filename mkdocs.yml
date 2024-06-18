@@ -35,7 +35,7 @@ extra:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/Knappek
     - icon: fontawesome/brands/linkedin
-      link: www.linkedin.com/in/andy-knapp-6a72b6108
+      link: https://linkedin.com/in/andy-knapp-6a72b6108
 
 markdown_extensions:
   - pymdownx.highlight:
