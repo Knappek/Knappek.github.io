@@ -30,6 +30,13 @@ theme:
     - toc.follow
   language: 'en'
 
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/Knappek
+    - icon: fontawesome/brands/linkedin
+      link: www.linkedin.com/in/andy-knapp-6a72b6108
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
