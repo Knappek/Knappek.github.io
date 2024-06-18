@@ -9,11 +9,11 @@ docs_dir: 'docs'
 nav:
 - Home: 
   - Welcome: index.md
-- vSphere with Tanzu:
-  - Upgrade TKGS: vsphere-with-tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
+- Tanzu:
+  - Upgrade TKGS: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
   - Tanzu Packages:
-    - Intro: vsphere-with-tanzu/tanzu-packages/index.md
-    - Airgapped Installation: vsphere-with-tanzu/tanzu-packages/deploy-packages-airgapped.md
+    - Intro: tanzu/tanzu-packages/index.md
+    - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md
 - Homelab:
   - Setup: homelab/index.md
   - Set up an airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
