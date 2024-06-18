@@ -40,7 +40,7 @@ The physical ESXi host has a virtual Switch `vSwitch0` with 2 port groups `Manag
 
 ![vswitch0](images/vswitch0.png)
 
-Apart from the physical host there is only `vyos` running in the same network. The VyOS router acts as the entry point and default gateway to the homelab. My home router has a static IP route configured to forward requests to my internal homelab IP ranges `172.20.0.0/22` and `172.30.0.0/22` to the VyOS router.
+Apart from the physical host there is only `vyos` running in the same network. The VyOS router acts as the entry point and default gateway to the homelab. My home router has a static IP route configured to forward requests to my internal homelab IP ranges `172.20.0.0/16` and `172.30.0.0/16` to the VyOS router.
 
 The VyOS router has another NIC in a trunk port group deployed on a virtual distributed switch (`vds-internal`) via the management vCenter:
 
@@ -68,6 +68,8 @@ vyos@vyos# show interfaces
  }
 ```
 
+Refer to the [VyOS Quick Start guide](https://docs.vyos.io/en/latest/quick-start.html) for more information how to configure interfaces, protocols, firewalls and more.
+
 #### Enable Mac Learning
 
 Read [Native MAC Learning in vSphere 6.7 removes the need for Promiscuous mode for Nested ESXi](https://williamlam.com/2018/04/native-mac-learning-in-vsphere-6-7-removes-the-need-for-promiscuous-mode-for-nested-esxi.html) - I am not the best person to explain this :wink:.
@@ -91,7 +93,7 @@ Steps:
     Set-MacLearn -DVPortgroupName @("Nested-01-DVPG") -EnableMacLearn $true -EnablePromiscuous $false -EnableForgedTransmit $true -EnableMacChange $false
     ```
 
-1. Get Mac learning details: 
+1. Get Mac learning details:
 
     ```powershell
     Get-MacLearn -DVPortgroupName @("Nested-01-DVPG")
@@ -106,11 +108,21 @@ In order to create different networks for different nested lab environments I ha
 
 ##### Nested Lab network example
 
-I have create a distributed port group called `TKGM` with VLAN ID `12`:
+We create a distributed port group called `TKGM` with VLAN ID `12`:
 
 ![TKGM Port Group](images/tkgm-pg.png)
 
-As a consequence I have created a virtual interface `12` with an IP range of my choice:
+As a consequence we create a virtual interface in VyOS with ID `12` and an IP range of my choice:
+
+```shell
+set interfaces ethernet eth1 vif 12 address 172.20.12.1/22
+set interfaces ethernet eth1 vif 12 description TKGM
+set interfaces ethernet eth1 vif 12 mtu 9000
+commit 
+save
+```
+
+The result is:
 
 ```sh
 vyos@vyos# show interfaces
@@ -137,7 +149,7 @@ vyos@vyos# show interfaces
  }
 ```
 
-Then I specify this port group in my nested lab setup - see [details below](#nested-lab-setup).
+We can then specify this port group in the nested lab setup config file - see [details below](#nested-lab-setup).
 
 ### Nested Lab Setup
 
@@ -347,6 +359,6 @@ nsx_alb:
   se_vip_network_gateway: "{{ opinionated.hosting_network.workload.cidr | ipmath(1) }}"
 ```
 
-In this example you can see I am referring a distributed port group named `TKGM` with cidr `172.20.12.0/22` as mentioned in [Nested Lab network example](#nested-lab-network-example).
+In this example you can see we refer to a distributed port group named `TKGM` with cidr `172.20.12.0/22`, as mentioned in [Nested Lab network example](#nested-lab-network-example).
 
-I am using this config file to deploy my TKGm nested lab environment by running the Ansible playbook as explained [here](https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying).
+We can use this config file to deploy a TKGm nested lab environment by running the Ansible playbook as explained [here](https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying).

@@ -1,12 +1,25 @@
 # Set up an airgapped TKGS homelab environment
 
-I have created a fully airgapped TKGS (aka vSphere with Tanzu) environment as lots of our customers have vSphere with Tanzu running without any internet connection. This page explains how to setup an airgapped environment where internet access is not even possible via a proxy.
+We will create a fully airgapped TKGS (aka vSphere with Tanzu) environment. This is a common setup of lots of our customers who run vSphere with Tanzu without any internet connection, not even via a proxy.
 
-As described in [Nested](./index.md#nested-lab-setup) I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder) to bootstrap nested lab environments. This Ansible playbook is not (yet) implemented to work in airgapped environments as it creates a subscribed content library. Hence, first run `vmware-lab-builder` with internet access to bootstrap a TKGS Supervisor Cluster and afterwards you can deny internet access with the following steps:
+As described in [Nested Lab Setup](./index.md#nested-lab-setup) we will use [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder) to bootstrap nested lab environments. This Ansible playbook is not (yet) implemented to work in airgapped environments as it creates a [subscribed content library](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-C8096867-6C18-4CB2-8803-C95100D54F8B.html). Hence, we will first run `vmware-lab-builder` with internet access to bootstrap a TKGS Supervisor Cluster and afterwards, we create a [Local Content Library](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-19E8E034-5256-4EFC-BEBF-D4F17A8ED021.html) to provision guest clusters without internet access.
 
 ## Initial Setup with internet access
 
-As mentioned in my [lab network setup](./index.md#networking--routing) I am using a virtualized VyOS router to route all traffic in my homelab. For my TKGS with NSX-T environment I have initially configured the following interface
+As mentioned in the [lab network setup](./index.md#networking--routing) we use a virtualized VyOS router to route all traffic in our homelab. For the TKGS with NSX-T environment we configure the following interface in VyOS
+
+```shell
+set interfaces ethernet eth1 vif 16 address 172.20.16.1/22
+set interfaces ethernet eth1 vif 16 description tanzu-without-dhcp
+set interfaces ethernet eth1 vif 16 mtu 9000
+set interfaces ethernet eth1 vif 20 address 172.20.20.1/22
+set interfaces ethernet eth1 vif 20 description nsxt-tep
+set interfaces ethernet eth1 vif 20 mtu 9000
+commit 
+save
+```
+
+The result is:
 
 ```shell
 vyos@vyos# show interfaces
@@ -37,10 +50,18 @@ vyos@vyos# show interfaces
  loopback lo {
  }
 ```
- 
+
 where `vif 16` is used for all Virtual Machines and `vif 20` for the [NSX-T TEP network infrastructure](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-installation-configuration/GUID-E1C7E1DD-8D5D-4BEF-BBB0-61A7F7EBFB7A.html).
 
-For the Supervisor management network, egress and ingress range there is a VyOS protocol (static route) configured
+For the Supervisor Management Network, for the Egress and Ingress range, we create a VyOS protocol (static route)
+
+```shell
+set protocols static route 172.30.4.0/24 next-hop 172.20.16.103
+commit
+save
+```
+
+The result is:
 
 ```shell
 vyos@vyos# show protocols
@@ -414,5 +435,173 @@ nsxt:  # (optional) - section can be removed to not create any nsxt objects
       tier0_display_name: tkgs-t0
 ```
 
-### Restrict internet access in VyOS interfaces
+## Restrict internet access in VyOS interfaces
 
+We will create an environment that doesn't have outbound internet connection but ingress connection from the internet is allowed and also all traffic within the network is allowed. We don't restrict internal communications on a per-port level.
+
+1. Create a `Firewall address-group` called `ALLOWED-IPS` that will collect all IP ranges to and from which communication is allowed using the command
+
+    ```shell
+    set firewall group address-group ALLOWED-IPS address 172.20.16.1-172.20.16.255
+    ```
+
+    Do this for every IP range you are using (don't forget the internal Kubernetes pod and service range). We get the following result:
+
+    ```shell
+    vyos@vyos# show firewall group
+    address-group ALLOWED-IPS {
+        address 192.168.178.1-192.168.178.255
+        address 172.20.16.1-172.20.16.255
+        address 172.20.17.1-172.20.17.255
+        address 172.20.18.1-172.20.18.255
+        address 172.20.19.1-172.20.19.255
+        address 172.20.20.1-172.20.20.255
+        address 172.20.21.1-172.20.21.255
+        address 172.20.22.1-172.20.22.255
+        address 172.20.23.1-172.20.23.255
+        address 172.30.4.1-172.30.4.255
+        address 172.32.0.1-172.32.0.255
+        address 172.32.1.1-172.32.1.255
+        address 172.32.2.1-172.32.2.255
+        address 172.32.3.1-172.32.3.255
+        address 172.32.4.1-172.32.4.255
+        address 172.32.5.1-172.32.5.255
+        address 172.32.6.1-172.32.6.255
+        address 172.32.7.1-172.32.7.255
+    }
+    ```
+
+1. Create a firewall rule to allow inbound traffic from everywhere
+
+    ```shell
+    set firewall name INBOUND-ALL default-action drop
+    set firewall name INBOUND-ALL description "Allow all incoming connections"
+    set firewall name INBOUND-ALL enable-default-log
+    set firewall name INBOUND-ALL rule 20 action accept
+    set firewall name INBOUND-ALL rule 20 log enable
+    set firewall name INBOUND-ALL rule 20 source address 0.0.0.0/0
+    commit 
+    save
+    ```
+
+    The result is:
+
+    ```shell
+    vyos@vyos# show firewall name INBOUND-ALL
+    default-action drop
+    description "Allow all incoming connections"
+    enable-default-log
+    rule 20 {
+        action accept
+        log enable
+        source {
+            address 0.0.0.0/0
+        }
+    }
+    ```
+
+1. Create a firewall rule for outbound communication
+
+    ```shell
+    set firewall name OUTBOUND-RESTRICT default-action 'drop'
+    set firewall name OUTBOUND-RESTRICT description 'Restrict outbound connections'
+    set firewall name OUTBOUND-RESTRICT enable-default-log
+    set firewall name OUTBOUND-RESTRICT rule 10 action 'accept'
+    set firewall name OUTBOUND-RESTRICT rule 10 description 'Allow DNS'
+    set firewall name OUTBOUND-RESTRICT rule 10 destination port '53'
+    set firewall name OUTBOUND-RESTRICT rule 10 protocol 'tcp_udp'
+    set firewall name OUTBOUND-RESTRICT rule 20 action 'accept'
+    set firewall name OUTBOUND-RESTRICT rule 20 description 'Allow SSH'
+    set firewall name OUTBOUND-RESTRICT rule 20 destination port '22'
+    set firewall name OUTBOUND-RESTRICT rule 20 log 'enable'
+    set firewall name OUTBOUND-RESTRICT rule 20 protocol 'tcp'
+    set firewall name OUTBOUND-RESTRICT rule 30 action 'accept'
+    set firewall name OUTBOUND-RESTRICT rule 30 description 'Allow specific outbound traffic'
+    set firewall name OUTBOUND-RESTRICT rule 30 log 'enable'
+    set firewall name OUTBOUND-RESTRICT rule 30 protocol 'all'
+    set firewall name OUTBOUND-RESTRICT rule 30 source group address-group 'ALLOWED-IPS'
+    commit 
+    save
+    ```
+
+    The result is:
+
+    ```shell
+    vyos@vyos# show firewall name OUTBOUND-RESTRICT
+    default-action drop
+    description "Restrict outbound connections"
+    enable-default-log
+    rule 10 {
+        action accept
+        description "Allow DNS"
+        destination {
+            port 53
+        }
+        protocol tcp_udp
+    }
+    rule 20 {
+        action accept
+        description "Allow SSH"
+        destination {
+            port 22
+        }
+        log enable
+        protocol tcp
+    }
+    rule 30 {
+        action accept
+        description "Allow specific outbound traffic"
+        log enable
+        protocol all
+        source {
+            group {
+                address-group ALLOWED-IPS
+            }
+        }
+    }
+    ```
+
+1. Finally, apply the firewall rules on the respective interfaces:
+
+    ```shell
+    set interfaces ethernet eth1 vif 20 firewall in name INBOUND-ALL
+    set interfaces ethernet eth1 vif 20 firewall out name OUTBOUND-RESTRICT
+    set interfaces ethernet eth1 vif 16 firewall in name INBOUND-ALL
+    set interfaces ethernet eth1 vif 16 firewall out name OUTBOUND-RESTRICT
+    commit
+    save
+    ```
+
+    The result is:
+
+    ```shell
+    vyos@vyos# show interfaces ethernet eth1
+    hw-id 00:0c:29:85:a5:45
+    mtu 9000
+    vif 16 {
+        address 172.20.16.1/22
+        description tanzu-without-dhcp
+        firewall {
+            in {
+                name INBOUND-ALL
+            }
+            out {
+                name OUTBOUND-RESTRICT
+            }
+        }
+        mtu 9000
+    }
+    vif 20 {
+        address 172.20.20.1/22
+        description nsxt-tep
+        firewall {
+            in {
+                name INBOUND-ALL
+            }
+            out {
+                name OUTBOUND-RESTRICT
+            }
+        }
+        mtu 9000
+    }
+    ```
