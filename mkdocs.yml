@@ -7,8 +7,7 @@ repo_url: 'https://github.com/Knappek/Knappek.github.io'
 docs_dir: 'docs'
 
 nav:
-- Home: 
-  - Welcome: index.md
+- Home: index.md
 - Tanzu:
   - Update vSphere with Tanzu from 7 to 8: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
   - Tanzu Packages:
