@@ -9,6 +9,7 @@ So this page is mainly for me but I'm happy if others can benefit from it as wel
 - Kubernetes Architecture basic concepts - what happens after data stored in etcd
 - TKGS NSX-T integration via NCP controller
 - TKGS integration with vSphere CSI controller
+- complete [Updating vSphere with Tanzu from 7 to 8](./tanzu/update-tkgs-from-vsphere7-to-vsphere8.md)
 
 ## Disclaimer
 
