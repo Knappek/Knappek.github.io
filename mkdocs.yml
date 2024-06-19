@@ -8,6 +8,8 @@ docs_dir: 'docs'
 
 nav:
 - Home: index.md
+- Kubernetes:
+  - Kubernetes API Workflow: kubernetes/api-workflow.md
 - Tanzu:
   - Update vSphere with Tanzu from 7 to 8: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
   - Set up an airgapped TKGS homelab environment: tanzu/tkgs-airgapped.md
