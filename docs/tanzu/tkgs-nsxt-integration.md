@@ -8,7 +8,7 @@ A [Kubernetes Service of type LoadBalancer](https://kubernetes.io/docs/concepts/
 
 If you've read [Kubernetes Technical Architecture Concepts](./../kubernetes/technical-architecture-concepts.md) you know that everything in Kubernetes is implemented as controllers. In essence, a infrastructure provider has to implement a load balancer controller and run it on the cluster:
 
-![Generic Load Balancer Controller](generic-load-balancer-controller.png)
+![Generic Load Balancer Controller](images/generic-load-balancer-controller.png)
 
 The load balancer controller watches for `Create`, `Update` and `Delete` events of Services of type `LoadBalancer`, interacts with the underlying network infrastructure provider and reports back status. 
 
