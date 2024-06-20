@@ -40,7 +40,7 @@ extra:
       link: https://linkedin.com/in/andy-knapp-6a72b6108
 
 plugins: 
-  - glightbox
+  - glightbox # makes images clickable: https://github.com/blueswen/mkdocs-glightbox
 
 
 markdown_extensions:
