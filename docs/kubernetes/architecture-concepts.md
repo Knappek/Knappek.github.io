@@ -201,4 +201,174 @@ metadata:
   [...]
 ```
 
+## Admission Controllers
 
+We've looked into a simplified Kubernetes API request flow when we explored [what happens when we create a Kubernetes deployment](#what-happens-when-i-create-a-kubernetes-deployment) where we haven't covered two steps - `Mutating Admission` and `Validating Admission`:
+
+![Admission Controller](./images/admission-controller.png)
+
+!!! quote "From the [Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/):"
+    An admission controller is a piece of code that intercepts requests to the Kubernetes API server prior to persistence of the object, but after the request is authenticated and authorized.
+
+    Admission controllers may be validating, mutating, or both. Mutating controllers may modify objects related to the requests they admit; validating controllers may not.
+
+    Admission controllers limit requests to create, delete, modify objects. Admission controllers can also block custom verbs, such as a request connect to a Pod via an API server proxy. Admission controllers do not (and cannot) block requests to read (get, watch or list) objects.
+
+Simply put, the mutating admission step will alter your manifest and the validating admission will allow or deny your request.
+
+### Admission Controller Example
+
+Let's look into our example and let's assume there is a **AddLabel** mutating admission controller implemented that injects a label `team: <TeamName>` to every request's manifest and there is a **RequiredLabel** validating admission controller implemented that expects a `cost-center: <CostCenterID>` label on every manifest.
+
+When we create a new deployment using
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+```
+
+then the mutating admission controller `AddLabel` will inject the label `team: AwesomeTeam`, so the request becomes
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    team: AwesomeTeam
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+```
+
+The request then passes the `Object Schema Validation` step as there is no syntax error, but the request is denied on the `Validating Admission` step because the label `cost-center` is missing.
+
+When using
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    cost-center: 12345
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+```
+
+the request passes the API workflow and gets stored in etcd as
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    cost-center: 12345
+    team: AwesomeTeam
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+```
+
+### Built-In Admission Controllers
+
+There are [various admission controllers](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#what-does-each-admission-controller-do) compiled into the `kube-apiserver` binary which Kubernetes Administrators can turn on and off with some [default ones being turned on](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#which-plugins-are-enabled-by-default).
+
+### Dynamic Admission Controllers
+
+!!! quote "[Kubernetes docs](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)"
+    In addition to compiled-in admission plugins, admission plugins can be developed as extensions and run as webhooks configured at runtime. [...] Admission webhooks are HTTP callbacks that receive admission requests and do something with them.
+
+Simply put, the Kubernetes API exposes the **Mutating Admission** and **Validating Admission** interfaces so that you can write external custom software and extend those two api workflow steps.
+
+The [example from above](#admission-controller-example) explains two possible custom implementations of a mutating and validating admission webhook.
+
+The most famous open source projects that implement both webhooks are [Kyverno](https://github.com/kyverno/kyverno) and [Open Policy Agent Gatekeeper](https://github.com/open-policy-agent/gatekeeper).
+
+You can read more about admission controllers on this blog post: [A Guide to Kubernetes Admission Controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/#what-are-kubernetes-admission-controllers).
+
+## Custom Resources and Custom Resource Definitions (CRDs)
+
+We have seen that [Dynamic Admission Controllers](#dynamic-admission-controllers) allows to hook into the Kubernetes API and extend it with custom software.
+
+With the introduction of [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) you can further extend Kubernetes by writing custom controllers and hook into the etcd Watch API the same way as it's done with the Deployment Controller or Replicaset Controller as [explained above](#what-happens-when-i-create-a-kubernetes-deployment).
+
+A simple custom controller is [kubewatch](https://github.com/robusta-dev/kubewatch) which basically looks for events like pod/deployment/confimap creation/update/deletion and send a notification to selected channels like slack, hipchat, mattermost or webhook.
+
+## Further interesting resources
+
+- [What happens when ... Kubernetes edition!](https://github.com/jamiehannaford/what-happens-when-k8s)
+- [OperatorHub.io](https://operatorhub.io/)
+- [How does the Kubernetes scheduler work?](https://jvns.ca/blog/2017/07/27/how-does-the-kubernetes-scheduler-work/)
