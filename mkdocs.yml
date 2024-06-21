@@ -42,6 +42,7 @@ extra:
 
 plugins: 
   - glightbox # makes images clickable: https://github.com/blueswen/mkdocs-glightbox
+  - search # searchbar
 
 
 markdown_extensions:
