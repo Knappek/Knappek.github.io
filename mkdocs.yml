@@ -31,6 +31,7 @@ theme:
     - content.code.annotate
     - content.code.copy
     - toc.follow
+    - search.suggest
   language: 'en'
 
 extra:
