@@ -8,6 +8,8 @@ docs_dir: 'docs'
 
 nav:
 - Home: index.md
+- Kubernetes:
+  - Kubernetes Architecture Concepts: kubernetes/architecture-concepts.md
 - Tanzu:
   - Update vSphere with Tanzu from 7 to 8: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
   - Set up an airgapped TKGS homelab environment: tanzu/tkgs-airgapped.md
@@ -38,6 +40,10 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/andy-knapp-6a72b6108
 
+plugins: 
+  - glightbox # makes images clickable: https://github.com/blueswen/mkdocs-glightbox
+
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -51,5 +57,3 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-
-
