@@ -9,7 +9,7 @@ Kubernetes has evolved from just being a container scheduling and management sys
 This is the reason why I think it is very valuable to understand the basic technical concepts as it will help you better understand literally *anything* in Kubernetes.
 
 !!! warning ""
-    I try to go into technical details without going into technical details :wink:.
+    I try to go into technical details without going into technical details :wink:
 
 We will cover:
 
@@ -359,13 +359,144 @@ The most famous open source projects that implement both webhooks are [Kyverno](
 
 You can read more about admission controllers on this blog post: [A Guide to Kubernetes Admission Controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/#what-are-kubernetes-admission-controllers).
 
-## Custom Resources and Custom Resource Definitions (CRDs)
+## Extending Kubernetes
+
+### Custom Resources and Custom Controllers
 
 We have seen that [Dynamic Admission Controllers](#dynamic-admission-controllers) allows to hook into the Kubernetes API and extend it with custom software.
 
 With the introduction of [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) you can further extend Kubernetes by writing custom controllers and hook into the etcd Watch API the same way as it's done with the Deployment Controller or Replicaset Controller as [explained above](#what-happens-when-i-create-a-kubernetes-deployment).
 
-A simple custom controller is [kubewatch](https://github.com/robusta-dev/kubewatch) which basically looks for events like pod/deployment/confimap creation/update/deletion and send a notification to selected channels like slack, hipchat, mattermost or webhook.
+A simple custom controller is [kubewatch](https://github.com/robusta-dev/kubewatch) which basically looks for events like pod/deployment/confimap creation/update/deletion and send a notification to selected channels like slack, hipchat, mattermost or webhook:
+
+![KubeWatch](./images/kubewatch.png)
+
+### Custom Resource Definitions (CRDs) and Operators
+
+Custom Controllers can be implemented to use the etcd Watch API and watch for built-in Kubernetes resources, such as deployments, services or pods, as described in the previous section. This approach can be further extended by implementing own resources, and not only relying on built-in resources.
+
+Let's look at a simple example: In order to deploy a web application we probably need a `deployment` to deploy the application in pods, a `service` to make the application available to end users, a `configmap` to store application configuration and a `secret` to store application secrets. Let's assume, we work for `mycompany` and we have implemented an app called `shopping-cart` which uses an external Postgres database and uses S3 for storing files. For this, we could introduce a custom resource called `WebApp` which would look like:
+
+```yaml
+---
+apiVersion: apps.com.mycompany/v1
+kind: WebApp
+metadata:
+  labels:
+    app: shopping-cart
+  name: shopping-cart
+spec:
+  replicas: 3
+  image: registry.mycompany.com/shopping-cart/shopping-cart:v1.0.0
+  config:
+    env: prod
+    postgresURL: postgres.mycompany.com:5432
+    s3URL: 
+    s3Bucket: shopping-cart
+  secret:
+    postgresUser: pg
+    postGresPasswort: sup€rs3cure!
+    s3AccessKeyID: JWQWDBWM2
+    s3SecretAccessKey: nTqfIa4AvynIEWG7cTmY
+```
+
+!!! tip
+    Never store secrets in plaintext! This is just an example, so please forgive me 😉
+
+We can then apply this `WebApp` onto our cluster
+
+```shell
+kubectl apply -f shopping-cart-webapp.yaml
+```
+
+which will ultimately create a `deployment`, `service`, `configmap` and a `secret`.
+
+!!! note
+    This is just a simple example. This can be further extended to abstract away required logic from developers. So we can think of the `WebApp` being a custom resource owned by platform admins who can implement all required details to standardize web application deployments  within the company. This could include implementing security requirements and other best practices whilst developers can focus on their application code.
+
+**How can this be implemented?**
+
+The `WebApp` is a **Custom Resource Definition (CRD)** - a custom API registered in the Kubernetes API. To make that work technically, you have to describe and register the `WebApp` API by creating a CRD:
+
+```yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: webapps.apps.com.mycompany
+spec:
+  group: apps.com.mycompany
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                replicas:
+                  type: string
+                image:
+                  type: string
+                config:
+                  type: object
+                  properties:
+                    env:
+                      type: string
+                    postgresURL:
+                      type: string
+                    s3URL:
+                      type: string
+                    s3Bucket:
+                      type: string
+                secret:
+                  type: object
+                  properties:
+                    postgresURL:
+                      type: string
+                    postGresPasswort:
+                      type: string
+                    s3AccessKeyID:
+                      type: string
+                    s3SecretAccessKey:
+                      type: string
+  # either Namespaced or Cluster
+  scope: Namespaced
+  names:
+    # plural name to be used in the URL: /apis/<group>/<version>/<plural>
+    plural: webapps
+    # singular name to be used as an alias on the CLI and for display
+    singular: webapp
+    # kind is normally the CamelCased singular type. Your resource manifests use this.
+    kind: WebApp
+    # shortNames allow shorter string to match your resource on the CLI
+    shortNames:
+    - wa
+```
+
+which we can simply register in Kubernetes with
+
+```shell
+kubectl apply -f webapp-crd.yaml
+```
+
+Afterwards we can already execute
+
+```shell
+kubectl get webapp
+# or using the short name
+kubectl get wa
+# and because it's namespaced
+kubectl get wa --all-namespaces
+```
+
+we can actually also already apply our manifest from above. But this will solely store the manifest in etcd (after it passes all API workflow steps as described in [Store Deployment Manifest in etcd](#store-deployment-manifest-in-etcd)). Until now, there is no controller that watches etcd for resources of `kind: WebApp`. Therefore, the next step is to implement such a custom controller - custom controllers that watch Custom Resource Definitions are called [Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/).
+
+## Summary
+
+The Kubernetes project started in 6th June 2014 to become a *Production-Grade Container Scheduling and Management system* and has since evolved to be way more than that - with the possibility of extending the Kubernetes API with admission controllers and Kubernetes itself with Custom Controller and Operator, Kubernetes can be used as a standardized Platform API. All these implementation patterns build on top of the paradigm of an asynchronous event based architecture with etcd and the controller pattern at the heart of it. This is the main reason for success of the Kubernetes project in my opinion.
 
 ## Further interesting resources
 
