@@ -40,6 +40,8 @@ extra:
       link: https://github.com/Knappek
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/andy-knapp-6a72b6108
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:andy.knapp.ak@gmail.com
 
 plugins: 
   - glightbox # makes images clickable: https://github.com/blueswen/mkdocs-glightbox
