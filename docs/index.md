@@ -8,7 +8,13 @@ If you have any questions, feedback or other comments to certain pages, please l
 ## Upcoming
 
 - TKGS integration with vSphere CSI controller
+- demistify Tanzu Kubernetes Grid flavours - TKGS, TKGM, TKGI
 - complete [Updating vSphere with Tanzu from 7 to 8](./tanzu/update-tkgs-from-vsphere7-to-vsphere8.md)
+- Test TKGS/m disaster recover scenarios. What happens when:
+  - CP node crashes
+  - kubelet on CP node crashes
+  - apiserver on CP node crashes
+  - etcd on CP node crashes
 
 ## Disclaimer
 
