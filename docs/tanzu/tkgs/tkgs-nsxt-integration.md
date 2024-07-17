@@ -6,7 +6,7 @@ This page explains how [Tanzu Kubernetes Clusters](https://docs.vmware.com/en/VM
 
 A [Kubernetes Service of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) is an upstream Kubernetes concept that assigns a routable external IP address to a Kubernetes Service and, thus, make the service available from outside of the cluster. This IP assignment has to happen by the underlying infrastructure, the underlying network infrastructure to be more specific. Of course Kubernetes does not know and care about the underlying infrastructure, so it is the responsibility of cloud providers and infrastructure providers to implement this functionality.
 
-If you've read [Kubernetes Architecture Concepts](./../kubernetes/architecture-concepts.md) you know that everything in Kubernetes is implemented as controllers. In essence, an infrastructure provider has to implement a load balancer controller and run it on the cluster:
+If you've read [Kubernetes Architecture Concepts](./../../kubernetes/architecture-concepts.md) you know that everything in Kubernetes is implemented as controllers. In essence, an infrastructure provider has to implement a load balancer controller and run it on the cluster:
 
 ![Generic Load Balancer Controller](images/generic-load-balancer-controller.png)
 

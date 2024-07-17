@@ -6,7 +6,7 @@ As described in [Nested Lab Setup](./index.md#nested-lab-setup) we will use [vmw
 
 ## Initial Setup with internet access
 
-As mentioned in the [lab network setup](./index.md#networking--routing) we use a virtualized VyOS router to route all traffic in our homelab. For the TKGS with NSX-T environment we configure the following interface in VyOS
+As mentioned in the [lab network setup](./index.md#networking-routing) we use a virtualized VyOS router to route all traffic in our homelab. For the TKGS with NSX-T environment we configure the following interface in VyOS
 
 ```shell
 set interfaces ethernet eth1 vif 16 address 172.20.16.1/22

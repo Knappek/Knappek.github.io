@@ -11,12 +11,15 @@ nav:
 - Kubernetes:
   - Kubernetes Architecture Concepts: kubernetes/architecture-concepts.md
 - Tanzu:
-  - Update vSphere with Tanzu from 7 to 8: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
-  - Set up an airgapped TKGS homelab environment: tanzu/tkgs-airgapped.md
+  - Tanzu Platform:
+    - Tanzu Platform Technical Details: tanzu/tanzu-platform/tanzu-platform-technical-details.md
+  - TKGS:
+    - Update vSphere with Tanzu from 7 to 8: tanzu/tkgs/update-tkgs-from-vsphere7-to-vsphere8.md
+    - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
+    - vSphere with Tanzu integration with NSX-T: tanzu/tkgs/tkgs-nsxt-integration.md
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
     - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md
-  - vSphere with Tanzu integration with NSX-T: tanzu/tkgs-nsxt-integration.md
 - Homelab:
   - Setup: homelab/index.md
   - Set up an airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
