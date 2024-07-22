@@ -75,7 +75,7 @@ The error `argument of type 'NoneType' is not iterable` first indicated that the
 "msg"="Reconciler error" "error"="The underlying content library with ID 5f773a1c-5aa3-4268-871a-359401c55950 does not exist in vSphere"
 ```
 
-## Root Cause Description
+## Root Cause
 
 There is an operator introduced in vCenter 8.x called `ImageRegistryOperator` that takes over some of the responsibilities of `VMoperator`. Part of the upgrade script is to migrate VMoperator's `ContentSource` and `ContentSourceBindings` to newer CRDs (`ContentLibrary`, `ClusterContentLibrary`, `ContentLibraryItems` etc.).
 
