@@ -11,7 +11,7 @@ nav:
 - Kubernetes:
   - Kubernetes Architecture Concepts: kubernetes/architecture-concepts.md
 - Tanzu:
-  - Update vSphere with Tanzu from 7 to 8: tanzu/update-tkgs-from-vsphere7-to-vsphere8.md
+  - Supervisor Cluster upgrade failed in vSphere 8u2b: tanzu/supervisor-cluster-upgrade-failed-in-vsphere-8.md
   - Set up an airgapped TKGS homelab environment: tanzu/tkgs-airgapped.md
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
