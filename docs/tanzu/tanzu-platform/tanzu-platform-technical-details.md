@@ -1,9 +1,15 @@
 # Tanzu Platform Technical Details
 
+## Goal of this page
+
+The goal of this page is to add additional information around [Tanzu Platform for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/index.html), what you can't easily find in the official documentation, but what you would learn when working hands-on with it. This page tries to go into all necessary technical details required to better understand the concepts. By providing this, it should be easier to manage, own and troubleshoot.
+
+!!! warning
+    This page is in progress. Currently it just contains notes, there is no clear format or structure. It's mainly used by myself while studying TP4K8s and I will bring it into a good shape once I understand it better.
+
 ## Questions
 
 - What happens when I don't enable `Tanzu Application Engine` when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?
-- there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet => test this
 - when interacting via kubectl with UCP (using kubeconfig `~/.config/tanzu/kube/config`), then you see different things depending which context you use (`project`, `clustergroup` or `space` context). Which objects do you see using which context?
 
 ## Concepts
@@ -55,7 +61,7 @@ There is a very good page explaining the concepts [here](https://docs.vmware.com
 
 ## FAQ
 
-## When I have 1 availability target with 3 clusters and I choose to
+### When I have 1 availability target with 3 clusters and I choose to
 
 - deploy a space with 1 replica: will the namespace get deployed on one cluster only? => yes
 - deploy a space with 2 replicas: will 2 namespaces get deployed on one cluster or 1 namespace on each cluster? => 2 namespaces on one cluster is possible
@@ -65,3 +71,7 @@ There is a very good page explaining the concepts [here](https://docs.vmware.com
 ### Who are the personas and who is responsible for what?
 
 Where are the boundaries? What's the motivation behind the technical architecture - who is supposed to see what and what is intended to be abstracted away? => https://docs.google.com/document/d/1Rmt-eskKBo2mNDsSdHeVaIWuZU3zhKznEDcRVN9BRRs/edit#heading=h.ixfosuy76boz
+
+### Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet
+
+Yes. If you deploy a space to two Availability Targets with one replica each, there is one `ManagedNamespaceSet` on UCP, and two `ManagedNamespace`'s, one for each cluster.
