@@ -771,6 +771,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#goal-of-this-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal of this page
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#questions" class="md-nav__link">
     <span class="md-ellipsis">
       Questions
@@ -804,22 +813,31 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#when-i-have-1-availability-target-with-3-clusters-and-i-choose-to" class="md-nav__link">
     <span class="md-ellipsis">
       When I have 1 availability target with 3 clusters and I choose to
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="When I have 1 availability target with 3 clusters and I choose to">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#who-are-the-personas-and-who-is-responsible-for-what" class="md-nav__link">
     <span class="md-ellipsis">
       Who are the personas and who is responsible for what?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-there-is-a-dedicated-managednamespace-for-each-availabilitytarget-of-a-managednamespaceset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet
     </span>
   </a>
   
@@ -849,10 +867,15 @@
 
 
 <h1 id="tanzu-platform-technical-details">Tanzu Platform Technical Details</h1>
+<h2 id="goal-of-this-page">Goal of this page</h2>
+<p>The goal of this page is to add additional information around <a href="https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/index.html">Tanzu Platform for Kubernetes</a>, what you can't easily find in the official documentation, but what you would learn when working hands-on with it. This page tries to go into all necessary technical details required to better understand the concepts. By providing this, it should be easier to manage, own and troubleshoot.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page is in progress. Currently it just contains notes, there is no clear format or structure. It's mainly used by myself while studying TP4K8s and I will bring it into a good shape once I understand it better.</p>
+</div>
 <h2 id="questions">Questions</h2>
 <ul>
 <li>What happens when I don't enable <code>Tanzu Application Engine</code> when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?</li>
-<li>there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet =&gt; test this</li>
 <li>when interacting via kubectl with UCP (using kubeconfig <code>~/.config/tanzu/kube/config</code>), then you see different things depending which context you use (<code>project</code>, <code>clustergroup</code> or <code>space</code> context). Which objects do you see using which context?</li>
 </ul>
 <h2 id="concepts">Concepts</h2>
@@ -919,7 +942,7 @@
 <li>once a ManagedNamespace has been created successfully on UCP, there is the <code>Space Scheduler</code> that provisions a namespace on a target cluster and installs the traits into that namespace</li>
 </ul>
 <h2 id="faq">FAQ</h2>
-<h2 id="when-i-have-1-availability-target-with-3-clusters-and-i-choose-to">When I have 1 availability target with 3 clusters and I choose to</h2>
+<h3 id="when-i-have-1-availability-target-with-3-clusters-and-i-choose-to">When I have 1 availability target with 3 clusters and I choose to</h3>
 <ul>
 <li>deploy a space with 1 replica: will the namespace get deployed on one cluster only? =&gt; yes</li>
 <li>deploy a space with 2 replicas: will 2 namespaces get deployed on one cluster or 1 namespace on each cluster? =&gt; 2 namespaces on one cluster is possible</li>
@@ -928,6 +951,8 @@
 </ul>
 <h3 id="who-are-the-personas-and-who-is-responsible-for-what">Who are the personas and who is responsible for what?</h3>
 <p>Where are the boundaries? What's the motivation behind the technical architecture - who is supposed to see what and what is intended to be abstracted away? =&gt; https://docs.google.com/document/d/1Rmt-eskKBo2mNDsSdHeVaIWuZU3zhKznEDcRVN9BRRs/edit#heading=h.ixfosuy76boz</p>
+<h3 id="is-there-is-a-dedicated-managednamespace-for-each-availabilitytarget-of-a-managednamespaceset">Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet</h3>
+<p>Yes. If you deploy a space to two Availability Targets with one replica each, there is one <code>ManagedNamespaceSet</code> on UCP, and two <code>ManagedNamespace</code>'s, one for each cluster.</p>
 
 
 
