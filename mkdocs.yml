@@ -14,10 +14,10 @@ nav:
   - Tanzu Platform:
     - Tanzu Platform Technical Details: tanzu/tanzu-platform/tanzu-platform-technical-details.md
   - TKGS:
-    - Supervisor Cluster upgrade failed in vSphere 8u2b: tanzu/supervisor-cluster-upgrade-failed-in-vsphere-8.md
+    - Supervisor Cluster upgrade failed in vSphere 8u2b: tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8.md
     - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - vSphere with Tanzu integration with NSX-T: tanzu/tkgs/tkgs-nsxt-integration.md
-  - Set up an airgapped TKGS homelab environment: tanzu/tkgs-airgapped.md
+    - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
     - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md
@@ -48,6 +48,10 @@ extra:
 plugins: 
   - glightbox # makes images clickable: https://github.com/blueswen/mkdocs-glightbox
   - search # searchbar
+  - git-revision-date-localized: # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin
+      locale: en
+      exclude:
+        - index.md
 
 
 markdown_extensions:
