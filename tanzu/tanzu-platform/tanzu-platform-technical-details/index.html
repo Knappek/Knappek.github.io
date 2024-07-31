@@ -1069,7 +1069,11 @@
 <li><code>spaces</code> - <code>project</code> context</li>
 <li><code>kubernetesclusters</code> - <code>clustergroup</code> context</li>
 <li><code>packagerepositories</code> - <code>project</code> &amp; <code>clustergroup</code> contexts, which give you different outputs but not clear what it provides</li>
-<li><code>packageinstalls</code> - <code>clustergroup</code> context</li>
+<li><code>packageinstalls</code>:<ul>
+<li><code>clustergroup</code> context: you will see all capabilities installed in a clustergroup</li>
+<li><code>space</code> context: you will see custom PackageInstalls installed in this space</li>
+</ul>
+</li>
 <li><code>availabilitytarget</code> <ul>
 <li><code>project</code> context: gives you all Availability Targets of the project</li>
 <li><code>clustergroup</code> context: gives you only the AVTs that have clusters selected in that cluster group</li>
@@ -1082,9 +1086,10 @@
 <h3 id="when-deploying-this-sample-app-in-the-space-it-deploys-the-app-itself-the-istio-gateway-pod-a-httproute-and-a-gateway-when-i-have-created-a-space-it-already-deployed-the-spring-cloud-gateway-pod-and-multicloud-ingress-pod-how-does-ingress-to-the-smoketest-app-actually-work">When deploying <a href="https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#deploy-a-simple-application-to-the-space-to-smokte-test-our-setup">this sample app</a> in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?</h3>
 <p>Pods that will be deployed when creating a space: <code>spring-cloud-gateway</code>, <code>multicloud-ingress-operator</code>
 Pods that will be deployed when deploying the app: <code>spring-smoketest</code>, <code>default-gateway-istio</code></p>
-<p><code>spring-cloud-gateway</code> along with a a <code>kind: SpringCloudGateway</code> has been deployed because the <code>spring-cloud-gateway.tanzu.vmware.com</code> capability has been installed for the cluster group. It is responsible to configure routing to the app when specified to use the Spring Cloud Gateway. It will then create and configure <code>SpringCloudGatewayRouteConfig</code> and <code>SpringCloudGatewayMapping</code>.</p>
-<p>The <code>multicloud-ingress-operator</code> has been deployed because the <code>tcs.tanzu.vmware.com</code> capability, which includes <code>multicloud-ingress.tanzu.vmware.com</code> capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space</p>
-<p><a href="https://chat.google.com/room/AAAAweTETdE/q7Nxu8NbYR0/q7Nxu8NbYR0?cls=10">GChat</a></p>
+<p><code>spring-cloud-gateway</code> along with a a <code>kind: SpringCloudGateway</code> has been deployed because the <code>spring-cloud-gateway.tanzu.vmware.com</code> capability has been installed for the cluster group.</p>
+<p>The <code>multicloud-ingress-operator</code> has been deployed because the <code>tcs.tanzu.vmware.com</code> capability, which includes <code>multicloud-ingress.tanzu.vmware.com</code> capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space. </p>
+<p>When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: istio ingress gateway == <em>via HTTPRoute</em> ==&gt; SCG ==&gt; app.</p>
+<p>When not using Spring Cloud Gateway, the ingress chain is: istio ingress gateway == <em>via HTTPRoute</em> ==&gt; app.</p>
 
 
 
