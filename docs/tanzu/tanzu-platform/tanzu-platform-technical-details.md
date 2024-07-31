@@ -9,12 +9,12 @@ The goal of this page is to add additional information around [Tanzu Platform fo
 
 ## Questions
 
-- What happens when I don't enable `Tanzu Application Engine` when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?
-- when interacting via kubectl with UCP (using kubeconfig `~/.config/tanzu/kube/config`), then you see different things depending which context you use (`project`, `clustergroup` or `space` context). Which objects do you see using which context?
+- how to specify to use `default-istio-gateway` or `spring-cloud-gateway` for ingress
+- when deploying an app, this will also deploy the istio ingress gateway in the same namespace. What's the purpose of the istio ingress gateway in the istio-system namespace?
 
 ## Concepts
 
-There is a very good page explaining the concepts [here](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/concepts-about-spaces.html). You have to be familiar with
+There is a very good page explaining the concepts [here](https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/concepts-concepts.html). You have to be familiar with
 
 - Spaces
 - Capabilities
@@ -22,6 +22,32 @@ There is a very good page explaining the concepts [here](https://docs.vmware.com
 - Availability Targets
 - Profiles
 - Traits
+
+## Technical Architecture
+
+The [Platform Engineer Hands-On Lab workshop](https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#platform-engineer-hands-on-lab) provides a very high-level picture how Tanzu Platform for Kubernetes works technically, described in this picture:
+
+![UCP high-level](images/ucp-high-level.png)
+
+`UCP` stands for *Unified Control Plane* (which you don't find in the official docs as of today). It is technically based on [KCP](https://www.kcp.io/) which essentially gives you a Kubernetes API without having a Kubernetes cluster with all its components like pods, deployments etc. In the end, you can interact with it using `kubectl` and enrich it with custom APIs (CRDs) with only having the APIs in place you wish to have in place.
+
+Let's illustrate that with a simple example without using the Tanzu Platform terminology, but the terminology that we already familiar with when using TKGS or TKGm: Let's say we want to install the [cert-manager Tanzu Package](https://docs.vmware.com/en/VMware-Tanzu-Packages/latest/tanzu-packages/packages-cert-mgr.html) (we will see later that this is called `Capability` in Tanzu Platform terminology) you would install it with
+
+```shell
+tanzu package install cert-manager.tanzu.vmware.com -p cert-manager.tanzu.vmware.com -v 1.11.1+vmware.1-tkg.1
+```
+
+This will actually not deploy the `PackageInstall` on your target cluster, but on UCP, and UCP will ensure the PackageInstall will be reconciled down to your Kubernetes Cluster.
+
+UCP in Tanzu Platform for Kubernetes is used to reconcile anything that you create via [Hub](https://docs.vmware.com/en/VMware-Tanzu-Platform/SaaS/Using-and-Managing-VMware-Tanzu-Platform-Hub/index.html) (the UI) or via the API (using the tanzu cli) down to your Kubernetes clusters.
+
+### You may ask: what is the motivation behind this approach?
+
+I can think of the following:
+
+TP4K8s has a concept called `Spaces`, which in the end create Kubernetes namespaces in the target K8s clusters. You can specify a space with 3 replicas, which will create 3 K8s namespaces, spread across multiple clusters (that could live in different regions potentially). When you install cert-manager in your space, with this approach of proxying via UCP, UCP will make sure to install cert-manager in all of those 3 namespaces across clusters and also make sure that they are all similarly configured.
+
+In the end, it all drills down to be able to manage a fleet of clusters from a single Control Plane (API), and this is UCP. It allows to bring a fleet of clusters into a consistent and manageable state, heavily using the power of Kubernetes Reconciliation and ensure the desired state is always equal to the actual state.
 
 ## Notes
 
@@ -61,6 +87,23 @@ There is a very good page explaining the concepts [here](https://docs.vmware.com
 
 ## FAQ
 
+### UCP stands for Unified Control Plane, correct? Do we explain this on a high-level anywhere in the docs? Or is this not planned to do as the end users don't need to be aware of it?
+
+See [Google Chat](https://chat.google.com/room/AAAA7-TLcC0/iO7H2nRFTMQ/iO7H2nRFTMQ?cls=10).
+
+### Can I interact with UCP using kubectl?
+
+Yes.
+
+1. login with `tanzu login`
+1. use a specific context (see below for further information on contexts)
+      1. `project` context: `tanzu project use`
+      1. `clustergroup` context: `tanzu ops clustergroup use`
+      1. `space` context: `tanzu space use`
+1. use the kuebconfig at `~/.config/tanzu/kube/config`
+
+A handy thing to do is to create an alias `alias tk="KUBECONFIG=~/.config/tanzu/kube/config kubectl"` and then interact with UCP using `tk` instead of `kubectl`.
+
 ### When I have 1 availability target with 3 clusters and I choose to
 
 - deploy a space with 1 replica: will the namespace get deployed on one cluster only? => yes
@@ -75,3 +118,36 @@ Where are the boundaries? What's the motivation behind the technical architectur
 ### Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet
 
 Yes. If you deploy a space to two Availability Targets with one replica each, there is one `ManagedNamespaceSet` on UCP, and two `ManagedNamespace`'s, one for each cluster.
+
+### What happens when I don't enable `Tanzu Application Engine` when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?
+
+Yes, it doesn't have the `PackageInstall`'s installed in the `tanzu-cluster-group-system` namespace, because you are not able to install capabilities into this clustergroup. Only the `vss-k8s-collector.tanzu.vmware.com` Package will be installed.
+
+### when interacting via kubectl with UCP (using kubeconfig `~/.config/tanzu/kube/config`), then you see different things depending which context you use (`project`, `clustergroup` or `space` context). Which objects do you see using which context?
+
+- `managednamespacesets` - `project` context
+- `managednamespaces` - `project` context
+- `profiles` - `project` context
+- `spaces` - `project` context
+- `kubernetesclusters` - `clustergroup` context
+- `packagerepositories` - `project` & `clustergroup` contexts, which give you different outputs but not clear what it provides
+- `packageinstalls` - `clustergroup` context
+- `availabilitytarget` 
+    - `project` context: gives you all Availability Targets of the project
+    - `clustergroup` context: gives you only the AVTs that have clusters selected in that cluster group
+- `traits` - `project` context, this is because traits are provided out of the box, and at the time of writing it is not possible to create custom traits or capabilities.
+
+### Is it possible to create custom capabilities and traits
+
+No, not at time of this writing.
+
+### When deploying [this sample app](https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#deploy-a-simple-application-to-the-space-to-smokte-test-our-setup) in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?
+
+Pods that will be deployed when creating a space: `spring-cloud-gateway`, `multicloud-ingress-operator`
+Pods that will be deployed when deploying the app: `spring-smoketest`, `default-gateway-istio`
+
+`spring-cloud-gateway` along with a a `kind: SpringCloudGateway` has been deployed because the `spring-cloud-gateway.tanzu.vmware.com` capability has been installed for the cluster group. It is responsible to configure routing to the app when specified to use the Spring Cloud Gateway. It will then create and configure `SpringCloudGatewayRouteConfig` and `SpringCloudGatewayMapping`.
+
+The `multicloud-ingress-operator` has been deployed because the `tcs.tanzu.vmware.com` capability, which includes `multicloud-ingress.tanzu.vmware.com` capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space
+
+[GChat](https://chat.google.com/room/AAAAweTETdE/q7Nxu8NbYR0/q7Nxu8NbYR0?cls=10)
