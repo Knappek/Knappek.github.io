@@ -131,7 +131,9 @@ Yes, it doesn't have the `PackageInstall`'s installed in the `tanzu-cluster-grou
 - `spaces` - `project` context
 - `kubernetesclusters` - `clustergroup` context
 - `packagerepositories` - `project` & `clustergroup` contexts, which give you different outputs but not clear what it provides
-- `packageinstalls` - `clustergroup` context
+- `packageinstalls`:
+    - `clustergroup` context: you will see all capabilities installed in a clustergroup
+    - `space` context: you will see custom PackageInstalls installed in this space
 - `availabilitytarget` 
     - `project` context: gives you all Availability Targets of the project
     - `clustergroup` context: gives you only the AVTs that have clusters selected in that cluster group
@@ -146,8 +148,10 @@ No, not at time of this writing.
 Pods that will be deployed when creating a space: `spring-cloud-gateway`, `multicloud-ingress-operator`
 Pods that will be deployed when deploying the app: `spring-smoketest`, `default-gateway-istio`
 
-`spring-cloud-gateway` along with a a `kind: SpringCloudGateway` has been deployed because the `spring-cloud-gateway.tanzu.vmware.com` capability has been installed for the cluster group. It is responsible to configure routing to the app when specified to use the Spring Cloud Gateway. It will then create and configure `SpringCloudGatewayRouteConfig` and `SpringCloudGatewayMapping`.
+`spring-cloud-gateway` along with a a `kind: SpringCloudGateway` has been deployed because the `spring-cloud-gateway.tanzu.vmware.com` capability has been installed for the cluster group.
 
-The `multicloud-ingress-operator` has been deployed because the `tcs.tanzu.vmware.com` capability, which includes `multicloud-ingress.tanzu.vmware.com` capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space
+The `multicloud-ingress-operator` has been deployed because the `tcs.tanzu.vmware.com` capability, which includes `multicloud-ingress.tanzu.vmware.com` capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space. 
 
-[GChat](https://chat.google.com/room/AAAAweTETdE/q7Nxu8NbYR0/q7Nxu8NbYR0?cls=10)
+When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: istio ingress gateway == *via HTTPRoute* ==> SCG ==> app.
+
+When not using Spring Cloud Gateway, the ingress chain is: istio ingress gateway == *via HTTPRoute* ==> app.
