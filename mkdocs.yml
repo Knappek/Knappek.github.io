@@ -18,6 +18,7 @@ nav:
     - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - vSphere with Tanzu integration with NSX-T: tanzu/tkgs/tkgs-nsxt-integration.md
     - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
+    - Disaster Recovery: tanzu/tkgs/disaster-recovery.md
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
     - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md
