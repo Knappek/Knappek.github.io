@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/tanzu/tkgs/tkgs-nsxt-integration/">
+        <link rel="canonical" href="https://knappek.github.io/tanzu/tkgs/disaster-recovery/">
       
       
         <link rel="prev" href="../tkgs-airgapped/">
       
       
-        <link rel="next" href="../tkgs-airgapped/">
+        <link rel="next" href="../../tanzu-packages/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>vSphere with Tanzu integration with NSX-T - Andy's Technical Scratchpad</title>
+        <title>Disaster Recovery - Andy's Technical Scratchpad</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vsphere-with-tanzu-integration-with-nsx-t" class="md-skip">
+        <a href="#disaster-recovery" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              vSphere with Tanzu integration with NSX-T
+              Disaster Recovery
             
           </span>
         </div>
@@ -531,30 +531,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    vSphere with Tanzu integration with NSX-T
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -563,53 +543,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#general-concept-of-load-balancer-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      General concept of Load Balancer integration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-aws" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in AWS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-vsphere-with-tanzu-with-nsx-t" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in vSphere with Tanzu with NSX-T
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -640,10 +573,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../disaster-recovery/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Disaster Recovery
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -652,6 +605,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crash-of-a-worker-node-on-a-guest-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crash of a Worker Node on a guest cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crash of a Worker Node on a guest cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-off-worker-node-in-vcenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power off Worker node in vCenter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-worker-vm-in-vcenter-delete-from-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete Worker VM in vCenter (Delete from Disk)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crash-of-a-control-plane-node-on-a-guest-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crash of a Control Plane Node on a guest cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crash of a Control Plane Node on a guest cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-off-control-plane-node-of-guest-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power off Control Plane node of guest cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-cp-vm-in-vcenter-delete-from-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete CP VM in vCenter (Delete from Disk)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -874,29 +913,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-concept-of-load-balancer-integration" class="md-nav__link">
+  <a href="#crash-of-a-worker-node-on-a-guest-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      General concept of Load Balancer integration
+      Crash of a Worker Node on a guest cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Crash of a Worker Node on a guest cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-off-worker-node-in-vcenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power off Worker node in vCenter
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-aws" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#delete-worker-vm-in-vcenter-delete-from-disk" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration in AWS
+      Delete Worker VM in vCenter (Delete from Disk)
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#integration-in-vsphere-with-tanzu-with-nsx-t" class="md-nav__link">
+  <a href="#crash-of-a-control-plane-node-on-a-guest-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration in vSphere with Tanzu with NSX-T
+      Crash of a Control Plane Node on a guest cluster
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Crash of a Control Plane Node on a guest cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-off-control-plane-node-of-guest-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power off Control Plane node of guest cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-cp-vm-in-vcenter-delete-from-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete CP VM in vCenter (Delete from Disk)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -918,42 +996,86 @@
   
 
 
-<h1 id="vsphere-with-tanzu-integration-with-nsx-t">vSphere with Tanzu integration with NSX-T</h1>
-<p>This page explains how <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-4D0D375F-C001-4F1D-AAB1-1789C5577A94.html">Tanzu Kubernetes Clusters</a>, sometimes referred to as guest clusters or workload clusters, integrate with NSX-T to provide L4 Load Balancing services via <a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">Kubernetes Services of type LoadBalancer</a>.</p>
-<h2 id="general-concept-of-load-balancer-integration">General concept of Load Balancer integration</h2>
-<p>A <a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">Kubernetes Service of type LoadBalancer</a> is an upstream Kubernetes concept that assigns a routable external IP address to a Kubernetes Service and, thus, make the service available from outside of the cluster. This IP assignment has to happen by the underlying infrastructure, the underlying network infrastructure to be more specific. Of course Kubernetes does not know and care about the underlying infrastructure, so it is the responsibility of cloud providers and infrastructure providers to implement this functionality.</p>
-<p>If you've read <a href="../../../kubernetes/architecture-concepts/">Kubernetes Architecture Concepts</a> you know that everything in Kubernetes is implemented as controllers. In essence, an infrastructure provider has to implement a load balancer controller and run it on the cluster:</p>
-<p><a class="glightbox" href="../images/generic-load-balancer-controller.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Generic Load Balancer Controller" src="../images/generic-load-balancer-controller.png" /></a></p>
-<p>The load balancer controller watches for <code>Create</code>, <code>Update</code> and <code>Delete</code> events of Services of type <code>LoadBalancer</code>, interacts with the underlying network infrastructure provider and reports back status.</p>
-<p>As an example:</p>
-<ol>
-<li>a user creates a service of type <code>LoadBalancer</code></li>
-<li>the load balancer controller reacts on this event and determines it is a <code>Create</code> event</li>
-<li>load balancer controller communicates with the network infrastructure API and creates a Load Balancer, or Virtual Service or similar</li>
-<li>the network infrastructure API responds with an external IP address</li>
-<li>the load balancer controller updates the service's <code>status.loadBalancer</code> field and especially updates <code>status.loadBalancer.ingress.ip</code> with this external IP address.</li>
-</ol>
-<h2 id="integration-in-aws">Integration in AWS</h2>
-<p>When you use Amazon Elastic Kubernetes Service (EKS) there is the <a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/">AWS Load Balancer Controller</a> running on the EKS cluster responsible for provisioning Network Load Balancers and Application Load Balancers.</p>
-<h2 id="integration-in-vsphere-with-tanzu-with-nsx-t">Integration in vSphere with Tanzu with NSX-T</h2>
-<p>The Load Balancer integration on Tanzu Kubernetes Clusters is not as easy and straightforward as explained above. Indeed, there is a NSX-T load balancer controller, the so-called <strong>NSX-T Container Plugin (NCP)</strong>, which you could deploy directly on a Tanzu Kubernetes Cluster. But, vSphere with Tanzu does not deploy it on the guest cluster because it would require to store NSX-T credentials on that cluster, too.</p>
-<p>One of the main philosophies in vSphere with Tanzu is having <a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-concepts-planning/GUID-70CAF0BB-1722-4526-9CE7-D5C92C15D7D0.html">different personas with different responsibilities</a>: a vSphere administrator, a DevOps engineer (or cluster admin) and an application developer. Tanzu Kubernetes Clusters are purposed for DevOps engineers, sometimes even application developers, giving them full cluster admin permissions on that cluster and consequently empowering full flexibility. The NSX-T infrastructure, though, is maintained by vSphere Administrators, or even another dedicated networking team, but is not maintained by those DevOps engineers or application developers. Therefore, credentials to NSX-T must not be exposed on Tanzu Kubernetes Clusters.</p>
-<p>The solution to still be able to integrate with NSX-T and to still be able to dynamically deploy services of type <code>LoadBalancer</code> and having the full flexibility as a DevOps engineer working with Kubernetes, vSphere with Tanzu realizes it using the following approach:</p>
-<p><a class="glightbox" href="../images/tkgs-nsx-t-integration-ncp.jpeg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="vSphere with Tanzu integration with NSX-T" src="../images/tkgs-nsx-t-integration-ncp.jpeg" /></a></p>
-<p>Let's see what happens when a user creates a <code>Service of type LoadBalancer</code> on a Tanzu Kubernetes Cluster (the same principle applies for <code>update</code> and <code>delete</code>):</p>
-<ol>
-<li>on the guest cluster, there is a controller called <code>guest-cluster-cloud-provider</code> that watches for Kubernetes Service's <code>Create</code>, <code>Update</code> and <code>Delete</code> events. On the <code>Create</code> event it creates a <code>VirtualMachineService</code> Custom Resource on the Supervisor cluster by calling the Supervisor Cluster Kubernetes API. This <code>VirtualMachineService</code> can have different types, in this example it is of type <code>LoadBalancer</code>.</li>
-<li>On the Supervisor cluster there is a controller called <code>vmop-controller-manager</code> that has multiple responsibilities with watching <code>Create</code>, <code>Update</code> and <code>Delete</code> events of the <code>VirtualMachineService</code> being one of them. On the <code>Create</code> event it creates a Service of type <code>LoadBalancer</code> on the Supervisor cluster which is essentially a mirror of the same service deployed on the guest cluster.</li>
-<li>From this step onwards, the common techniques applies as described above: the <code>NSX-T Container Plugin (NCP)</code>, the "NSX-T Load Balancer Controller" running on the Supervisor cluster, watches for Services and interacts with the NSX-T API. In NSX-T, it creates a Load Balancer and a Virtual Service.</li>
-<li>NSX-T built-in IP address management system assigns an external IP address to this Virtual Service and responds it back to the API Call initiated by NCP.</li>
-<li>NCP writes the external IP address to the Service's <code>status.loadBalancer.ingress.ip</code> on the Supervisor cluster.</li>
-<li>the <code>vmop-controller-manager</code> reacts on this <code>Update</code> event and reports back that status to the <code>VirtualMachineService</code>.</li>
-<li>the <code>guest-cluster-cloud-provider</code>, which regularly polls the <code>VirtualMachineService</code> (it can't subscribe to <code>Create</code>, <code>Update</code> and <code>Delete</code> as it is running on a different Kubernetes Cluster), finally reports back the status, and especially the external IP address, to the original service of type <code>LoadBalancer</code> which has been created by the end user.</li>
-</ol>
+<h1 id="disaster-recovery">Disaster Recovery</h1>
+<p>This page explores certain disaster recovery use cases, how Tanzu behaves and how to repair the environment.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>As you can see in the image, the actual network traffic from the intranet/internet to the target Kubernetes Service running on the Tanzu Kubernetes Cluster goes directly from NSX-T to the target guest cluster, and <strong>not</strong> going the route through the Supervisor Cluster. This "hop" architecture is only used for creating, updating and deleting services.</p>
+<p>This page is based on <a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-concepts-planning/GUID-28B0AEA2-2947-4FDD-AA71-51E46E24BF53.html">vSphere IaaS Control Plane</a>, formerly known as vSphere with Tanzu aka TKGS. You should first know about the basic concepts before reading this page.</p>
 </div>
+<h2 id="crash-of-a-worker-node-on-a-guest-cluster">Crash of a Worker Node on a guest cluster</h2>
+<h3 id="power-off-worker-node-in-vcenter">Power off Worker node in vCenter</h3>
+<p>What happens if we manually power off a Virtual Machine in vCenter which is a worker node of a guest cluster?</p>
+<ul>
+<li>the corresponding Kubernetes node enters the state <code>NotReady</code></li>
+<li>the Supervisor Cluster still shows the corresponding <code>Machine</code> (see <a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine">Cluster API Machine</a>) to be <code>Running</code> and <code>VirtualMachine</code> (a <a href="https://github.com/kubernetes-sigs/cluster-api-provider-vsphere">CAPV</a> object) to be <code>poweredOn</code></li>
+<li>pods that should be scheduled on that node are in <code>Pending</code> state</li>
+<li>
+<p>logs in <code>capi-controller-manager</code> (from MachineSet Controller):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Waiting for the Kubernetes node on the machine to report ready state
+</span></code></pre></div>
+</li>
+<li>
+<p>after 5 minutes, the Supervisor Cluster (actually the Cluster API controllers) deletes the Virtual Machine in vCenter and the Kubernetes nodes gets deleted</p>
+</li>
+<li>finally a new Virtual Machine gets created and the node joins the cluster</li>
+</ul>
+<h3 id="delete-worker-vm-in-vcenter-delete-from-disk">Delete Worker VM in vCenter (Delete from Disk)</h3>
+<p>The behavior is quite similar to powering off the VM:</p>
+<ul>
+<li>corresponding Kubernetes node marked as <code>NotReady</code></li>
+<li>after a few minutes the nodes enter <code>SchedulingDisabled</code>, but the Supervisor Cluster still shows the <code>Machine</code> to be running</li>
+<li>
+<p>after some time, logs in capi-controller-manager:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>reason=&quot;UnhealthyNode&quot; message=&quot;Condition Ready on node is reporting status Unknown for more than 5m0s&quot;
+</span></code></pre></div>
+</li>
+<li>
+<p>after some minutes the <code>Machine</code> enters <code>Deleting</code> state</p>
+</li>
+<li>the Supervisor Cluster provisions a new node with the same name</li>
+<li>node persists in state <code>NoteReady,SchedulingDisabled</code> because it is not reachable (as kubelet is not running)</li>
+<li>the <code>Machine</code> is still in <code>Deleting</code> state</li>
+<li>after some time the VM gets successfully deleted by CAPI</li>
+<li>a new VM with new name gets provisioned and node joins the cluster and operating successfully</li>
+<li>we have a functioning cluster again 13 minutes after we have deleted the VM</li>
+</ul>
+<h2 id="crash-of-a-control-plane-node-on-a-guest-cluster">Crash of a Control Plane Node on a guest cluster</h2>
+<h3 id="power-off-control-plane-node-of-guest-cluster">Power off Control Plane node of guest cluster</h3>
+<ul>
+<li>Kubernetes API Server not available for a few seconds. This is because we were connected to that node that we powered off, if we would have powered off another CP node, we wouldn't even have recognized it</li>
+<li>VM powered on immediately after a few seconds</li>
+<li>It is that quick that no pods get terminated</li>
+</ul>
+<h3 id="delete-cp-vm-in-vcenter-delete-from-disk">Delete CP VM in vCenter (Delete from Disk)</h3>
+<ul>
+<li>in less than a minute a new VM with the same name gets deployed in vCenter and powered on</li>
+<li>
+<p>the node is still marked <code>NotReady</code> because kubelet is not running and printing logs:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&quot;command failed&quot; err=&quot;failed to load kubelet config file, error: failed to load Kubelet config file /var/lib/kubelet/config.yaml, error failed to read kubelet config file \&quot;/var/lib/kubelet/config.yaml\&quot;, error: open /var/lib/kubelet/config.yaml: no such file or directory, path: /var/lib/kubelet/config.yaml&quot;
+</span></code></pre></div>
+</li>
+<li>
+<p>this indicates that kubeadm does not join the control plane successfully to the cluster. Indeed, the <code>cloud-init-output.log</code> file prints</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>-info ConfigMap does not yet contain a JWS signature for token ID &quot;5j3q2p&quot;, will try again
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>[2024-09-12 14:52:39] I0912 14:52:39.589511    1244 token.go:223] [discovery] The cluster-info ConfigMap does not yet contain a JWS signature for token ID &quot;5j3q2p&quot;, will try again
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>[2024-09-12 14:52:43] error execution phase preflight: couldn&#39;t validate the identity of the API Server: could not find a JWS signature in the cluster-info ConfigMap for token ID &quot;5j3q2p&quot;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[2024-09-12 14:52:43] To see the stack trace of this error execute with --v=5 or higher
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[2024-09-12 14:52:43] !!! [2024-09-12T14:52:43+00:00] kubeadm reported failed action(s) for &#39;kubeadm join phase preflight --ignore-preflight-errors=DirAvailable--etc-kubernetes-manifests&#39;
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>[2024-09-12 14:52:58] +++ [2024-09-12T14:52:58+00:00] running &#39;kubeadm join phase preflight --ignore-preflight-errors=DirAvailable--etc-kubernetes-manifests&#39;
+</span></code></pre></div>
+</li>
+<li>
+<p>deploying pods is still working, although the control plane node is in <code>NotReady</code> state and other etcd pods are not able to connect to this etcd instance. The other two etcd instances are logging</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&quot;dial tcp 10.244.0.34:2380: connect: connection refused&quot;
+</span></code></pre></div>
+</li>
+<li>
+<p>after a few minutes the node enters <code>SchedulingDisabled</code></p>
+</li>
+<li>after some more minutes, the <code>Machine</code> enters <code>Deleting</code> state, but  thge VirtualMachine is still <code>poweredOn</code></li>
+<li>after some time the VM gets deleted and a new one with a new name gets provisioned and joined to the cluster successfully</li>
+<li>we have a functioning cluster again ~15 minutes after we have deleted the VM</li>
+</ul>
 
 
 
@@ -974,7 +1096,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 12, 2024</span>
   </span>
 
     
