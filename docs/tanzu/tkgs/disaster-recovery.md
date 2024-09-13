@@ -81,3 +81,36 @@ The behavior is quite similar to powering off the VM:
 - after some more minutes, the `Machine` enters `Deleting` state, but  thge VirtualMachine is still `poweredOn`
 - after some time the VM gets deleted and a new one with a new name gets provisioned and joined to the cluster successfully
 - we have a functioning cluster again ~15 minutes after we have deleted the VM
+
+## Kubelet Crashing
+
+### Kubelet not running on a worker node
+
+#### Stop kubelet
+
+In this scenario, we simply stopped kubelet service on a node.
+
+The behavior is same as if you [Power off a Worker node in vCenter](#power-off-worker-node-in-vcenter).
+
+#### Let kubelet crash
+
+In this scenario, we removed the kubelet config file.
+
+The behavior is same as if you [Power off a Worker node in vCenter](#power-off-worker-node-in-vcenter).
+
+## etcd not working properly
+
+### only 1 out of 3 etcd instances running
+
+- if you have only 2 etcd instances and you kill one of it, etcd tries to do a new leader election, also if you explicitly don't kill the leader
+- because etcd doesn't reach a quorum, as there is only 1 out of 3 instances running, the remaining instance will never become a leader
+- as a result, `kube-apiserver` is failing with the error `watch chan error: etcdserver: no leader` - apparently when apiserver receives this error, it terminates all watchers according to [this description](https://github.com/kubernetes/kubernetes/issues/111116)
+- the apiserver is not able to recreate the watchers because there is no etcd leader
+- Tanzu (Cluster API) does not recreate a node with a crashing etcd
+
+As a result:
+
+- you are not able to communicate with the cluster using `kubectl` (or else to the API Server)
+- because etcd is in readonly mode, the self-healing mechanism in Kubernetes doesn't work anymore
+- running apps on the cluster are still working
+- ingress to web apps is still functioning
