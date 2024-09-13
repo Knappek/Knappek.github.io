@@ -1,6 +1,6 @@
-# Disaster Recovery
+# Disaster Scenarios
 
-This page explores certain disaster recovery use cases, how Tanzu behaves and how to repair the environment.
+This page explores certain disaster scenarios, how Tanzu behaves and how to repair the environment.
 
 !!! info
     This page is based on [vSphere IaaS Control Plane](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-concepts-planning/GUID-28B0AEA2-2947-4FDD-AA71-51E46E24BF53.html), formerly known as vSphere with Tanzu aka TKGS. You should first know about the basic concepts before reading this page.
