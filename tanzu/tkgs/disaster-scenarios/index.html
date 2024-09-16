@@ -792,6 +792,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kubernetes-api-server-crashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes API-Server Crashing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes API-Server Crashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kube-apiserver-not-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-apiserver not running
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1188,6 +1212,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kubernetes-api-server-crashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes API-Server Crashing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes API-Server Crashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kube-apiserver-not-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-apiserver not running
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1317,6 +1365,13 @@
 <li>because etcd is in readonly mode, the self-healing mechanism in Kubernetes doesn't work anymore</li>
 <li>running apps on the cluster are still working</li>
 <li>ingress to web apps is still functioning</li>
+</ul>
+<h2 id="kubernetes-api-server-crashing">Kubernetes API-Server Crashing</h2>
+<h3 id="kube-apiserver-not-running">kube-apiserver not running</h3>
+<ul>
+<li>we removed the <code>kube-apiserver</code> <a href="https://kubernetes.io/docs/concepts/workloads/pods/#static-pods">static pod</a> on one control plane, which didn't have any effect on the cluster and it was still operational</li>
+<li>we removed the <code>kube-apiserver</code> static pod on the second control plane, which also didn't have any effect on the cluster and it was still operational</li>
+<li>after removing <code>kube-apiserver</code> from the third control plane, then the API Server was not reachable anymore of course, but apps were still running fine.</li>
 </ul>
 
 
