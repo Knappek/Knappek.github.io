@@ -130,3 +130,11 @@ As a result:
 - because etcd is in readonly mode, the self-healing mechanism in Kubernetes doesn't work anymore
 - running apps on the cluster are still working
 - ingress to web apps is still functioning
+
+## Kubernetes API-Server Crashing
+
+### kube-apiserver not running
+
+- we removed the `kube-apiserver` [static pod](https://kubernetes.io/docs/concepts/workloads/pods/#static-pods) on one control plane, which didn't have any effect on the cluster and it was still operational
+- we removed the `kube-apiserver` static pod on the second control plane, which also didn't have any effect on the cluster and it was still operational
+- after removing `kube-apiserver` from the third control plane, then the API Server was not reachable anymore of course, but apps were still running fine.
