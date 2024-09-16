@@ -14,9 +14,8 @@ nav:
   # - Tanzu Platform:
   #   - Tanzu Platform Technical Details: tanzu/tanzu-platform/tanzu-platform-technical-details.md
   - TKGS:
-    - Supervisor Cluster upgrade failed in vSphere 8u2b: tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8.md
-    - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - vSphere with Tanzu integration with NSX-T: tanzu/tkgs/tkgs-nsxt-integration.md
+    - Supervisor Cluster upgrade failed in vSphere 8u2b: tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8.md
     - Set up an airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - Disaster Scenarios: tanzu/tkgs/disaster-scenarios.md
   - Tanzu Packages:
