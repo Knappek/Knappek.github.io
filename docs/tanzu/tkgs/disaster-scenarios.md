@@ -86,17 +86,33 @@ The behavior is quite similar to powering off the VM:
 
 ### Kubelet not running on a worker node
 
-#### Stop kubelet
+#### Stop kubelet on a worker node
 
 In this scenario, we simply stopped kubelet service on a node.
 
 The behavior is same as if you [Power off a Worker node in vCenter](#power-off-worker-node-in-vcenter).
 
-#### Let kubelet crash
+#### Let kubelet crash on a worker node
 
 In this scenario, we removed the kubelet config file.
 
 The behavior is same as if you [Power off a Worker node in vCenter](#power-off-worker-node-in-vcenter).
+
+### Kubelet not running on a control plane node
+
+We would guess the behaviour is similar to worker nodes, but it's not surprisingly.
+
+#### Stop kubelet on a control plane node
+
+In this scenario, we simply stopped kubelet service on a node.
+
+The node enters `NotReady` state and stays there until we fix and start kubelet again. Cluster API does not recreate the node.
+
+#### Let kubelet crash on a control plane node
+
+In this scenario, we removed the kubelet config file.
+
+The behaviour is same as if you [Stop kubelet on a control plane node](#stop-kubelet-on-a-control-plane-node).
 
 ## etcd not working properly
 

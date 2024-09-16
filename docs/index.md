@@ -10,7 +10,6 @@ If you have any questions, feedback or other comments to certain pages, please l
 - TKGS integration with vSphere CSI controller
 - demistify Tanzu Kubernetes Grid flavours - TKGS, TKGM, TKGI
 - Test TKGS/m disaster recover scenarios. What happens when:
-    - kubelet on CP node crashes
     - apiserver on CP node crashes
     - etcd on CP node crashes
 
