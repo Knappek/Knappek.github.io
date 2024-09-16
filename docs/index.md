@@ -12,5 +12,3 @@ If you have any questions, feedback or other comments to certain pages, please l
 ## Disclaimer
 
 Every content on this page represents my personal experiences and personal view only.
-
-I have enabled Google Analytics on this page as I am curious to see if people are reading it and which are most interesting to them.
