@@ -39,6 +39,9 @@ theme:
   language: 'en'
 
 extra:
+  analytics:
+    provider: google
+    property: G-316X19FZ6G
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/Knappek
