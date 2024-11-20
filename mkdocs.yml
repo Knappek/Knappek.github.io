@@ -52,7 +52,7 @@ extra:
       make our documentation better.
   analytics:
     provider: google
-    property: G-3XDBSN5M1E
+    property: G-H6K61RQTL1
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/Knappek
