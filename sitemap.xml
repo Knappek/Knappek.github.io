@@ -2,62 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://knappek.github.io/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/homelab/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/homelab/airgapped-tkgs/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/kubernetes/architecture-concepts/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/misc/deploy-ubuntu-on-vcenter/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://knappek.github.io/misc/nsx-rest-api/</loc>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tanzu-packages/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tanzu-packages/deploy-packages-airgapped/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tanzu-platform/tanzu-platform-technical-details/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tkgs/disaster-scenarios/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tkgs/tkgs-airgapped/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://knappek.github.io/tanzu/tkgs/tkgs-nsxt-integration/</loc>
-         <lastmod>2024-11-20</lastmod>
+         <lastmod>2024-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

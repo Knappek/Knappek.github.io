@@ -8,23 +8,23 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/">
+        <link rel="canonical" href="https://knappek.github.io/misc/nsx-rest-api/">
+      
+      
+        <link rel="prev" href="../deploy-ubuntu-on-vcenter/">
       
       
       
-        <link rel="next" href="kubernetes/architecture-concepts/">
-      
-      
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Andy's Technical Scratchpad</title>
+        <title>NSX REST API - Andy's Technical Scratchpad</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -43,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -60,7 +60,7 @@
     
     
     
-   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -69,7 +69,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-my-technical-scratchpad" class="md-skip">
+        <a href="#nsx-rest-api" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              NSX REST API
             
           </span>
         </div>
@@ -192,11 +192,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -215,7 +213,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="kubernetes/architecture-concepts/" class="md-tabs__link">
+        <a href="../../kubernetes/architecture-concepts/" class="md-tabs__link">
           
   
   Kubernetes
@@ -239,7 +237,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="tanzu/tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
+        <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
   Tanzu
@@ -260,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="homelab/" class="md-tabs__link">
+        <a href="../../homelab/" class="md-tabs__link">
           
   
   Homelab
@@ -274,11 +272,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="misc/deploy-ubuntu-on-vcenter/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../deploy-ubuntu-on-vcenter/" class="md-tabs__link">
           
   
   Misc
@@ -317,7 +317,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -344,30 +344,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -376,44 +356,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#upcoming" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upcoming
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#disclaimer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Disclaimer
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -463,7 +405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="kubernetes/architecture-concepts/" class="md-nav__link">
+      <a href="../../kubernetes/architecture-concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tkgs/tkgs-nsxt-integration/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -609,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tkgs/tkgs-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -630,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tkgs/disaster-scenarios/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -697,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tanzu-packages/" class="md-nav__link">
+      <a href="../../tanzu/tanzu-packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -718,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tanzu/tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -792,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="homelab/" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -813,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="homelab/airgapped-tkgs/" class="md-nav__link">
+      <a href="../../homelab/airgapped-tkgs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -838,23 +780,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -865,7 +812,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Misc
@@ -879,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
+      <a href="../deploy-ubuntu-on-vcenter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -897,10 +844,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="misc/nsx-rest-api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    NSX REST API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -909,6 +876,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postman-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Postman Collection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-nsx-protected-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete NSX Protected Objects
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -948,18 +953,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#upcoming" class="md-nav__link">
+  <a href="#postman-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Upcoming
+      Postman Collection
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#disclaimer" class="md-nav__link">
+  <a href="#delete-nsx-protected-objects" class="md-nav__link">
     <span class="md-ellipsis">
-      Disclaimer
+      Delete NSX Protected Objects
     </span>
   </a>
   
@@ -983,16 +988,19 @@
   
 
 
-<h1 id="welcome-to-my-technical-scratchpad">Welcome to my Technical Scratchpad</h1>
-<p>I use this page to document all kinds of stuff because I am getting old and rusty and forget things.
-So this page is mainly for me but I'm happy if others can benefit from it as well <img alt="🙂" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f642.svg" title=":slight_smile:" />.</p>
-<p>If you have any questions, feedback or other comments to certain pages, please let me know by either <a href="https://github.com/Knappek/Knappek.github.io/issues/new">creating a github issue</a> or email me at andy.knapp.ak@gmail.com.</p>
-<h2 id="upcoming">Upcoming</h2>
+<h1 id="nsx-rest-api">NSX REST API</h1>
+<h2 id="postman-collection">Postman Collection</h2>
 <ul>
-<li>TKGS integration with vSphere CSI controller</li>
+<li><a href="https://www.postman.com/dadoolittle/nsx-t-workspace/documentation/n7z451k/nsx-t-manager-api">NSX-T Manager API Collection</a></li>
 </ul>
-<h2 id="disclaimer">Disclaimer</h2>
-<p>Every content on this page represents my personal experiences and personal view only.</p>
+<h2 id="delete-nsx-protected-objects">Delete NSX Protected Objects</h2>
+<p>When deleting resources you might get an error similar to</p>
+<div class="admonition failure">
+<p class="admonition-title">Error</p>
+<p>"Principal 'admin' with role '[enterprise_admin]'attempts to delete or modify an object of type nsx$InternalLogicalPort it doesn't own.</p>
+</div>
+<p>This can happen if objects have been created by another system using a Principal Identity. E.g. Tanzu Application Service (TAS) or Tanzu Kubernetes Grid Integrated Edition (TKGi) can integrate with NSX-T via the <a href="https://github.com/vmware/nsx-container-plugin-operator">NSX Container Plugin (NCP)</a> which creates NSX objects at runtime.</p>
+<p>If you still want to delete this object, use the header <code>X-Allow-Overwrite: true</code>.</p>
 
 
 
@@ -1000,6 +1008,27 @@ So this page is mainly for me but I'm happy if others can benefit from it as wel
 
 
 
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
   
@@ -1146,10 +1175,10 @@ So this page is mainly for me but I'm happy if others can benefit from it as wel
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "content.code.annotate", "content.code.copy", "toc.follow", "search.suggest"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "content.code.annotate", "content.code.copy", "toc.follow", "search.suggest"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
