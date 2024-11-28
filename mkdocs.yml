@@ -28,6 +28,7 @@ nav:
   - Airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
 - Misc:
   - Deploy Ubuntu VM on vCenter: misc/deploy-ubuntu-on-vcenter.md
+  - NSX REST API: misc/nsx-rest-api.md
  
 
 theme:
