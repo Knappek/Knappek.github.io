@@ -23,6 +23,8 @@ nav:
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
     - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md
+  - Platform Automation Toolkit:
+    - Install Concourse for Platform Automation: tanzu/platform-automation-toolkit/install-concourse-for-platform-automation.md 
 - Homelab:
   - Setup: homelab/index.md
   - Airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
