@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/tanzu/tkgs/tkgs-nsxt-integration/">
+        <link rel="canonical" href="https://knappek.github.io/tanzu/platform-automation-toolkit/install-concourse-for-platform-automation/">
       
       
-        <link rel="prev" href="../../../kubernetes/architecture-concepts/">
+        <link rel="prev" href="../../tanzu-packages/deploy-packages-airgapped/">
       
       
-        <link rel="next" href="../supervisor-cluster-upgrade-failed-in-vsphere-8/">
+        <link rel="next" href="../../../homelab/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Integration with NSX-T - Andy's Technical Scratchpad</title>
+        <title>Install Concourse for Platform Automation - Andy's Technical Scratchpad</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vsphere-with-tanzu-integration-with-nsx-t" class="md-skip">
+        <a href="#install-concourse-for-platform-automation" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Integration with NSX-T
+              Install Concourse for Platform Automation
             
           </span>
         </div>
@@ -243,7 +243,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
   Tanzu
@@ -477,8 +477,6 @@
                 
   
   
-    
-  
   
   
     
@@ -488,11 +486,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -506,7 +504,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             TKGS
@@ -517,30 +515,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Integration with NSX-T
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -549,53 +527,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#general-concept-of-load-balancer-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      General concept of Load Balancer integration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-aws" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in AWS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-vsphere-with-tanzu-with-nsx-t" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in vSphere with Tanzu with NSX-T
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -608,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../../tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -629,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tkgs-airgapped/" class="md-nav__link">
+      <a href="../../tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -650,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../disaster-scenarios/" class="md-nav__link">
+      <a href="../../tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -764,6 +695,8 @@
                 
   
   
+    
+  
   
   
     
@@ -773,11 +706,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -791,7 +724,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Platform Automation Toolkit
@@ -802,10 +735,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Install Concourse for Platform Automation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -814,6 +767,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1035,27 +1017,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-concept-of-load-balancer-integration" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      General concept of Load Balancer integration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-aws" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in AWS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-in-vsphere-with-tanzu-with-nsx-t" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integration in vSphere with Tanzu with NSX-T
+      Prerequisites
     </span>
   </a>
   
@@ -1079,42 +1043,27 @@
   
 
 
-<h1 id="vsphere-with-tanzu-integration-with-nsx-t">vSphere with Tanzu integration with NSX-T</h1>
-<p>This page explains how <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-4D0D375F-C001-4F1D-AAB1-1789C5577A94.html">Tanzu Kubernetes Clusters</a>, sometimes referred to as guest clusters or workload clusters, integrate with NSX-T to provide L4 Load Balancing services via <a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">Kubernetes Services of type LoadBalancer</a>.</p>
-<h2 id="general-concept-of-load-balancer-integration">General concept of Load Balancer integration</h2>
-<p>A <a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">Kubernetes Service of type LoadBalancer</a> is an upstream Kubernetes concept that assigns a routable external IP address to a Kubernetes Service and, thus, make the service available from outside of the cluster. This IP assignment has to happen by the underlying infrastructure, the underlying network infrastructure to be more specific. Of course Kubernetes does not know and care about the underlying infrastructure, so it is the responsibility of cloud providers and infrastructure providers to implement this functionality.</p>
-<p>If you've read <a href="../../../kubernetes/architecture-concepts/">Kubernetes Architecture Concepts</a> you know that everything in Kubernetes is implemented as controllers. In essence, an infrastructure provider has to implement a load balancer controller and run it on the cluster:</p>
-<p><a class="glightbox" href="../images/generic-load-balancer-controller.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Generic Load Balancer Controller" src="../images/generic-load-balancer-controller.png" /></a></p>
-<p>The load balancer controller watches for <code>Create</code>, <code>Update</code> and <code>Delete</code> events of Services of type <code>LoadBalancer</code>, interacts with the underlying network infrastructure provider and reports back status.</p>
-<p>As an example:</p>
-<ol>
-<li>a user creates a service of type <code>LoadBalancer</code></li>
-<li>the load balancer controller reacts on this event and determines it is a <code>Create</code> event</li>
-<li>load balancer controller communicates with the network infrastructure API and creates a Load Balancer, or Virtual Service or similar</li>
-<li>the network infrastructure API responds with an external IP address</li>
-<li>the load balancer controller updates the service's <code>status.loadBalancer</code> field and especially updates <code>status.loadBalancer.ingress.ip</code> with this external IP address.</li>
-</ol>
-<h2 id="integration-in-aws">Integration in AWS</h2>
-<p>When you use Amazon Elastic Kubernetes Service (EKS) there is the <a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/">AWS Load Balancer Controller</a> running on the EKS cluster responsible for provisioning Network Load Balancers and Application Load Balancers.</p>
-<h2 id="integration-in-vsphere-with-tanzu-with-nsx-t">Integration in vSphere with Tanzu with NSX-T</h2>
-<p>The Load Balancer integration on Tanzu Kubernetes Clusters is not as easy and straightforward as explained above. Indeed, there is a NSX-T load balancer controller, the so-called <strong>NSX-T Container Plugin (NCP)</strong>, which you could deploy directly on a Tanzu Kubernetes Cluster. But, vSphere with Tanzu does not deploy it on the guest cluster because it would require to store NSX-T credentials on that cluster, too.</p>
-<p>One of the main philosophies in vSphere with Tanzu is having <a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-concepts-planning/GUID-70CAF0BB-1722-4526-9CE7-D5C92C15D7D0.html">different personas with different responsibilities</a>: a vSphere administrator, a DevOps engineer (or cluster admin) and an application developer. Tanzu Kubernetes Clusters are purposed for DevOps engineers, sometimes even application developers, giving them full cluster admin permissions on that cluster and consequently empowering full flexibility. The NSX-T infrastructure, though, is maintained by vSphere Administrators, or even another dedicated networking team, but is not maintained by those DevOps engineers or application developers. Therefore, credentials to NSX-T must not be exposed on Tanzu Kubernetes Clusters.</p>
-<p>The solution to still be able to integrate with NSX-T and to still be able to dynamically deploy services of type <code>LoadBalancer</code> and having the full flexibility as a DevOps engineer working with Kubernetes, vSphere with Tanzu realizes it using the following approach:</p>
-<p><a class="glightbox" href="../images/tkgs-nsx-t-integration-ncp.jpeg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="vSphere with Tanzu integration with NSX-T" src="../images/tkgs-nsx-t-integration-ncp.jpeg" /></a></p>
-<p>Let's see what happens when a user creates a <code>Service of type LoadBalancer</code> on a Tanzu Kubernetes Cluster (the same principle applies for <code>update</code> and <code>delete</code>):</p>
-<ol>
-<li>on the guest cluster, there is a controller called <code>guest-cluster-cloud-provider</code> that watches for Kubernetes Service's <code>Create</code>, <code>Update</code> and <code>Delete</code> events. On the <code>Create</code> event it creates a <code>VirtualMachineService</code> Custom Resource on the Supervisor cluster by calling the Supervisor Cluster Kubernetes API. This <code>VirtualMachineService</code> can have different types, in this example it is of type <code>LoadBalancer</code>.</li>
-<li>On the Supervisor cluster there is a controller called <code>vmop-controller-manager</code> that has multiple responsibilities with watching <code>Create</code>, <code>Update</code> and <code>Delete</code> events of the <code>VirtualMachineService</code> being one of them. On the <code>Create</code> event it creates a Service of type <code>LoadBalancer</code> on the Supervisor cluster which is essentially a mirror of the same service deployed on the guest cluster.</li>
-<li>From this step onwards, the common techniques applies as described above: the <code>NSX-T Container Plugin (NCP)</code>, the "NSX-T Load Balancer Controller" running on the Supervisor cluster, watches for Services and interacts with the NSX-T API. In NSX-T, it creates a Load Balancer and a Virtual Service.</li>
-<li>NSX-T built-in IP address management system assigns an external IP address to this Virtual Service and responds it back to the API Call initiated by NCP.</li>
-<li>NCP writes the external IP address to the Service's <code>status.loadBalancer.ingress.ip</code> on the Supervisor cluster.</li>
-<li>the <code>vmop-controller-manager</code> reacts on this <code>Update</code> event and reports back that status to the <code>VirtualMachineService</code>.</li>
-<li>the <code>guest-cluster-cloud-provider</code>, which regularly polls the <code>VirtualMachineService</code> (it can't subscribe to <code>Create</code>, <code>Update</code> and <code>Delete</code> as it is running on a different Kubernetes Cluster), finally reports back the status, and especially the external IP address, to the original service of type <code>LoadBalancer</code> which has been created by the end user.</li>
-</ol>
+<h1 id="install-concourse-for-platform-automation">Install Concourse for Platform Automation</h1>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>As you can see in the image, the actual network traffic from the intranet/internet to the target Kubernetes Service running on the Tanzu Kubernetes Cluster goes directly from NSX-T to the target guest cluster, and <strong>not</strong> going the route through the Supervisor Cluster. This "hop" architecture is only used for creating, updating and deleting services.</p>
+<p>This page is in Progress</p>
 </div>
+<p>This guide follows the official documentation to <a href="https://docs.vmware.com/en/Concourse-for-VMware-Tanzu/7.0/vmware-tanzu-concourse/GUID-installation-platform-automation-index.html">Installing Concourse for Platform Automation</a> but uses Ansible to automate the deployment on vCenter.</p>
+<p>The Ansible playbook will:
+- provision Opsman (VMware Operations Manager) in a single VM
+- configure BOSH director
+- deploy Concourse as a BOSH release
+- deploy MinIO as a Single-Node Single-Drive in a Ubuntu VM</p>
+<p>The goal is to have a fully functioning Platform Automation Toolkit that can be used to install Tanzu Application Service or Tanzu Kubernetes Grid Integrated Edition. MinIO can be used to store the required artifacts.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>vCenter: tested on 8.0.3 but should work on version 7 as well</li>
+<li>all required products need to be pre-downloaded from Broadcom Support Portal:</li>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Tanzu%20Operations%20Manager">Opsman</a></li>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Tanzu%20Operations%20Manager">all Concourse products</a>: Concourse Bosh deployment, Concourse BOSH Release, BPM, Postgres, UAA, Credhub, Backup and Restore SDK</li>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=Stemcells%20(Ubuntu%20Jammy)">Ubuntu Jammy Stemcell</a> (you can also use any other stemcell)</li>
+<li>Ubuntu OVA, e.g. <a href="https://cloud-images.ubuntu.com/noble/current/">noble-server-cloudimg</a></li>
+</ul>
 
 
 
@@ -1135,7 +1084,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2024</span>
   </span>
 
     
