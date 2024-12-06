@@ -8,25 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/misc/deploy-ubuntu-on-vcenter/">
+        <link rel="canonical" href="https://knappek.github.io/tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/">
       
       
-        <link rel="prev" href="../../homelab/airgapped-tkgs/">
+        <link rel="prev" href="../install-concourse-for-platform-automation/">
       
       
-        <link rel="next" href="../nsx-rest-api/">
+        <link rel="next" href="../../../homelab/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Deploy Ubuntu VM on vCenter - Andy's Technical Scratchpad</title>
+        <title>Deploy TAS and TKGI with Concourse - Andy's Technical Scratchpad</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -45,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -62,7 +62,7 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -71,7 +71,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-ubuntu-on-vcenter" class="md-skip">
+        <a href="#deploy-tas-and-tkgi-with-concourse" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy Ubuntu VM on vCenter
+              Deploy TAS and TKGI with Concourse
             
           </span>
         </div>
@@ -196,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -215,7 +215,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../kubernetes/architecture-concepts/" class="md-tabs__link">
+        <a href="../../../kubernetes/architecture-concepts/" class="md-tabs__link">
           
   
   Kubernetes
@@ -229,17 +229,21 @@
         
   
   
+    
+  
   
     
     
       
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
   Tanzu
@@ -260,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../homelab/" class="md-tabs__link">
+        <a href="../../../homelab/" class="md-tabs__link">
           
   
   Homelab
@@ -274,13 +278,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-tabs__link">
           
   
   Misc
@@ -319,7 +321,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -349,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -407,7 +409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/architecture-concepts/" class="md-nav__link">
+      <a href="../../../kubernetes/architecture-concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -432,23 +434,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -459,7 +466,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Tanzu
@@ -511,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-nav__link">
+      <a href="../../tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -532,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../../tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -553,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tkgs/tkgs-airgapped/" class="md-nav__link">
+      <a href="../../tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -574,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tkgs/disaster-scenarios/" class="md-nav__link">
+      <a href="../../tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -641,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tanzu-packages/" class="md-nav__link">
+      <a href="../../tanzu-packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -662,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
+      <a href="../../tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -688,6 +695,8 @@
                 
   
   
+    
+  
   
   
     
@@ -697,11 +706,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -715,7 +724,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Platform Automation Toolkit
@@ -729,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu/platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
+      <a href="../install-concourse-for-platform-automation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -747,10 +756,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Deploy TAS and TKGI with Concourse
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -759,6 +788,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download Products
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -824,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../homelab/" class="md-nav__link">
+      <a href="../../../homelab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../homelab/airgapped-tkgs/" class="md-nav__link">
+      <a href="../../../homelab/airgapped-tkgs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -870,28 +937,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -902,7 +964,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Misc
@@ -913,19 +975,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,7 +987,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -947,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nsx-rest-api/" class="md-nav__link">
+      <a href="../../../misc/nsx-rest-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,6 +1040,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download Products
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1004,8 +1082,72 @@
   
 
 
-<h1 id="deploy-ubuntu-on-vcenter">Deploy Ubuntu on vCenter</h1>
-<p>See <a href="https://gist.github.com/Knappek/bafe131d694c497af484a5d7f67c1615">this gist</a> how to deploy a Ubuntu VM on vCenter with a public SSH key distributed and a static IP address.</p>
+<h1 id="deploy-tas-and-tkgi-with-concourse">Deploy TAS and TKGI with Concourse</h1>
+<p>This page uses Concourse Pipelines from <a href="https://github.com/Knappek/concourse-pipelines">my repo</a> which is a fork of a <a href="https://github.com/pivotal/docs-platform-automation-reference-pipeline-config">public repo provided by Broadcom</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>All steps below assume you have forked the <a href="https://github.com/Knappek/concourse-pipelines">Concourse Pipelines Repo</a> to your own account</p>
+</div>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Platform Automation Toolkit running: You can use <a href="../install-concourse-for-platform-automation/">this guide</a> to install Concourse for Platform Automation on vSphere</li>
+<li>Concourse CLI (fly), Credhub CLI, OM ClI, BOSH CLI: best to install them with <a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf">asdf</a></li>
+<li>the S3 buckets in MinIO have Versioning enabled</li>
+</ul>
+<h2 id="download-products">Download Products</h2>
+<p>The first Concourse pipeline will download all required products from Broadcom Support Portal and store it on the local MinIO S3 instance.
+The purpose is that you can then deploy all products without requiring internet access.</p>
+<ol>
+<li>
+<p>Login to Minio (http://<MINIO-IP>:9092) and create Access Keys - you'll need them later</p>
+</li>
+<li>
+<p>Retrieve the Tanzu API Token (aka Pivnet API Token) from Broadcom Support:</p>
+</li>
+<li>Login to <a href="https://support.broadcom.com/">Broadcom Support Portal</a></li>
+<li>
+<p>On the right navigation bar, click on Tanzu API Token, which will navigate you to the <a href="https://support.broadcom.com/group/ecx/tanzu-token">tanzu-token page</a></p>
+</li>
+<li>
+<p>If you haven't configured to git clone/pull/push from Github via SSH, <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">add a new SSH Key to your Github account</a></p>
+</li>
+<li>
+<p>login to Concourse (which will also log you in to Credhub)</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">source</span><span class="w"> </span>./login_to_concourse
+</span></code></pre></div>
+</li>
+</ol>
+<p>If the command tells you to sync fly, simply execute the provided command.</p>
+<ol>
+<li>
+<p>Create all required entries in Credhub</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_secret_access_key<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span>&lt;minio-secret-access-key&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_access_key_id<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w">  </span>&lt;minio-access-key&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_endpoint<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>http://&lt;MINIO-IP&gt;:9091<span class="w"> </span><span class="c1"># port 9091 is the API port, which is different from the UI port 9092</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_pivnet_products_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>products
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pivnet_token<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span>&lt;pivnet-api-token-from&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pipeline-git-repo-key<span class="w"> </span>-t<span class="w"> </span>ssh<span class="w"> </span>-p<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span><span class="c1"># path to your private SSH key that you use to interact with Github</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pipeline-git-repo-uri<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>git@github.com:&lt;your<span class="w"> </span>Github<span class="w"> </span>Handle&gt;/concourse-pipelines.git
+</span></code></pre></div>
+</li>
+<li>
+<p>Set the Concourse Pipeline</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./scripts/update-download-products-pipeline.sh
+</span></code></pre></div>
+</li>
+<li>
+<p>Unpause the pipeline</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>unpause-pipeline<span class="w"> </span>-p<span class="w"> </span>download-products
+</span></code></pre></div>
+</li>
+<li>
+<p>Navigate to the Concourse UI (https://<CONCOURSE-IP>) and follow the <code>download-products</code> pipeline. </p>
+<ol>
+<li>The <code>fetch-platform-automation</code> job starts automatically after a few seconds if the <code>platform-automation-pivnet</code> input resource has been checked successfully.</li>
+<li>all other jobs will not be triggered automatically: I have done this on purpose, because I don't want to stress my network and have control when the pipeline downloads and uploads lots of data. Hence, you need to trigger them manually. You can do this <a href="https://concourse-ci.org/jobs.html#fly-trigger-job">either on the UI or using the CLI</a>.</li>
+</ol>
+</li>
+</ol>
 
 
 
@@ -1026,7 +1168,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 6, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2024</span>
   </span>
 
     
@@ -1180,10 +1322,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "content.code.annotate", "content.code.copy", "toc.follow", "search.suggest"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.tabs.sticky", "content.code.annotate", "content.code.copy", "toc.follow", "search.suggest"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
