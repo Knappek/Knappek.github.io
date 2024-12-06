@@ -36,6 +36,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://knappek.github.io/tanzu/platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/</loc>
+         <lastmod>2024-12-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://knappek.github.io/tanzu/platform-automation-toolkit/install-concourse-for-platform-automation/</loc>
          <lastmod>2024-12-06</lastmod>
          <changefreq>daily</changefreq>

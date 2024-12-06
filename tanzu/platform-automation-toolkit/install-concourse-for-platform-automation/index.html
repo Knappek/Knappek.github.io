@@ -14,7 +14,7 @@
         <link rel="prev" href="../../tanzu-packages/deploy-packages-airgapped/">
       
       
-        <link rel="next" href="../deploy-tas-tkgi-with-concourse/">
+        <link rel="next" href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -792,10 +792,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy vSphere + NSX-T to be used for TAS and TKGI
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1046,6 +1076,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1065,16 +1104,14 @@
 
 
 <h1 id="install-concourse-for-platform-automation">Install Concourse for Platform Automation</h1>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>This page is in Progress</p>
-</div>
 <p>This guide follows the official documentation to <a href="https://docs.vmware.com/en/Concourse-for-VMware-Tanzu/7.0/vmware-tanzu-concourse/GUID-installation-platform-automation-index.html">Installing Concourse for Platform Automation</a> but uses Ansible to automate the deployment on vCenter.</p>
-<p>The Ansible playbook will:
-- provision Opsman (VMware Operations Manager) in a single VM
-- configure BOSH director
-- deploy Concourse as a BOSH release
-- deploy MinIO as a Single-Node Single-Drive in a Ubuntu VM</p>
+<p>The Ansible playbook will:</p>
+<ul>
+<li>provision Opsman (VMware Operations Manager) in a VM</li>
+<li>configure BOSH director</li>
+<li>deploy Concourse as a BOSH release</li>
+<li>deploy MinIO as a Single-Node Single-Drive in a Ubuntu VM</li>
+</ul>
 <p>The goal is to have a fully functioning Platform Automation Toolkit that can be used to install Tanzu Application Service or Tanzu Kubernetes Grid Integrated Edition. MinIO can be used to store the required artifacts.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
@@ -1085,6 +1122,9 @@
 <li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=Stemcells%20(Ubuntu%20Jammy)">Ubuntu Jammy Stemcell</a> (you can also use any other stemcell)</li>
 <li>Ubuntu OVA, e.g. <a href="https://cloud-images.ubuntu.com/noble/current/">noble-server-cloudimg</a></li>
 </ul>
+<h2 id="deployment">Deployment</h2>
+<p>We will use <a href="https://github.com/laidbackware/vmware-lab-builder">vmware-lab-builder</a> to bootstrap the infrastructure for the 
+Platform Automation Toolkit using <a href="https://github.com/laidbackware/vmware-lab-builder/blob/main/var-examples/tanzu/platform-automation-toolkit/opinionated-not-nested.yml">this vars yaml</a>. This will provision all resources mentioned above non-nested, which means it will deploy the VMs on your hosting vCenter. See further details run the Ansible playbook to deploy this lab in my <a href="../../../homelab/#nested-lab-setup">Homelab Section</a>.</p>
 
 
 
@@ -1105,7 +1145,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2024</span>
   </span>
 
     

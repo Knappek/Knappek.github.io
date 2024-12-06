@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://knappek.github.io/tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/">
       
       
-        <link rel="prev" href="../install-concourse-for-platform-automation/">
+        <link rel="prev" href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">
       
       
         <link rel="next" href="../../../homelab/">
@@ -756,6 +756,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy vSphere + NSX-T to be used for TAS and TKGI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -819,6 +840,39 @@
       Download Products
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Foundation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adapt-variables-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adapt Variables Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1064,6 +1118,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deploy-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Foundation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adapt-variables-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adapt Variables Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1083,7 +1170,12 @@
 
 
 <h1 id="deploy-tas-and-tkgi-with-concourse">Deploy TAS and TKGI with Concourse</h1>
-<p>This page uses Concourse Pipelines from <a href="https://github.com/Knappek/concourse-pipelines">my repo</a> which is a fork of a <a href="https://github.com/pivotal/docs-platform-automation-reference-pipeline-config">public repo provided by Broadcom</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This page is in progress</p>
+</div>
+<p>This page explains how to deploy TAS, TKGI and some related products on vSphere with NSX-T networking in an automated way using the Platform Automation Toolkit (Concourse).</p>
+<p>We will use Concourse Pipelines from <a href="https://github.com/Knappek/concourse-pipelines">my repo</a> which is a fork of a <a href="https://github.com/pivotal/docs-platform-automation-reference-pipeline-config">public repo provided by Broadcom</a> which is used in the official docs providing a <a href="https://docs.vmware.com/en/Platform-Automation-Toolkit-for-VMware-Tanzu/5.2/vmware-automation-toolkit/GUID-docs-pipelines-resources.html#full-pipeline-and-reference-configurations">full pipeline and reference configurations</a>. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>All steps below assume you have forked the <a href="https://github.com/Knappek/concourse-pipelines">Concourse Pipelines Repo</a> to your own account</p>
@@ -1091,6 +1183,7 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>Platform Automation Toolkit running: You can use <a href="../install-concourse-for-platform-automation/">this guide</a> to install Concourse for Platform Automation on vSphere</li>
+<li>a vSphere + NSX-T environment. NSX-T must be preconfigured to meet the requirements to <a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html">deploy TAS for VMs with NSX-T Networking</a> and to <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-vsphere-nsxt-index-install.html">deploy TKGI on vSphere with NSX</a>. You can foollow <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">this guide</a> to achieve this</li>
 <li>Concourse CLI (fly), Credhub CLI, OM ClI, BOSH CLI: best to install them with <a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf">asdf</a></li>
 <li>the S3 buckets in MinIO have Versioning enabled</li>
 </ul>
@@ -1146,6 +1239,66 @@ The purpose is that you can then deploy all products without requiring internet 
 <li>The <code>fetch-platform-automation</code> job starts automatically after a few seconds if the <code>platform-automation-pivnet</code> input resource has been checked successfully.</li>
 <li>all other jobs will not be triggered automatically: I have done this on purpose, because I don't want to stress my network and have control when the pipeline downloads and uploads lots of data. Hence, you need to trigger them manually. You can do this <a href="https://concourse-ci.org/jobs.html#fly-trigger-job">either on the UI or using the CLI</a>.</li>
 </ol>
+</li>
+</ol>
+<h2 id="deploy-foundation">Deploy Foundation</h2>
+<p>The next Concourse pipeline <code>deploy-foundation</code> will be used to deploy TAS &amp; TKGI and other related products. This pipeline can ultimately been used for different environments
+by providing different variables files. We will deploy the <code>sandbox</code> environment. Adding other environments will be self-explanatory.</p>
+<h3 id="adapt-variables-files">Adapt Variables Files</h3>
+<p>Most of the required information can be retrieved from <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">Deploy vSphere + NSX-T to be used for TAS and TKGI</a> and <a href="../install-concourse-for-platform-automation/">Install Concourse for Platform Automation</a>.</p>
+<p>All Variables files can be found <a href="https://github.com/Knappek/concourse-pipelines/tree/main/foundations/sandbox/vars">here</a>. </p>
+<p>Some notes to some variables that might be unclear:</p>
+<ul>
+<li><code>nsx_ca_certificate</code> in <code>director.yml</code>: can be retrieved with <code>openssl s_client -connect &lt;nsx_address&gt;:443 -showcerts &lt;/dev/null</code></li>
+<li>
+<p><code>pks_ssl_certificate</code> &amp; <code>pks_ssl_private_key</code>: Assuming your TKGI API will be <code>api.tkgi.example.com</code>, self-signed SSL certificates can be generated with:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-keyout<span class="w"> </span>api.tkgi.example.com.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>-out<span class="w"> </span>api.tkgi.example.com.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/C=US/ST=California/L=CA/O=TKGi/CN=api.tkgi.example.com&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-extensions<span class="w"> </span>SAN<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>-config<span class="w"> </span>&lt;<span class="o">(</span>cat<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span>&lt;<span class="o">(</span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n[SAN]\nsubjectAltName=DNS:api.tkgi.example.com&quot;</span><span class="o">))</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><code>tas_ssl_certificate</code> &amp; <code>tas_ssl_private_key</code>: Assuming one of your Gorouter IPs is <code>172.30.5.126</code>, self-signed SSL certificates can be generated with:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-keyout<span class="w"> </span>apps.172.30.5.126.nip.io.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-out<span class="w"> </span>apps.172.30.5.126.nip.io.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/C=US/O=Pivotal/CN=*.apps.172.30.5.126.nip.io&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-extensions<span class="w"> </span>SAN<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>-config<span class="w"> </span>&lt;<span class="o">(</span>cat<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>&lt;<span class="o">(</span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n[SAN]\nsubjectAltName=DNS:*.apps.172.30.5.126.nip.io,DNS:*.sys.172.30.5.126.nip.io,DNS:sys.172.30.5.126.nip.io,DNS:*.172.30.5.126.nip.io,DNS:172.30.5.126.nip.io&quot;</span><span class="o">))</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="set-pipeline">Set Pipeline</h3>
+<ol>
+<li>
+<p>Create required entries in Credhub</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_installation_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>installation
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_foundation_state_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>foundation-state
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/nsx_credentials<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>admin<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!VMware1!&#39;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/opsman_decryption_passphrase<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!VMware1!&#39;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/opsman_user<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>admin<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!&#39;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/vcenter_credentials<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>administrator@vsphere.local<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!&#39;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Set the Concourse Pipeline</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./scripts/update-sandbox-foundation-pipeline.sh
+</span></code></pre></div>
+</li>
+<li>
+<p>Unpause the pipeline</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>unpause-pipeline<span class="w"> </span>-p<span class="w"> </span>deploy-sandbox-foundation
+</span></code></pre></div>
+</li>
+<li>
+<p>Install Opsman</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>trigger-job<span class="w"> </span>-j<span class="w"> </span>deploy-sandbox-foundation/install-opsman
+</span></code></pre></div>
 </li>
 </ol>
 
