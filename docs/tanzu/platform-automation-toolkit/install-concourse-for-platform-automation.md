@@ -1,12 +1,10 @@
 # Install Concourse for Platform Automation
 
-!!! info
-    This page is in Progress
-
 This guide follows the official documentation to [Installing Concourse for Platform Automation](https://docs.vmware.com/en/Concourse-for-VMware-Tanzu/7.0/vmware-tanzu-concourse/GUID-installation-platform-automation-index.html) but uses Ansible to automate the deployment on vCenter.
 
 The Ansible playbook will:
-- provision Opsman (VMware Operations Manager) in a single VM
+
+- provision Opsman (VMware Operations Manager) in a VM
 - configure BOSH director
 - deploy Concourse as a BOSH release
 - deploy MinIO as a Single-Node Single-Drive in a Ubuntu VM
@@ -22,3 +20,7 @@ The goal is to have a fully functioning Platform Automation Toolkit that can be 
   - [Ubuntu Jammy Stemcell](https://support.broadcom.com/group/ecx/productdownloads?subfamily=Stemcells%20(Ubuntu%20Jammy)) (you can also use any other stemcell)
 - Ubuntu OVA, e.g. [noble-server-cloudimg](https://cloud-images.ubuntu.com/noble/current/)
 
+## Deployment
+
+We will use [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder) to bootstrap the infrastructure for the 
+Platform Automation Toolkit using [this vars yaml](https://github.com/laidbackware/vmware-lab-builder/blob/main/var-examples/tanzu/platform-automation-toolkit/opinionated-not-nested.yml). This will provision all resources mentioned above non-nested, which means it will deploy the VMs on your hosting vCenter. See further details run the Ansible playbook to deploy this lab in my [Homelab Section](./../../homelab/index.md#nested-lab-setup).
