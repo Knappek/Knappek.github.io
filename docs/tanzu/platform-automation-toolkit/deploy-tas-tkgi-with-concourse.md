@@ -91,16 +91,28 @@ Some notes to some variables that might be unclear:
         <(printf "\n[SAN]\nsubjectAltName=DNS:api.tkgi.example.com"))
     ```
 
-* `tas_ssl_certificate` & `tas_ssl_private_key`: Assuming one of your Gorouter IPs is `172.30.5.126`, self-signed SSL certificates can be generated with:
+* `tas_gorouter_ssl_certs`: Add a certificate for each Gorouter IP address and give it a unique name. Assuming one of your Gorouter IPs is `172.30.5.126`, self-signed SSL certificates can be generated with:
 
     ```shell
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-      -keyout apps.172.30.5.126.nip.io.key \
-      -out apps.172.30.5.126.nip.io.crt \
+      -keyout gorouter.key \
+      -out gorouter.crt \
       -subj "/C=US/O=Pivotal/CN=*.apps.172.30.5.126.nip.io" \
       -extensions SAN \
       -config <(cat /etc/ssl/openssl.cnf \
         <(printf "\n[SAN]\nsubjectAltName=DNS:*.apps.172.30.5.126.nip.io,DNS:*.sys.172.30.5.126.nip.io,DNS:sys.172.30.5.126.nip.io,DNS:*.172.30.5.126.nip.io,DNS:172.30.5.126.nip.io"))
+    ```
+
+* `tas_uaa_certificate` & `tas_uaa_private_key`: Assuming one of your Gorouter IPs is `172.30.5.126`, self-signed SSL certificates can be generated with:
+
+    ```shell
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+      -keyout uaa.key \
+      -out uaa.crt \
+      -subj "/C=US/O=Pivotal/CN=*.login.sys.172.30.5.126.nip.io" \
+      -extensions SAN \
+      -config <(cat /etc/ssl/openssl.cnf \
+        <(printf "\n[SAN]\nsubjectAltName=DNS:*.login.sys.172.30.5.126.nip.io"))
     ```
 
 ### Set Pipeline

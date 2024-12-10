@@ -151,6 +151,19 @@ vyos@vyos# show interfaces
 
 We can then specify this port group in the nested lab setup config file - see [details below](#nested-lab-setup).
 
+#### Use a NSX segment and make it routable
+
+Some of my nested labs include [NSX](https://docs.vmware.com/en/VMware-NSX/index.html) software-defined network as overlay networks for products such as [vSphere IaaS Control Plane](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-installation-configuration/GUID-7EE247EB-4736-4BC8-A6B0-0123B6ECC812.html), [Tanzu Application Service (TAS) for VMs](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html) or [Tanzu Kubernetes Grid Integrated Edition (TKGI)](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-nsxt-topologies.html).
+
+When creating a [NSX Segment](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/administration/GUID-316E5027-E588-455C-88AD-A7DA930A4F0B.html) I have to create a static route of the segment's CIDR with the NSX Tier-0 IP address being the next-hop. Assuming you want to use the cidr `172.30.2.0/24` for a NSX segment, and the Tier0's IP address is `172.20.17.13`, then you create a static route in VyOS with
+
+```shell
+set protocols static route 172.30.2.0/24 next-hop 172.20.17.13
+```
+
+!!! info
+    When building your nested labs with [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder) and the [opinionated var-examples](https://github.com/laidbackware/vmware-lab-builder/tree/main/var-examples) the T0's IP address is the 3rd IP after the `starting_addr`. So in [this TKGS+NSX-T example](https://github.com/laidbackware/vmware-lab-builder/blob/main/var-examples/tanzu/vsphere-nsxt/opinionated-1host.yml) with `starting_addr: "192.168.0.160"` the T0's IP address will be `192.168.0.163`.
+
 ### Nested Lab Setup
 
 To bootstrap nested lab environments I am using [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder), Kudos to Matt :clap:.

@@ -7,6 +7,8 @@ This page explains how to deploy a Nested Lab with a "naked" vCenter plus NSX Ma
 
 ## Configure Routing
 
+TODO
+
 ## Deploy Nested ESXi Lab
 
 We will use [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-builder) to bootstrap a nested lab environment with
@@ -15,7 +17,7 @@ We will use [vmware-lab-builder](https://github.com/laidbackware/vmware-lab-buil
 * vCenter
 * NSX Manager
 
-We pre-configure some NSX resources required for TAS & TKGi (like a T0 Router, T1 Routers, IP Pools etc.) using the following opinionated vars yaml (see more documentation [how to deploy labs](https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying)):
+We pre-configure some NSX resources required for TAS & TKGi (like a T0 Router, T1 Routers, IP Pools etc.) using the following opinionated vars yaml (see more info in [how to deploy labs](https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying)):
 
 ```yaml
 ---
