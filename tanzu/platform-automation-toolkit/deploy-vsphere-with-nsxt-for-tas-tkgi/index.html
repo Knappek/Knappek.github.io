@@ -738,6 +738,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automated TAS & TKGI Foundation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../install-concourse-for-platform-automation/" class="md-nav__link">
         
   
@@ -1128,6 +1149,7 @@
 </div>
 <p>This page explains how to deploy a Nested Lab with a "naked" vCenter plus NSX Manager pre-configured that can be used to <a href="../deploy-tas-tkgi-with-concourse/">Deploy TAS and TKGI with Concourse</a>.</p>
 <h2 id="configure-routing">Configure Routing</h2>
+<p>TODO</p>
 <h2 id="deploy-nested-esxi-lab">Deploy Nested ESXi Lab</h2>
 <p>We will use <a href="https://github.com/laidbackware/vmware-lab-builder">vmware-lab-builder</a> to bootstrap a nested lab environment with</p>
 <ul>
@@ -1135,7 +1157,7 @@
 <li>vCenter</li>
 <li>NSX Manager</li>
 </ul>
-<p>We pre-configure some NSX resources required for TAS &amp; TKGi (like a T0 Router, T1 Routers, IP Pools etc.) using the following opinionated vars yaml (see more documentation <a href="https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying">how to deploy labs</a>):</p>
+<p>We pre-configure some NSX resources required for TAS &amp; TKGi (like a T0 Router, T1 Routers, IP Pools etc.) using the following opinionated vars yaml (see more info in <a href="https://github.com/laidbackware/vmware-lab-builder?tab=readme-ov-file#deploying">how to deploy labs</a>):</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># SOFTWARE_DIR must contain all required software</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">vc_iso</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">lookup(&#39;env&#39;,</span><span class="nv"> </span><span class="s">&#39;SOFTWARE_DIR&#39;)</span><span class="nv"> </span><span class="s">}}/VMware-VCSA-all-8.0.2-23319993.iso&quot;</span>
@@ -1617,7 +1639,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2024</span>
   </span>
 
     
