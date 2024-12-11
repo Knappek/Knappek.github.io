@@ -1,41 +1,39 @@
 # Deploy TAS and TKGI with Concourse
 
-!!! info
-    This page is in progress
-
 This page explains how to deploy TAS, TKGI and some related products on vSphere with NSX-T networking in an automated way using the Platform Automation Toolkit (Concourse).
 
-We will use Concourse Pipelines from [my repo](https://github.com/Knappek/concourse-pipelines) which is a fork of a [public repo provided by Broadcom](https://github.com/pivotal/docs-platform-automation-reference-pipeline-config) which is used in the official docs providing a [full pipeline and reference configurations](https://docs.vmware.com/en/Platform-Automation-Toolkit-for-VMware-Tanzu/5.2/vmware-automation-toolkit/GUID-docs-pipelines-resources.html#full-pipeline-and-reference-configurations). 
+We will use Concourse Pipelines from [my repo](https://github.com/Knappek/concourse-pipelines) which is a fork of a [public repo provided by Broadcom](https://github.com/pivotal/docs-platform-automation-reference-pipeline-config) that is used in the official docs providing [full pipeline and reference configurations](https://docs.vmware.com/en/Platform-Automation-Toolkit-for-VMware-Tanzu/5.2/vmware-automation-toolkit/GUID-docs-pipelines-resources.html#full-pipeline-and-reference-configurations).
 
 !!! info
-    All steps below assume you have forked the [Concourse Pipelines Repo](https://github.com/Knappek/concourse-pipelines) to your own account
+    All steps below assume you have forked [my Concourse Pipelines Repo](https://github.com/Knappek/concourse-pipelines) to your own account.
 
 ## Prerequisites
 
 - Platform Automation Toolkit running: You can use [this guide](./install-concourse-for-platform-automation.md) to install Concourse for Platform Automation on vSphere
-- a vSphere + NSX-T environment. NSX-T must be preconfigured to meet the requirements to [deploy TAS for VMs with NSX-T Networking](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html) and to [deploy TKGI on vSphere with NSX](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-vsphere-nsxt-index-install.html). You can foollow [this guide](./deploy-vsphere-with-nsxt-for-tas-tkgi.md) to achieve this
-- Concourse CLI (fly), Credhub CLI, OM ClI, BOSH CLI: best to install them with [asdf](https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf)
-- the S3 buckets in MinIO have Versioning enabled
+- a vSphere + NSX-T environment. NSX-T must be preconfigured to meet the requirements to [deploy TAS for VMs with NSX-T Networking](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html) and to [deploy TKGI on vSphere with NSX](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-vsphere-nsxt-index-install.html). You can follow [this guide](./deploy-vsphere-with-nsxt-for-tas-tkgi.md) to achieve this
+- Concourse CLI (fly), Credhub CLI, OM CLI, BOSH CLI: best to install them with [asdf](https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf)
+- the S3 buckets in MinIO have Versioning enabled: Buckets can be created using the automation of [Installing Concourse for Platform Automation](./install-concourse-for-platform-automation.md) but you have to manually [enable Versioning](https://min.io/docs/minio/linux/administration/object-management/object-versioning.html#enable-bucket-versioning) for the created buckets as the automation is not able to do that today.
 
 ## Download Products
 
 The first Concourse pipeline will download all required products from Broadcom Support Portal and store it on the local MinIO S3 instance.
 The purpose is that you can then deploy all products without requiring internet access.
 
-1. Login to Minio (http://<MINIO-IP>:9092) and create Access Keys - you'll need them later
+1. Login to Minio (http://<MINIO-IP\>:9092) and create Access Keys - you'll need them later
 
 1. Retrieve the Tanzu API Token (aka Pivnet API Token) from Broadcom Support:
-   1. Login to [Broadcom Support Portal](https://support.broadcom.com/)
-   1. On the right navigation bar, click on Tanzu API Token, which will navigate you to the [tanzu-token page](https://support.broadcom.com/group/ecx/tanzu-token)
+      1. Login to [Broadcom Support Portal](https://support.broadcom.com/)
+      1. On the right navigation bar, click on Tanzu API Token, which will navigate you to the [tanzu-token page](https://support.broadcom.com/group/ecx/tanzu-token)
 
-1. If you haven't configured to git clone/pull/push from Github via SSH, [add a new SSH Key to your Github account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+1. If you haven't yet configured to git clone/pull/push from your Github via SSH, [add a new SSH Key to your Github account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+1. update the IP addresses in [login_to_concourse](https://github.com/Knappek/concourse-pipelines/blob/main/login_to_concourse) script
 1. login to Concourse (which will also log you in to Credhub)
 
     ```shell
     source ./login_to_concourse
     ```
 
-  If the command tells you to sync fly, simply execute the provided command.
+    If the command tells you to sync fly, simply execute the provided command.
 
 1. Create all required entries in Credhub
 
@@ -63,12 +61,12 @@ The purpose is that you can then deploy all products without requiring internet 
 
 1. Navigate to the Concourse UI (https://<CONCOURSE-IP>) and follow the `download-products` pipeline. 
       1. The `fetch-platform-automation` job starts automatically after a few seconds if the `platform-automation-pivnet` input resource has been checked successfully.
-      1. all other jobs will not be triggered automatically: I have done this on purpose, because I don't want to stress my network and have control when the pipeline downloads and uploads lots of data. Hence, you need to trigger them manually. You can do this [either on the UI or using the CLI](https://concourse-ci.org/jobs.html#fly-trigger-job).
+      1. all other jobs will not be triggered automatically: I have done this on purpose, because I don't want to stress my network and rather have control when the pipeline downloads and uploads lots of data. Hence, you need to trigger them manually. You can do this [either on the UI or using the CLI](https://concourse-ci.org/jobs.html#fly-trigger-job).
 
 ## Deploy Foundation
 
-The next Concourse pipeline `deploy-foundation` will be used to deploy TAS & TKGI and other related products. This pipeline can ultimately been used for different environments
-by providing different variables files. We will deploy the `sandbox` environment. Adding other environments will be self-explanatory.
+The next Concourse pipeline `deploy-foundation` will be used to deploy TAS & TKGI and other related products. This pipeline can ultimately be used for different environments
+by providing different variables files. We will deploy the `sandbox` environment. Adding other environments is self-explanatory.
 
 ### Adapt Variables Files
 
@@ -78,41 +76,22 @@ All Variables files can be found [here](https://github.com/Knappek/concourse-pip
 
 Some notes to some variables that might be unclear:
 
-* `nsx_ca_certificate` in `director.yml`: can be retrieved with `openssl s_client -connect <nsx_address>:443 -showcerts </dev/null`
+* `nsx_ca_certificate` in `director.yml`: can be retrieved with 
+
+    ```sh
+    openssl s_client -connect <nsx_address>:443 -showcerts </dev/null
+    ```
+
 * `pks_ssl_certificate` & `pks_ssl_private_key`: Assuming your TKGI API will be `api.tkgi.example.com`, self-signed SSL certificates can be generated with:
 
     ```shell
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    openssl req -x509 -nodes -days 730 -newkey rsa:2048 \
       -keyout api.tkgi.example.com.key \
       -out api.tkgi.example.com.crt \
       -subj "/C=US/ST=California/L=CA/O=TKGi/CN=api.tkgi.example.com" \
       -extensions SAN \
       -config <(cat /etc/ssl/openssl.cnf \
         <(printf "\n[SAN]\nsubjectAltName=DNS:api.tkgi.example.com"))
-    ```
-
-* `tas_gorouter_ssl_certs`: Add a certificate for each Gorouter IP address and give it a unique name. Assuming one of your Gorouter IPs is `172.30.5.126`, self-signed SSL certificates can be generated with:
-
-    ```shell
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-      -keyout gorouter.key \
-      -out gorouter.crt \
-      -subj "/C=US/O=Pivotal/CN=*.apps.172.30.5.126.nip.io" \
-      -extensions SAN \
-      -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "\n[SAN]\nsubjectAltName=DNS:*.apps.172.30.5.126.nip.io,DNS:*.sys.172.30.5.126.nip.io,DNS:sys.172.30.5.126.nip.io,DNS:*.172.30.5.126.nip.io,DNS:172.30.5.126.nip.io"))
-    ```
-
-* `tas_uaa_certificate` & `tas_uaa_private_key`: Assuming one of your Gorouter IPs is `172.30.5.126`, self-signed SSL certificates can be generated with:
-
-    ```shell
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-      -keyout uaa.key \
-      -out uaa.crt \
-      -subj "/C=US/O=Pivotal/CN=*.login.sys.172.30.5.126.nip.io" \
-      -extensions SAN \
-      -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "\n[SAN]\nsubjectAltName=DNS:*.login.sys.172.30.5.126.nip.io"))
     ```
 
 ### Set Pipeline
@@ -140,8 +119,15 @@ Some notes to some variables that might be unclear:
     fly -t ci unpause-pipeline -p deploy-sandbox-foundation
     ```
 
-1. Install Opsman
+1. Install Opsman and configure BOSH
 
     ```shell
     fly -t ci trigger-job -j deploy-sandbox-foundation/install-opsman
     ```
+
+1. Trigger all other pipelines to deploy all products [either on the UI or using the CLI](https://concourse-ci.org/jobs.html#fly-trigger-job)
+
+## Use TAS and TKGI
+
+- see this [Getting Started with Cloud Foundry](https://www.cloudfoundry.org/get-started/) to get started with TAS.
+- See [Managing TKGI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing.html) and [Creating and Managing Kubernetes Clusters and Workloads](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing-clusters.html) to get started with TKGI.

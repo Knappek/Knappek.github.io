@@ -1,13 +1,19 @@
 # Deploy vSphere + NSX-T for TAS and TKGI
 
-!!! info
-    This page is in progress
-
 This page explains how to deploy a Nested Lab with a "naked" vCenter plus NSX Manager pre-configured that can be used to [Deploy TAS and TKGI with Concourse](deploy-tas-tkgi-with-concourse.md).
 
-## Configure Routing
+## Configure Routing for Nested Lab
 
-TODO
+Read about my routing configuration in my [homelab page](./../../homelab/index.md#networking-routing). As it is a NSX backed environment where my Tier0 will have the IP `172.20.16.13`, I have the following static routes:
+
+- `route 172.30.5.0/24 next-hop 172.20.16.13`
+- `route 172.30.6.0/26 next-hop 172.20.16.13`
+
+Additionally I will deploy one [TAS Isolation Segment](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/6.0/tas-for-vms/installing-pcf-is.html) for which I create another static route:
+
+- `route 172.30.7.0/27 next-hop 172.20.16.13`
+
+They all point to the same Tier0 which is shared between TAS and TKGI. This example can be easily expanded to have multiple Tier0 if desired.
 
 ## Deploy Nested ESXi Lab
 
@@ -481,4 +487,4 @@ nsxt:  # (optional) - section can be removed to not create any nsxt objects
     ]
 ```
 
-## Configure Routing for Isolation Segments
+Now we are ready to finally [Deploy TAS and TKGI with Concourse](./deploy-tas-tkgi-with-concourse.md).
