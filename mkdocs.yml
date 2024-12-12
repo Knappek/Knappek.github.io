@@ -59,8 +59,8 @@ extra:
       make our documentation better.
     cookies:
       analytics:
-        name: GitHub
-        checked: false
+        name: Google Analytics
+        checked: true
   analytics:
     provider: google
     property: G-3XDBSN5M1E
