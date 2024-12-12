@@ -63,7 +63,7 @@ extra:
         checked: true
   analytics:
     provider: google
-    property: G-H6K61RQTL1
+    property: G-0VCFRTY9ME
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/Knappek
