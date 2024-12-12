@@ -1,8 +1,8 @@
 site_name: Andy's Technical Scratchpad
 site_url: https://knappek.github.io
-# copyright: >
-#   Copyright &copy; 2024 Andreas Knapp –
-#   <a href="#__consent">Change cookie settings</a>
+copyright: >
+  Copyright &copy; 2024 Andreas Knapp –
+  <a href="#__consent">Change cookie settings</a>
 repo_name: 'Knappek/Knappek.github.io'
 repo_url: 'https://github.com/Knappek/Knappek.github.io'
 
@@ -50,13 +50,17 @@ theme:
   language: 'en'
 
 extra:
-  # consent:
-  #   title: Cookie consent
-  #   description: >- 
-  #     We use cookies to recognize your repeated visits and preferences, as well
-  #     as to measure the effectiveness of our documentation and whether users
-  #     find what they're searching for. With your consent, you're helping us to
-  #     make our documentation better.
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    cookies:
+      analytics:
+        name: GitHub
+        checked: false
   analytics:
     provider: google
     property: G-3XDBSN5M1E
