@@ -1230,7 +1230,6 @@
 <h2 id="questions">Questions</h2>
 <ul>
 <li>how to specify to use <code>default-istio-gateway</code> or <code>spring-cloud-gateway</code> for ingress</li>
-<li>when deploying an app, this will also deploy the istio ingress gateway in the same namespace. What's the purpose of the istio ingress gateway in the istio-system namespace?</li>
 </ul>
 <h2 id="concepts">Concepts</h2>
 <p>There is a very good page explaining the concepts <a href="https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/concepts-concepts.html">here</a>. You have to be familiar with</p>
@@ -1360,12 +1359,19 @@
 <h3 id="is-it-possible-to-create-custom-capabilities-and-traits">Is it possible to create custom capabilities and traits</h3>
 <p>No, not at time of this writing.</p>
 <h3 id="when-deploying-this-sample-app-in-the-space-it-deploys-the-app-itself-the-istio-gateway-pod-a-httproute-and-a-gateway-when-i-have-created-a-space-it-already-deployed-the-spring-cloud-gateway-pod-and-multicloud-ingress-pod-how-does-ingress-to-the-smoketest-app-actually-work">When deploying <a href="https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#deploy-a-simple-application-to-the-space-to-smokte-test-our-setup">this sample app</a> in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?</h3>
-<p>Pods that will be deployed when creating a space: <code>spring-cloud-gateway</code>, <code>multicloud-ingress-operator</code>
-Pods that will be deployed when deploying the app: <code>spring-smoketest</code>, <code>default-gateway-istio</code></p>
+<p>Pods that will be deployed when creating a space: <code>spring-cloud-gateway</code>, <code>multicloud-ingress-operator</code></p>
+<p>Pods that will be deployed when deploying the app: <code>spring-smoketest</code>, <code>default-gateway-istio</code></p>
 <p><code>spring-cloud-gateway</code> along with a a <code>kind: SpringCloudGateway</code> has been deployed because the <code>spring-cloud-gateway.tanzu.vmware.com</code> capability has been installed for the cluster group.</p>
-<p>The <code>multicloud-ingress-operator</code> has been deployed because the <code>tcs.tanzu.vmware.com</code> capability, which includes <code>multicloud-ingress.tanzu.vmware.com</code> capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space. </p>
-<p>When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: istio ingress gateway == <em>via HTTPRoute</em> ==&gt; SCG ==&gt; app.</p>
-<p>When not using Spring Cloud Gateway, the ingress chain is: istio ingress gateway == <em>via HTTPRoute</em> ==&gt; app.</p>
+<p>The <code>multicloud-ingress-operator</code> has been deployed because the <code>tcs.tanzu.vmware.com</code> capability, which includes <code>multicloud-ingress.tanzu.vmware.com</code> capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space.</p>
+<p>Ingress to an application in general goies like this: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Internet
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    ==&gt; External Load Balancer 
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    ==&gt; platform-scoped istio ingress gateway (istio-ingress namespace)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    ==&gt; space-scoped istio ingress gateway
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ==&gt; app
+</span></code></pre></div>
+<p>When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: internet ==&gt; platform istio ingress gateway ==&gt; space-scoped istio ingress gateway == <em>via HTTPRoute</em> ==&gt; SCG ==&gt; app.</p>
+<p>When not using Spring Cloud Gateway, the ingress chain is: internet ==&gt; platform istio ingress gateway ==&gt; space-scoped istio ingress gateway == <em>via HTTPRoute</em> ==&gt; app.</p>
 
 
 
@@ -1386,7 +1392,7 @@ Pods that will be deployed when deploying the app: <code>spring-smoketest</code>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 31, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 13, 2025</span>
   </span>
 
     
