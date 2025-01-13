@@ -10,7 +10,6 @@ The goal of this page is to add additional information around [Tanzu Platform fo
 ## Questions
 
 - how to specify to use `default-istio-gateway` or `spring-cloud-gateway` for ingress
-- when deploying an app, this will also deploy the istio ingress gateway in the same namespace. What's the purpose of the istio ingress gateway in the istio-system namespace?
 
 ## Concepts
 
@@ -146,12 +145,23 @@ No, not at time of this writing.
 ### When deploying [this sample app](https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#deploy-a-simple-application-to-the-space-to-smokte-test-our-setup) in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?
 
 Pods that will be deployed when creating a space: `spring-cloud-gateway`, `multicloud-ingress-operator`
+
 Pods that will be deployed when deploying the app: `spring-smoketest`, `default-gateway-istio`
 
 `spring-cloud-gateway` along with a a `kind: SpringCloudGateway` has been deployed because the `spring-cloud-gateway.tanzu.vmware.com` capability has been installed for the cluster group.
 
-The `multicloud-ingress-operator` has been deployed because the `tcs.tanzu.vmware.com` capability, which includes `multicloud-ingress.tanzu.vmware.com` capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space. 
+The `multicloud-ingress-operator` has been deployed because the `tcs.tanzu.vmware.com` capability, which includes `multicloud-ingress.tanzu.vmware.com` capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space.
 
-When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: istio ingress gateway == *via HTTPRoute* ==> SCG ==> app.
+Ingress to an application in general goies like this: 
 
-When not using Spring Cloud Gateway, the ingress chain is: istio ingress gateway == *via HTTPRoute* ==> app.
+```txt
+Internet
+    ==> External Load Balancer 
+    ==> platform-scoped istio ingress gateway (istio-ingress namespace)
+    ==> space-scoped istio ingress gateway
+    ==> app
+```
+
+When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: internet ==> platform istio ingress gateway ==> space-scoped istio ingress gateway == *via HTTPRoute* ==> SCG ==> app.
+
+When not using Spring Cloud Gateway, the ingress chain is: internet ==> platform istio ingress gateway ==> space-scoped istio ingress gateway == *via HTTPRoute* ==> app.
