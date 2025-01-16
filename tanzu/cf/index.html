@@ -8,25 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/">
+        <link rel="canonical" href="https://knappek.github.io/tanzu/cf/">
       
       
-        <link rel="prev" href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">
+        <link rel="prev" href="../tkgs/disaster-scenarios/">
       
       
-        <link rel="next" href="../../../homelab/">
+        <link rel="next" href="using-cf/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Deploy TAS and TKGI with Concourse - Andy's Technical Scratchpad</title>
+        <title>Intro - Andy's Technical Scratchpad</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -45,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -62,7 +62,7 @@
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -71,7 +71,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-tas-and-tkgi-with-concourse" class="md-skip">
+        <a href="#introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy TAS and TKGI with Concourse
+              Intro
             
           </span>
         </div>
@@ -196,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -215,7 +215,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../kubernetes/architecture-concepts/" class="md-tabs__link">
+        <a href="../../kubernetes/architecture-concepts/" class="md-tabs__link">
           
   
     
@@ -245,7 +245,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
+        <a href="../tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
     
@@ -268,7 +268,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../homelab/" class="md-tabs__link">
+        <a href="../../homelab/" class="md-tabs__link">
           
   
     
@@ -288,7 +288,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-tabs__link">
+        <a href="../../misc/deploy-ubuntu-on-vcenter/" class="md-tabs__link">
           
   
     
@@ -329,7 +329,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -359,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -421,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kubernetes/architecture-concepts/" class="md-nav__link">
+      <a href="../../kubernetes/architecture-concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -550,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/tkgs-nsxt-integration/" class="md-nav__link">
+      <a href="../tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -571,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -592,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/tkgs-airgapped/" class="md-nav__link">
+      <a href="../tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -613,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/disaster-scenarios/" class="md-nav__link">
+      <a href="../tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -639,6 +639,8 @@
                 
   
   
+    
+  
   
   
     
@@ -656,16 +658,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../cf/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   <span class="md-ellipsis">
@@ -676,13 +678,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             Cloud Foundry
@@ -698,7 +700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cf/using-cf/" class="md-nav__link">
+      <a href="using-cf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -750,7 +752,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../tanzu-packages/" class="md-nav__link ">
+            <a href="../tanzu-packages/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -783,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
+      <a href="../tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -809,8 +811,6 @@
                 
   
   
-    
-  
   
   
     
@@ -832,16 +832,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../platform-automation-toolkit/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -858,7 +858,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             Platform Automation Toolkit
@@ -874,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-concourse-for-platform-automation/" class="md-nav__link">
+      <a href="../platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -895,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
+      <a href="../platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -913,30 +913,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Deploy TAS and TKGI with Concourse
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -945,86 +925,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-products" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download Products
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-foundation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy Foundation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy Foundation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#adapt-variables-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adapt Variables Files
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Pipeline
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-tas-and-tkgi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use TAS and TKGI
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1075,7 +975,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../homelab/" class="md-nav__link ">
+            <a href="../../homelab/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1108,7 +1008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../homelab/airgapped-tkgs/" class="md-nav__link">
+      <a href="../../homelab/airgapped-tkgs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1180,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
+      <a href="../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1201,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/nsx-rest-api/" class="md-nav__link">
+      <a href="../../misc/nsx-rest-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1242,74 +1142,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-products" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download Products
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-foundation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy Foundation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy Foundation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#adapt-variables-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adapt Variables Files
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Pipeline
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-tas-and-tkgi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use TAS and TKGI
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1326,135 +1158,13 @@
   
 
 
-<h1 id="deploy-tas-and-tkgi-with-concourse">Deploy TAS and TKGI with Concourse</h1>
-<p>This page explains how to deploy TAS, TKGI and some related products on vSphere with NSX-T networking in an automated way using the Platform Automation Toolkit (Concourse).</p>
-<p>We will use Concourse Pipelines from <a href="https://github.com/Knappek/concourse-pipelines">my repo</a> which is a fork of a <a href="https://github.com/pivotal/docs-platform-automation-reference-pipeline-config">public repo provided by Broadcom</a> that is used in the official docs providing <a href="https://docs.vmware.com/en/Platform-Automation-Toolkit-for-VMware-Tanzu/5.2/vmware-automation-toolkit/GUID-docs-pipelines-resources.html#full-pipeline-and-reference-configurations">full pipeline and reference configurations</a>.</p>
+<h1 id="introduction">Introduction</h1>
+<p><a href="https://www.cloudfoundry.org/">Cloud Foundry</a> is an open source platform for cloud-native application development which centers all around the so-called <code>cf push</code> experience.</p>
+<p>Commercial offerings of Cloud Foundry are provided by VMware with <a href="https://techdocs.broadcom.com/us/en/vmware-tanzu/platform/tanzu-platform-for-cloud-foundry/6-0/tpcf/concepts-overview.html">Tanzu Platform for Cloud Foundry</a> (formerly known as Tanzu Application Service for VMs aka TAS).</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>All steps below assume you have forked <a href="https://github.com/Knappek/concourse-pipelines">my Concourse Pipelines Repo</a> to your own account.</p>
+<p>I am using the names Tanzu Platform for Cloud Foundry (TP4CF), Tanzu Application Service (TAS) and Cloud Foundry interchangeably on this page.</p>
 </div>
-<h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>Platform Automation Toolkit running: You can use <a href="../install-concourse-for-platform-automation/">this guide</a> to install Concourse for Platform Automation on vSphere</li>
-<li>a vSphere + NSX-T environment. NSX-T must be preconfigured to meet the requirements to <a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html">deploy TAS for VMs with NSX-T Networking</a> and to <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-vsphere-nsxt-index-install.html">deploy TKGI on vSphere with NSX</a>. You can follow <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">this guide</a> to achieve this</li>
-<li>Concourse CLI (fly), Credhub CLI, OM CLI, BOSH CLI: best to install them with <a href="https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf">asdf</a></li>
-<li>the S3 buckets in MinIO have Versioning enabled: Buckets can be created using the automation of <a href="../install-concourse-for-platform-automation/">Installing Concourse for Platform Automation</a> but you have to manually <a href="https://min.io/docs/minio/linux/administration/object-management/object-versioning.html#enable-bucket-versioning">enable Versioning</a> for the created buckets as the automation is not able to do that today.</li>
-</ul>
-<h2 id="download-products">Download Products</h2>
-<p>The first Concourse pipeline will download all required products from Broadcom Support Portal and store it on the local MinIO S3 instance.
-The purpose is that you can then deploy all products without requiring internet access.</p>
-<ol>
-<li>
-<p>Login to Minio (http://&lt;MINIO-IP&gt;:9092) and create Access Keys - you'll need them later</p>
-</li>
-<li>
-<p>Retrieve the Tanzu API Token (aka Pivnet API Token) from Broadcom Support:</p>
-<ol>
-<li>Login to <a href="https://support.broadcom.com/">Broadcom Support Portal</a></li>
-<li>On the right navigation bar, click on Tanzu API Token, which will navigate you to the <a href="https://support.broadcom.com/group/ecx/tanzu-token">tanzu-token page</a></li>
-</ol>
-</li>
-<li>
-<p>If you haven't yet configured to git clone/pull/push from your Github via SSH, <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">add a new SSH Key to your Github account</a></p>
-</li>
-<li>update the IP addresses in <a href="https://github.com/Knappek/concourse-pipelines/blob/main/login_to_concourse">login_to_concourse</a> script</li>
-<li>
-<p>login to Concourse (which will also log you in to Credhub)</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">source</span><span class="w"> </span>./login_to_concourse
-</span></code></pre></div>
-<p>If the command tells you to sync fly, simply execute the provided command.</p>
-</li>
-<li>
-<p>Create all required entries in Credhub</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_secret_access_key<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span>&lt;minio-secret-access-key&gt;
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_access_key_id<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w">  </span>&lt;minio-access-key&gt;
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_endpoint<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>http://&lt;MINIO-IP&gt;:9091<span class="w"> </span><span class="c1"># port 9091 is the API port, which is different from the UI port 9092</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_pivnet_products_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>products
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pivnet_token<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span>&lt;pivnet-api-token-from&gt;
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pipeline-git-repo-key<span class="w"> </span>-t<span class="w"> </span>ssh<span class="w"> </span>-p<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span><span class="c1"># path to your private SSH key that you use to interact with Github</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/pipeline-git-repo-uri<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>git@github.com:&lt;your<span class="w"> </span>Github<span class="w"> </span>Handle&gt;/concourse-pipelines.git
-</span></code></pre></div>
-</li>
-<li>
-<p>Set the Concourse Pipeline</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./scripts/update-download-products-pipeline.sh
-</span></code></pre></div>
-</li>
-<li>
-<p>Unpause the pipeline</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>unpause-pipeline<span class="w"> </span>-p<span class="w"> </span>download-products
-</span></code></pre></div>
-</li>
-<li>
-<p>Navigate to the Concourse UI (https://<CONCOURSE-IP>) and follow the <code>download-products</code> pipeline. </p>
-<ol>
-<li>The <code>fetch-platform-automation</code> job starts automatically after a few seconds if the <code>platform-automation-pivnet</code> input resource has been checked successfully.</li>
-<li>all other jobs will not be triggered automatically: I have done this on purpose, because I don't want to stress my network and rather have control when the pipeline downloads and uploads lots of data. Hence, you need to trigger them manually. You can do this <a href="https://concourse-ci.org/jobs.html#fly-trigger-job">either on the UI or using the CLI</a>.</li>
-</ol>
-</li>
-</ol>
-<h2 id="deploy-foundation">Deploy Foundation</h2>
-<p>The next Concourse pipeline <code>deploy-foundation</code> will be used to deploy TAS &amp; TKGI and other related products. This pipeline can ultimately be used for different environments
-by providing different variables files. We will deploy the <code>sandbox</code> environment. Adding other environments is self-explanatory.</p>
-<h3 id="adapt-variables-files">Adapt Variables Files</h3>
-<p>Most of the required information can be retrieved from <a href="../deploy-vsphere-with-nsxt-for-tas-tkgi/">Deploy vSphere + NSX-T to be used for TAS and TKGI</a> and <a href="../install-concourse-for-platform-automation/">Install Concourse for Platform Automation</a>.</p>
-<p>All Variables files can be found <a href="https://github.com/Knappek/concourse-pipelines/tree/main/foundations/sandbox/vars">here</a>. </p>
-<p>Some notes to some variables that might be unclear:</p>
-<ul>
-<li>
-<p><code>nsx_ca_certificate</code> in <code>director.yml</code>: can be retrieved with </p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;nsx_address&gt;:443<span class="w"> </span>-showcerts<span class="w"> </span>&lt;/dev/null
-</span></code></pre></div>
-</li>
-<li>
-<p><code>pks_ssl_certificate</code> &amp; <code>pks_ssl_private_key</code>: Assuming your TKGI API will be <code>api.tkgi.example.com</code>, self-signed SSL certificates can be generated with:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">730</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-keyout<span class="w"> </span>api.tkgi.example.com.key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-out<span class="w"> </span>api.tkgi.example.com.crt<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/C=US/ST=California/L=CA/O=TKGi/CN=api.tkgi.example.com&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-extensions<span class="w"> </span>SAN<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>-config<span class="w"> </span>&lt;<span class="o">(</span>cat<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>&lt;<span class="o">(</span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n[SAN]\nsubjectAltName=DNS:api.tkgi.example.com&quot;</span><span class="o">))</span>
-</span></code></pre></div>
-</li>
-</ul>
-<h3 id="set-pipeline">Set Pipeline</h3>
-<ol>
-<li>
-<p>Create required entries in Credhub</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_installation_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>installation
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/s3_foundation_state_bucket<span class="w"> </span>-t<span class="w"> </span>value<span class="w"> </span>-v<span class="w"> </span>foundation-state
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/nsx_credentials<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>admin<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!VMware1!&#39;</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/opsman_decryption_passphrase<span class="w"> </span>-t<span class="w"> </span>password<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!VMware1!&#39;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/opsman_user<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>admin<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!&#39;</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>credhub<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-n<span class="w"> </span>/concourse/main/vcenter_credentials<span class="w"> </span>-t<span class="w"> </span>user<span class="w"> </span>-z<span class="w"> </span>administrator@vsphere.local<span class="w"> </span>-w<span class="w"> </span><span class="s1">&#39;VMware1!&#39;</span>
-</span></code></pre></div>
-</li>
-<li>
-<p>Set the Concourse Pipeline</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./scripts/update-sandbox-foundation-pipeline.sh
-</span></code></pre></div>
-</li>
-<li>
-<p>Unpause the pipeline</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>unpause-pipeline<span class="w"> </span>-p<span class="w"> </span>deploy-sandbox-foundation
-</span></code></pre></div>
-</li>
-<li>
-<p>Install Opsman and configure BOSH</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>trigger-job<span class="w"> </span>-j<span class="w"> </span>deploy-sandbox-foundation/install-opsman
-</span></code></pre></div>
-</li>
-<li>
-<p>Trigger all other pipelines to deploy all products <a href="https://concourse-ci.org/jobs.html#fly-trigger-job">either on the UI or using the CLI</a></p>
-</li>
-</ol>
-<h2 id="use-tas-and-tkgi">Use TAS and TKGI</h2>
-<ul>
-<li>see this <a href="https://www.cloudfoundry.org/get-started/">Getting Started with Cloud Foundry</a> to get started with TAS.</li>
-<li>See <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing.html">Managing TKGI</a> and <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing-clusters.html">Creating and Managing Kubernetes Clusters and Workloads</a> to get started with TKGI.</li>
-<li>See <a href="../../cf/using-cf/">Using Cloud Foundry</a></li>
-</ul>
 
 
 
@@ -1627,10 +1337,10 @@ by providing different variables files. We will deploy the <code>sandbox</code> 
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
