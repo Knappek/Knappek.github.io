@@ -20,6 +20,9 @@ nav:
     - Failed Supervisor Cluster upgrade: tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8.md
     - Airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - Disaster Scenarios: tanzu/tkgs/disaster-scenarios.md
+  - Cloud Foundry:
+    - Intro: tanzu/cf/index.md 
+    - Using Cloud Foundry: tanzu/cf/using-cf.md 
   - Tanzu Packages:
     - Intro: tanzu/tanzu-packages/index.md
     - Airgapped Installation: tanzu/tanzu-packages/deploy-packages-airgapped.md

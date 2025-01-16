@@ -131,3 +131,4 @@ Some notes to some variables that might be unclear:
 
 - see this [Getting Started with Cloud Foundry](https://www.cloudfoundry.org/get-started/) to get started with TAS.
 - See [Managing TKGI](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing.html) and [Creating and Managing Kubernetes Clusters and Workloads](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-managing-clusters.html) to get started with TKGI.
+- See [Using Cloud Foundry](./../cf/using-cf.md)
