@@ -80,6 +80,12 @@ Steps:
 
 1. Install Powershell
 1. open it in a terminal emulator: `pwsh`
+1. Install PowerCLI:
+
+    ```powershell
+    Install-Module VMware.PowerCLI -Scope CurrentUser
+    ```
+
 1. Connect to vCenter:
 
     ```powershell
