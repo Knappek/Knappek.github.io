@@ -98,7 +98,8 @@ Steps:
     Connect-VIServer -Server 192.168.178.102 -Protocol https -User administrator@vsphere.local -Password VMware1!
     ```
 
-1. download the powershell functions `Get-MacLearn` and `Set-MacLearn` from [here](https://github.com/lamw/vmware-scripts/blob/master/powershell/MacLearn.ps1)
+1. download the powershell functions `Get-MacLearn` and `Set-MacLearn` from [here](https://raw.githubusercontent.com/lamw/vmware-scripts/refs/heads/master/powershell/MacLearn.ps1) by simply copy pasting it to your powershell session
+
 1. Set Mac learning on a port group:
 
     ```powershell
