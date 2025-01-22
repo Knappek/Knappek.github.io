@@ -86,6 +86,12 @@ Steps:
     Install-Module VMware.PowerCLI -Scope CurrentUser
     ```
 
+1. If using self-signed certificates on vCenter ignore verifying the SSL certificate:
+
+    ```powershell
+    Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
+    ```
+
 1. Connect to vCenter:
 
     ```powershell
