@@ -20,6 +20,7 @@ nav:
     - Failed Supervisor Cluster upgrade: tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8.md
     - Airgapped TKGS homelab environment: tanzu/tkgs/tkgs-airgapped.md
     - Disaster Scenarios: tanzu/tkgs/disaster-scenarios.md
+    - Customize Kubernetes Auditing: tanzu/tkgs/customize-k8s-auditing.md
   - Cloud Foundry:
     - Intro: tanzu/cf/index.md 
     - Using Cloud Foundry: tanzu/cf/using-cf.md 
