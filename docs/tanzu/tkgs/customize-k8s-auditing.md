@@ -157,7 +157,7 @@ rules:
 
 ## Customize Audit Policy
 
-You can customize the audit policy by using a custom cluster class as described [here](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere-supervisor/8-0/using-tkg-service-with-vsphere-supervisor/provisioning-tkg-service-clusters/using-the-cluster-v1beta1-api/v1beta1-example-cluster-based-on-a-custom-clusterclass-vsphere-8-u2-and-later-workflow.html#GUID-EFE7DB40-8748-42B5-9694-DBC21F9FB76A-en_TITLE_77784069-5CE5-47E3-AB00-C32CC5C27912). 
+You can customize the audit policy by using a custom cluster class as described [here](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere-supervisor/8-0/using-tkg-service-with-vsphere-supervisor/provisioning-tkg-service-clusters/using-the-cluster-v1beta1-api/v1beta1-example-cluster-based-on-a-custom-clusterclass-vsphere-8-u2-and-later-workflow.html#GUID-EFE7DB40-8748-42B5-9694-DBC21F9FB76A-en_TITLE_77784069-5CE5-47E3-AB00-C32CC5C27912).
 
 To use this minimal policy file that logs all requests on at the Metadata level:
 

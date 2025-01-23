@@ -14,7 +14,7 @@ We deploy the [Promtail Agent](https://grafana.com/docs/loki/latest/send-data/pr
 1. Get your Grafana Cloud Credentials: 
       1. Navigate to your [Grafana Cloud Account](https://grafana.com/auth/sign-in)
       1. next to your account, click the `Launch` button
-      1. navigate to the Loki Stack and click `Send Logs`
+      1. navigate to the **Loki** Stack and click `Send Logs`
       1. Click one of the `Generate now` buttons to generate an API token make a note of that token
       1. record your username, which is a 5-digit number, which you can also find on the top of that page
       1. make a note of the `URL`
@@ -141,7 +141,7 @@ We deploy the [Promtail Agent](https://grafana.com/docs/loki/latest/send-data/pr
 
 ## Query Logs in Grafana Cloud
 
-1. In your [Grafana Cloud Account](https://grafana.com/auth/sign-in) page, navigate to the Grafana stack and click the `Launch` button
+1. In your [Grafana Cloud Account](https://grafana.com/auth/sign-in) page, navigate to the **Grafana** stack and click the `Launch` button
 1. Navigate to **Explore**
 1. Use the filter `job=kubernetes-audit-log` as you see here:
 
