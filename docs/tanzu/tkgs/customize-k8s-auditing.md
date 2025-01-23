@@ -181,4 +181,4 @@ you can use [this custom cluster class](https://gist.github.com/Knappek/b6c7f931
 
 ### Ship to an external audit backend
 
-TODO
+See [Write K8s Audit Logs to Loki in Grafana Cloud](./../../observability/write-k8s-audit-logs-to-loki-grafana-cloud.md) as an example.
