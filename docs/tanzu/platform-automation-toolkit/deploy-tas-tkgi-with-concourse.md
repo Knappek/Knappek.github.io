@@ -12,7 +12,7 @@ We will use Concourse Pipelines from [my repo](https://github.com/Knappek/concou
 - Platform Automation Toolkit running: You can use [this guide](./install-concourse-for-platform-automation.md) to install Concourse for Platform Automation on vSphere
 - a vSphere + NSX-T environment. NSX-T must be preconfigured to meet the requirements to [deploy TAS for VMs with NSX-T Networking](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/vsphere-nsx-t.html) and to [deploy TKGI on vSphere with NSX](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.20/tkgi/GUID-vsphere-nsxt-index-install.html). You can follow [this guide](./deploy-vsphere-with-nsxt-for-tas-tkgi.md) to achieve this
 - Concourse CLI (fly), Credhub CLI, OM CLI, BOSH CLI: best to install them with [asdf](https://github.com/vmware-tanzu/tanzu-plug-in-for-asdf)
-- the S3 buckets in MinIO have Versioning enabled: Buckets can be created using the automation of [Installing Concourse for Platform Automation](./install-concourse-for-platform-automation.md) but you have to manually [enable Versioning](https://min.io/docs/minio/linux/administration/object-management/object-versioning.html#enable-bucket-versioning) for the created buckets as the automation is not able to do that today.
+- the S3 buckets in MinIO have Versioning enabled: Buckets can be created using the automation in [Installing Concourse for Platform Automation](./install-concourse-for-platform-automation.md).
 
 ## Download Products
 
