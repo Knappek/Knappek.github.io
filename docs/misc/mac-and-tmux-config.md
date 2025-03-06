@@ -1,4 +1,4 @@
-# Mac and TMUX Config
+# Mac and tmux Config
 
 Some configurations I always struggle with when things are misconfigured and suddenly not working as expected (e.g. when installing a new Mac or after a Mac upgrade).
 
@@ -18,11 +18,11 @@ I want to jump words with `Option + ←` and `Option + →`, respectively. Confi
     | `option + Left` (`⌥←`)  | Send Escape Sequence | `b`                    |
     | `option + Right` (`⌥→`) | Send Escape Sequence | `f`                    |
 
-## TMUX
+## tmux
 
 ### Resize Pane Shortcut
 
-I want to resize tmux panes with the Shortcut `[TMUX Shortcut - Ctrl-b] + Ctrl + ←`, `[TMUX Shortcut - Ctrl-b] + Ctrl + →`, `[TMUX Shortcut - Ctrl-b] + Ctrl + ↑` and `[TMUX Shortcut - Ctrl-b] + Ctrl + ↓`.
+I want to resize tmux panes with the Shortcut `[tmux Shortcut - Ctrl-b] + Ctrl + ←`, `[tmux Shortcut - Ctrl-b] + Ctrl + →`, `[tmux Shortcut - Ctrl-b] + Ctrl + ↑` and `[tmux Shortcut - Ctrl-b] + Ctrl + ↓`.
 
 By default, this should be configured in the tmux config already. You can verify it with
 
