@@ -31,6 +31,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://knappek.github.io/misc/mac-and-tmux-config/</loc>
+         <lastmod>2025-03-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://knappek.github.io/misc/nsx-rest-api/</loc>
          <lastmod>2025-03-06</lastmod>
          <changefreq>daily</changefreq>
