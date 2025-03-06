@@ -38,6 +38,7 @@ nav:
   - Setup: homelab/index.md
   - Airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
 - Misc:
+  - Hello World Apps: misc/hello-world-apps.md
   - Deploy Ubuntu VM on vCenter: misc/deploy-ubuntu-on-vcenter.md
   - NSX REST API: misc/nsx-rest-api.md
  
