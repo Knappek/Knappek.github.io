@@ -8,21 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/tanzu/tanzu-platform/tanzu-platform-technical-details/">
+        <link rel="canonical" href="https://knappek.github.io/misc/hello-world-apps/">
       
       
+        <link rel="prev" href="../../homelab/airgapped-tkgs/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+        <link rel="next" href="../deploy-ubuntu-on-vcenter/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Tanzu Platform Technical Details - Andy's Technical Scratchpad</title>
+        <title>Hello World Apps - Andy's Technical Scratchpad</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -41,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -58,7 +62,7 @@
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -67,7 +71,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -79,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tanzu-platform-technical-details" class="md-skip">
+        <a href="#hello-world-apps" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +99,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -115,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tanzu Platform Technical Details
+              Hello World Apps
             
           </span>
         </div>
@@ -192,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -211,7 +215,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../kubernetes/architecture-concepts/" class="md-tabs__link">
+        <a href="../../kubernetes/architecture-concepts/" class="md-tabs__link">
           
   
     
@@ -237,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
+        <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
     
@@ -260,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-tabs__link">
+        <a href="../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-tabs__link">
           
   
     
@@ -280,7 +284,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../homelab/" class="md-tabs__link">
+        <a href="../../homelab/" class="md-tabs__link">
           
   
     
@@ -296,11 +300,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../misc/hello-world-apps/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
     
@@ -341,7 +347,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -371,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -433,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kubernetes/architecture-concepts/" class="md-nav__link">
+      <a href="../../kubernetes/architecture-concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -559,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/tkgs-nsxt-integration/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -580,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -601,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/tkgs-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -622,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/disaster-scenarios/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -643,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tkgs/customize-k8s-auditing/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/customize-k8s-auditing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -695,7 +701,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../cf/" class="md-nav__link ">
+            <a href="../../tanzu/cf/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -728,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cf/using-cf/" class="md-nav__link">
+      <a href="../../tanzu/cf/using-cf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -780,7 +786,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../tanzu-packages/" class="md-nav__link ">
+            <a href="../../tanzu/tanzu-packages/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -813,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -869,7 +875,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../platform-automation-toolkit/" class="md-nav__link ">
+            <a href="../../tanzu/platform-automation-toolkit/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -902,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -944,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1022,7 +1028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-nav__link">
+      <a href="../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1073,7 +1079,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../homelab/" class="md-nav__link ">
+            <a href="../../homelab/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1106,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../homelab/airgapped-tkgs/" class="md-nav__link">
+      <a href="../../homelab/airgapped-tkgs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1131,8 +1137,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1145,17 +1153,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1166,7 +1177,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Misc
@@ -1177,10 +1188,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../misc/hello-world-apps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1189,6 +1209,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1201,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
+      <a href="../deploy-ubuntu-on-vcenter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1222,7 +1243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/nsx-rest-api/" class="md-nav__link">
+      <a href="../nsx-rest-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1263,170 +1284,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#goal-of-this-page" class="md-nav__link">
-    <span class="md-ellipsis">
-      Goal of this page
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Questions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Concepts
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Architecture
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#you-may-ask-what-is-the-motivation-behind-this-approach" class="md-nav__link">
-    <span class="md-ellipsis">
-      You may ask: what is the motivation behind this approach?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ucp-stands-for-unified-control-plane-correct-do-we-explain-this-on-a-high-level-anywhere-in-the-docs-or-is-this-not-planned-to-do-as-the-end-users-dont-need-to-be-aware-of-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      UCP stands for Unified Control Plane, correct? Do we explain this on a high-level anywhere in the docs? Or is this not planned to do as the end users don't need to be aware of it?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#can-i-interact-with-ucp-using-kubectl" class="md-nav__link">
-    <span class="md-ellipsis">
-      Can I interact with UCP using kubectl?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-i-have-1-availability-target-with-3-clusters-and-i-choose-to" class="md-nav__link">
-    <span class="md-ellipsis">
-      When I have 1 availability target with 3 clusters and I choose to
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#who-are-the-personas-and-who-is-responsible-for-what" class="md-nav__link">
-    <span class="md-ellipsis">
-      Who are the personas and who is responsible for what?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#is-there-is-a-dedicated-managednamespace-for-each-availabilitytarget-of-a-managednamespaceset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-happens-when-i-dont-enable-tanzu-application-engine-when-creating-a-cluster-group-does-it-mean-the-clusters-in-it-are-not-managed-by-ucp" class="md-nav__link">
-    <span class="md-ellipsis">
-      What happens when I don't enable Tanzu Application Engine when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-interacting-via-kubectl-with-ucp-using-kubeconfig-configtanzukubeconfig-then-you-see-different-things-depending-which-context-you-use-project-clustergroup-or-space-context-which-objects-do-you-see-using-which-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      when interacting via kubectl with UCP (using kubeconfig ~/.config/tanzu/kube/config), then you see different things depending which context you use (project, clustergroup or space context). Which objects do you see using which context?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#is-it-possible-to-create-custom-capabilities-and-traits" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is it possible to create custom capabilities and traits
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-deploying-this-sample-app-in-the-space-it-deploys-the-app-itself-the-istio-gateway-pod-a-httproute-and-a-gateway-when-i-have-created-a-space-it-already-deployed-the-spring-cloud-gateway-pod-and-multicloud-ingress-pod-how-does-ingress-to-the-smoketest-app-actually-work" class="md-nav__link">
-    <span class="md-ellipsis">
-      When deploying this sample app in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1443,158 +1300,8 @@
   
 
 
-<h1 id="tanzu-platform-technical-details">Tanzu Platform Technical Details</h1>
-<h2 id="goal-of-this-page">Goal of this page</h2>
-<p>The goal of this page is to add additional information around <a href="https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/index.html">Tanzu Platform for Kubernetes</a>, what you can't easily find in the official documentation, but what you would learn when working hands-on with it. This page tries to go into all necessary technical details required to better understand the concepts. By providing this, it should be easier to manage, own and troubleshoot.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This page is in progress. Currently it just contains notes, there is no clear format or structure. It's mainly used by myself while studying TP4K8s and I will bring it into a good shape once I understand it better.</p>
-</div>
-<h2 id="questions">Questions</h2>
-<ul>
-<li>how to specify to use <code>default-istio-gateway</code> or <code>spring-cloud-gateway</code> for ingress</li>
-</ul>
-<h2 id="concepts">Concepts</h2>
-<p>There is a very good page explaining the concepts <a href="https://docs.vmware.com/en/VMware-Tanzu-Platform/services/create-manage-apps-tanzu-platform-k8s/concepts-concepts.html">here</a>. You have to be familiar with</p>
-<ul>
-<li>Spaces</li>
-<li>Capabilities</li>
-<li>Cluster Groups</li>
-<li>Availability Targets</li>
-<li>Profiles</li>
-<li>Traits</li>
-</ul>
-<h2 id="technical-architecture">Technical Architecture</h2>
-<p>The <a href="https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#platform-engineer-hands-on-lab">Platform Engineer Hands-On Lab workshop</a> provides a very high-level picture how Tanzu Platform for Kubernetes works technically, described in this picture:</p>
-<p><a class="glightbox" href="../images/ucp-high-level.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="UCP high-level" src="../images/ucp-high-level.png" /></a></p>
-<p><code>UCP</code> stands for <em>Unified Control Plane</em> (which you don't find in the official docs as of today). It is technically based on <a href="https://www.kcp.io/">KCP</a> which essentially gives you a Kubernetes API without having a Kubernetes cluster with all its components like pods, deployments etc. In the end, you can interact with it using <code>kubectl</code> and enrich it with custom APIs (CRDs) with only having the APIs in place you wish to have in place.</p>
-<p>Let's illustrate that with a simple example without using the Tanzu Platform terminology, but the terminology that we already familiar with when using TKGS or TKGm: Let's say we want to install the <a href="https://docs.vmware.com/en/VMware-Tanzu-Packages/latest/tanzu-packages/packages-cert-mgr.html">cert-manager Tanzu Package</a> (we will see later that this is called <code>Capability</code> in Tanzu Platform terminology) you would install it with</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tanzu<span class="w"> </span>package<span class="w"> </span>install<span class="w"> </span>cert-manager.tanzu.vmware.com<span class="w"> </span>-p<span class="w"> </span>cert-manager.tanzu.vmware.com<span class="w"> </span>-v<span class="w"> </span><span class="m">1</span>.11.1+vmware.1-tkg.1
-</span></code></pre></div>
-<p>This will actually not deploy the <code>PackageInstall</code> on your target cluster, but on UCP, and UCP will ensure the PackageInstall will be reconciled down to your Kubernetes Cluster.</p>
-<p>UCP in Tanzu Platform for Kubernetes is used to reconcile anything that you create via <a href="https://docs.vmware.com/en/VMware-Tanzu-Platform/SaaS/Using-and-Managing-VMware-Tanzu-Platform-Hub/index.html">Hub</a> (the UI) or via the API (using the tanzu cli) down to your Kubernetes clusters.</p>
-<h3 id="you-may-ask-what-is-the-motivation-behind-this-approach">You may ask: what is the motivation behind this approach?</h3>
-<p>I can think of the following:</p>
-<p>TP4K8s has a concept called <code>Spaces</code>, which in the end create Kubernetes namespaces in the target K8s clusters. You can specify a space with 3 replicas, which will create 3 K8s namespaces, spread across multiple clusters (that could live in different regions potentially). When you install cert-manager in your space, with this approach of proxying via UCP, UCP will make sure to install cert-manager in all of those 3 namespaces across clusters and also make sure that they are all similarly configured.</p>
-<p>In the end, it all drills down to be able to manage a fleet of clusters from a single Control Plane (API), and this is UCP. It allows to bring a fleet of clusters into a consistent and manageable state, heavily using the power of Kubernetes Reconciliation and ensure the desired state is always equal to the actual state.</p>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>groupings (cluster groups to group clusters, availability targets to also group clusters, spaces to group namespaces) is all based on labels</li>
-<li>because of label selectors, a cluster might belong to one or many Availability Targets</li>
-<li>because of label selectors, a cluster might belong to one or many Cluster Groups</li>
-<li>capabilities are provided by Tanzu Packages (Carvel Packages) installed to every cluster belonging to the cluster group that provides this capability</li>
-<li>if a capability is <em>provided</em> to a cluster group, the corresponding Tanzu Package installed on all clusters in that cluster group have the <code>capability.tanzu.vmware.com/provides: &lt;capability-name&gt;</code> annotation</li>
-<li>
-<p>Capabilities vs Traits</p>
-<ul>
-<li>Capabilities provides the set of CRDs (with controllers)</li>
-<li>Traits creates an instance of the CRD (CR - Custom Resource)</li>
-<li>example:<ul>
-<li>the <code>cert-manager</code> capability deploys the <code>cert-manager</code> pods and installs the cert-manager CRDs, like <code>ClusterIssuer</code>, <code>Certificate</code> etc.</li>
-<li>there is a <code>multicloud-certmanager</code> trait, which actually creates certificate issuers, so custom resources of <code>kind: ClusterIssuer</code> etc. and actually makes use of the <code>cert-manager</code> issuer</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Profiles is just a configuration but you don't really deploy anything by creating a profile. A space is ultimately combining everything to provision something with the information from a profile. This means, that all available capabilities are provided on the cluster group, but you can only use capabilities in your spaces if you have provided them in your space via the profile</p>
-</li>
-<li>when creating a space you can select an Availability Target and with it how many replicas of the AT - when you configure 3 replicas, the UCP will create 3 managed namespaces across 3 clusters</li>
-<li>namespaces/pods added by Hub (UCP)<ul>
-<li>tanzu-cluster-group-system: used to deploy <code>PackageInstalls</code> of all capabilities installed on the cluster group</li>
-<li>tanzu system<ul>
-<li><code>aria-k8s-collector</code></li>
-<li><code>syncer</code></li>
-<li><code>tanzu-capabilities-controller-manager</code></li>
-</ul>
-</li>
-<li>vmware-system-tmc</li>
-</ul>
-</li>
-<li>Hub adds 4 Package Repositories that bundle all capabilities</li>
-<li>when you create a space, it will<ul>
-<li>create a <code>ManagedNamespaceSet</code> on UCP</li>
-<li>which will create a <code>ManagedNamespace</code> on UCP</li>
-<li>which will create two <code>Namespace</code>'s on the target cluster, called <code>&lt;space-name&gt;-&lt;hash&gt;</code> and <code>&lt;space-name&gt;-&lt;hash&gt;-internal</code><ul>
-<li>the internal namespace is used to deploy <code>PackageInstalls</code> of the traits, referenced in the associated profiles</li>
-<li>the "normal" namespace is used to deploy end applications</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>a <code>Space</code>and a <code>ManagedNamespace</code> (and the final <code>Namespace</code> on the target cluster(s) - which is essentially a 1:n mirror from a <code>ManagedNamespace</code>) can be compared to a <code>Deployment</code> and a <code>Pod</code><ul>
-<li>each time you update the Space, it will create a new <code>ManagedNamespaceSet</code></li>
-</ul>
-</li>
-<li><code>Spaces</code> are reconciled by a <code>Space Controller</code></li>
-<li>there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet</li>
-<li>once a ManagedNamespace has been created successfully on UCP, there is the <code>Space Scheduler</code> that provisions a namespace on a target cluster and installs the traits into that namespace</li>
-</ul>
-<h2 id="faq">FAQ</h2>
-<h3 id="ucp-stands-for-unified-control-plane-correct-do-we-explain-this-on-a-high-level-anywhere-in-the-docs-or-is-this-not-planned-to-do-as-the-end-users-dont-need-to-be-aware-of-it">UCP stands for Unified Control Plane, correct? Do we explain this on a high-level anywhere in the docs? Or is this not planned to do as the end users don't need to be aware of it?</h3>
-<p>See <a href="https://chat.google.com/room/AAAA7-TLcC0/iO7H2nRFTMQ/iO7H2nRFTMQ?cls=10">Google Chat</a>.</p>
-<h3 id="can-i-interact-with-ucp-using-kubectl">Can I interact with UCP using kubectl?</h3>
-<p>Yes.</p>
-<ol>
-<li>login with <code>tanzu login</code></li>
-<li>use a specific context (see below for further information on contexts)<ol>
-<li><code>project</code> context: <code>tanzu project use</code></li>
-<li><code>clustergroup</code> context: <code>tanzu ops clustergroup use</code></li>
-<li><code>space</code> context: <code>tanzu space use</code></li>
-</ol>
-</li>
-<li>use the kuebconfig at <code>~/.config/tanzu/kube/config</code></li>
-</ol>
-<p>A handy thing to do is to create an alias <code>alias tk="KUBECONFIG=~/.config/tanzu/kube/config kubectl"</code> and then interact with UCP using <code>tk</code> instead of <code>kubectl</code>.</p>
-<h3 id="when-i-have-1-availability-target-with-3-clusters-and-i-choose-to">When I have 1 availability target with 3 clusters and I choose to</h3>
-<ul>
-<li>deploy a space with 1 replica: will the namespace get deployed on one cluster only? =&gt; yes</li>
-<li>deploy a space with 2 replicas: will 2 namespaces get deployed on one cluster or 1 namespace on each cluster? =&gt; 2 namespaces on one cluster is possible</li>
-<li>deploy a space with 3 replicas: will the namespace get deployed evenly, 1 namespace on each cluster? =&gt; no. 3 namespaces on one cluster is possible</li>
-<li>deploy a space with more replicas than available clusters =&gt; explained by above behaviour</li>
-</ul>
-<h3 id="who-are-the-personas-and-who-is-responsible-for-what">Who are the personas and who is responsible for what?</h3>
-<p>Where are the boundaries? What's the motivation behind the technical architecture - who is supposed to see what and what is intended to be abstracted away? =&gt; https://docs.google.com/document/d/1Rmt-eskKBo2mNDsSdHeVaIWuZU3zhKznEDcRVN9BRRs/edit#heading=h.ixfosuy76boz</p>
-<h3 id="is-there-is-a-dedicated-managednamespace-for-each-availabilitytarget-of-a-managednamespaceset">Is there is a dedicated ManagedNamespace for each AvailabilityTarget of a ManagedNamespaceSet</h3>
-<p>Yes. If you deploy a space to two Availability Targets with one replica each, there is one <code>ManagedNamespaceSet</code> on UCP, and two <code>ManagedNamespace</code>'s, one for each cluster.</p>
-<h3 id="what-happens-when-i-dont-enable-tanzu-application-engine-when-creating-a-cluster-group-does-it-mean-the-clusters-in-it-are-not-managed-by-ucp">What happens when I don't enable <code>Tanzu Application Engine</code> when creating a cluster Group? Does it mean, the clusters in it are not managed by UCP?</h3>
-<p>Yes, it doesn't have the <code>PackageInstall</code>'s installed in the <code>tanzu-cluster-group-system</code> namespace, because you are not able to install capabilities into this clustergroup. Only the <code>vss-k8s-collector.tanzu.vmware.com</code> Package will be installed.</p>
-<h3 id="when-interacting-via-kubectl-with-ucp-using-kubeconfig-configtanzukubeconfig-then-you-see-different-things-depending-which-context-you-use-project-clustergroup-or-space-context-which-objects-do-you-see-using-which-context">when interacting via kubectl with UCP (using kubeconfig <code>~/.config/tanzu/kube/config</code>), then you see different things depending which context you use (<code>project</code>, <code>clustergroup</code> or <code>space</code> context). Which objects do you see using which context?</h3>
-<ul>
-<li><code>managednamespacesets</code> - <code>project</code> context</li>
-<li><code>managednamespaces</code> - <code>project</code> context</li>
-<li><code>profiles</code> - <code>project</code> context</li>
-<li><code>spaces</code> - <code>project</code> context</li>
-<li><code>kubernetesclusters</code> - <code>clustergroup</code> context</li>
-<li><code>packagerepositories</code> - <code>project</code> &amp; <code>clustergroup</code> contexts, which give you different outputs but not clear what it provides</li>
-<li><code>packageinstalls</code>:<ul>
-<li><code>clustergroup</code> context: you will see all capabilities installed in a clustergroup</li>
-<li><code>space</code> context: you will see custom PackageInstalls installed in this space</li>
-</ul>
-</li>
-<li><code>availabilitytarget</code> <ul>
-<li><code>project</code> context: gives you all Availability Targets of the project</li>
-<li><code>clustergroup</code> context: gives you only the AVTs that have clusters selected in that cluster group</li>
-</ul>
-</li>
-<li><code>traits</code> - <code>project</code> context, this is because traits are provided out of the box, and at the time of writing it is not possible to create custom traits or capabilities.</li>
-</ul>
-<h3 id="is-it-possible-to-create-custom-capabilities-and-traits">Is it possible to create custom capabilities and traits</h3>
-<p>No, not at time of this writing.</p>
-<h3 id="when-deploying-this-sample-app-in-the-space-it-deploys-the-app-itself-the-istio-gateway-pod-a-httproute-and-a-gateway-when-i-have-created-a-space-it-already-deployed-the-spring-cloud-gateway-pod-and-multicloud-ingress-pod-how-does-ingress-to-the-smoketest-app-actually-work">When deploying <a href="https://github.com/Tanzu-Solutions-Engineering/tanzu-platform-workshop/blob/main/lab-platform-engineer/01-full-lab.md#deploy-a-simple-application-to-the-space-to-smokte-test-our-setup">this sample app</a> in the space, it deploys the app itself, the istio gateway pod, a httproute and a gateway. When I have created a space, it already deployed the Spring cloud gateway pod and multicloud-ingress pod. How does ingress to the smoketest app actually work?</h3>
-<p>Pods that will be deployed when creating a space: <code>spring-cloud-gateway</code>, <code>multicloud-ingress-operator</code></p>
-<p>Pods that will be deployed when deploying the app: <code>spring-smoketest</code>, <code>default-gateway-istio</code></p>
-<p><code>spring-cloud-gateway</code> along with a a <code>kind: SpringCloudGateway</code> has been deployed because the <code>spring-cloud-gateway.tanzu.vmware.com</code> capability has been installed for the cluster group.</p>
-<p>The <code>multicloud-ingress-operator</code> has been deployed because the <code>tcs.tanzu.vmware.com</code> capability, which includes <code>multicloud-ingress.tanzu.vmware.com</code> capability, has been installed for the cluster group. It is responsible to spin up the istio gateway pod and the Gateway CR when deploying an app into the space.</p>
-<p>Ingress to an application in general goies like this: </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Internet
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    ==&gt; External Load Balancer 
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    ==&gt; platform-scoped istio ingress gateway (istio-ingress namespace)
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    ==&gt; space-scoped istio ingress gateway
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ==&gt; app
-</span></code></pre></div>
-<p>When using Spring Cloud Gateway for ingress, it is an additional hop in the ingress chain: internet ==&gt; platform istio ingress gateway ==&gt; space-scoped istio ingress gateway == <em>via HTTPRoute</em> ==&gt; SCG ==&gt; app.</p>
-<p>When not using Spring Cloud Gateway, the ingress chain is: internet ==&gt; platform istio ingress gateway ==&gt; space-scoped istio ingress gateway == <em>via HTTPRoute</em> ==&gt; app.</p>
+<h1 id="hello-world-apps">Hello World Apps</h1>
+<p>A collection of "hello world apps" can be found in my repo <a href="https://github.com/Knappek/hello-worlds">Knappek/hello-worlds</a>. It's a collection of small simple programs I use to test stuff.</p>
 
 
 
@@ -1615,7 +1322,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 13, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2025</span>
   </span>
 
     
@@ -1767,10 +1474,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
