@@ -12,6 +12,7 @@ nav:
 - Home: index.md
 - Kubernetes:
   - Kubernetes Architecture Concepts: kubernetes/architecture-concepts.md
+  - Deploy a HA k3s Cluster: kubernetes/deploy-ha-k3s.md
 - Tanzu:
   # - Tanzu Platform:
   #   - Tanzu Platform Technical Details: tanzu/tanzu-platform/tanzu-platform-technical-details.md
