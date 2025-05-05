@@ -12,7 +12,7 @@ Print help message:
 ./install-k3s-with-multipass.sh -h
 ```
 
-Example:
+### Example: Install 3 node cluster wiht 3 CP nodes
 
 ```shell
 ./install-k3s-with-multipass.sh \
@@ -21,6 +21,21 @@ Example:
   --name k3s \
   --worker-cpus 2 \
   --worker-memory 8G
+```
+
+### Delete everything
+
+Simply delete all VMs managed by multipass:
+
+```shell
+multipass delete --all && multipass purge
+```
+
+CAUTION: this will delete ALL VMs, if you have more VMs managed with multipass, use this command instead:
+
+```shell
+multipass delete --purge <VM name1>
+multipass delete --purge <VM name2>
 ```
 
 ## Known Issues
