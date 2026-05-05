@@ -35,6 +35,7 @@ nav:
     - Deploy TAS and TKGI with Concourse: tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse.md
 - Observability:
   - Write K8s Audit Logs to Loki in Grafana Cloud: observability/write-k8s-audit-logs-to-loki-grafana-cloud.md
+  - Run OpenTelemetry Demo on Kind with Grafana Cloud: observability/otel-demo-kind-grafana-cloud.md
 - Homelab:
   - Setup: homelab/index.md
   - Airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
