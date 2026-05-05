@@ -36,6 +36,7 @@ nav:
 - Observability:
   - Write K8s Audit Logs to Loki in Grafana Cloud: observability/write-k8s-audit-logs-to-loki-grafana-cloud.md
   - Run OpenTelemetry Demo on Kind with Grafana Cloud: observability/otel-demo-kind-grafana-cloud.md
+  - Zero-Code Java Auto-Instrumentation with the Kubernetes OpenTelemetry Operator: observability//zero-code-java-auto-instrumentation-k8s-otel-operator.md
 - Homelab:
   - Setup: homelab/index.md
   - Airgapped TKGS homelab environment: homelab/airgapped-tkgs.md
