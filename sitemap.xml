@@ -56,6 +56,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://knappek.github.io/observability/zero-code-java-auto-instrumentation-k8s-otel-operator/</loc>
+         <lastmod>2026-05-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://knappek.github.io/tanzu/cf/</loc>
          <lastmod>2026-05-05</lastmod>
          <changefreq>daily</changefreq>
