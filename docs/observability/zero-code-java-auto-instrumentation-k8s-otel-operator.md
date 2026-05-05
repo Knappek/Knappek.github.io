@@ -496,3 +496,7 @@ helm uninstall opentelemetry-operator -n opentelemetry-operator-system
 kubectl delete -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
 kind delete cluster --name otel-demo
 ```
+
+## Further ideas
+
+- Try out [Beyla Injector](https://grafana.com/docs/alloy/latest/reference/components/beyla/beyla.ebpf/#injector) (without required eBPF). Currently, it only seems to work on Kubernetes and seems to work similarly to the OpenTelemetry Operator (see [this Github PR](https://github.com/grafana/beyla/pull/2658)).
