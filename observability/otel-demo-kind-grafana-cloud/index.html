@@ -8,25 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://knappek.github.io/tanzu/tkgs/disaster-scenarios/">
+        <link rel="canonical" href="https://knappek.github.io/observability/otel-demo-kind-grafana-cloud/">
       
       
-        <link rel="prev" href="../tkgs-airgapped/">
+        <link rel="prev" href="../write-k8s-audit-logs-to-loki-grafana-cloud/">
       
       
-        <link rel="next" href="../customize-k8s-auditing/">
+        <link rel="next" href="../../homelab/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Disaster Scenarios - Andy's Technical Scratchpad</title>
+        <title>Run OpenTelemetry Demo on Kind with Grafana Cloud - Andy's Technical Scratchpad</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -45,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -62,7 +62,7 @@
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -71,7 +71,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#disaster-scenarios" class="md-skip">
+        <a href="#deploy-opentelemetry-demo-on-a-kind-cluster" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-header__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Disaster Scenarios
+              Run OpenTelemetry Demo on Kind with Grafana Cloud
             
           </span>
         </div>
@@ -196,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -215,7 +215,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../kubernetes/architecture-concepts/" class="md-tabs__link">
+        <a href="../../kubernetes/architecture-concepts/" class="md-tabs__link">
           
   
     
@@ -231,21 +231,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../tkgs-nsxt-integration/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-tabs__link">
           
   
     
@@ -264,11 +260,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-tabs__link">
           
   
     
@@ -288,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../homelab/" class="md-tabs__link">
+        <a href="../../homelab/" class="md-tabs__link">
           
   
     
@@ -308,7 +306,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../misc/hello-world-apps/" class="md-tabs__link">
+        <a href="../../misc/hello-world-apps/" class="md-tabs__link">
           
   
     
@@ -349,7 +347,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
+    <a href="../.." title="Andy&#39;s Technical Scratchpad" class="md-nav__button md-logo" aria-label="Andy's Technical Scratchpad" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -379,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kubernetes/architecture-concepts/" class="md-nav__link">
+      <a href="../../kubernetes/architecture-concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -464,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kubernetes/deploy-ha-k3s/" class="md-nav__link">
+      <a href="../../kubernetes/deploy-ha-k3s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -489,10 +487,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -507,20 +503,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -531,7 +524,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Tanzu
@@ -542,10 +535,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -565,11 +556,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -583,7 +574,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             TKGS
@@ -597,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tkgs-nsxt-integration/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-nsxt-integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -618,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/supervisor-cluster-upgrade-failed-in-vsphere-8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -639,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tkgs-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/tkgs-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -657,30 +648,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Disaster Scenarios
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tanzu/tkgs/disaster-scenarios/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -689,221 +660,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#crash-of-a-worker-node-on-a-guest-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crash of a Worker Node on a guest cluster
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Crash of a Worker Node on a guest cluster">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#power-off-worker-node-in-vcenter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Power off Worker node in vCenter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-worker-vm-in-vcenter-delete-from-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete Worker VM in vCenter (Delete from Disk)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#crash-of-a-control-plane-node-on-a-guest-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crash of a Control Plane Node on a guest cluster
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Crash of a Control Plane Node on a guest cluster">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#power-off-control-plane-node-of-guest-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Power off Control Plane node of guest cluster
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-cp-vm-in-vcenter-delete-from-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete CP VM in vCenter (Delete from Disk)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubelet-crashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet Crashing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet Crashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kubelet-not-running-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet not running on a worker node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet not running on a worker node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stop-kubelet-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stop kubelet on a worker node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#let-kubelet-crash-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Let kubelet crash on a worker node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kubelet-not-running-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet not running on a control plane node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet not running on a control plane node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stop-kubelet-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stop kubelet on a control plane node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#let-kubelet-crash-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Let kubelet crash on a control plane node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etcd-not-working-properly" class="md-nav__link">
-    <span class="md-ellipsis">
-      etcd not working properly
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="etcd not working properly">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#only-1-out-of-3-etcd-instances-running" class="md-nav__link">
-    <span class="md-ellipsis">
-      only 1 out of 3 etcd instances running
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-api-server-crashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubernetes API-Server Crashing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubernetes API-Server Crashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kube-apiserver-not-running" class="md-nav__link">
-    <span class="md-ellipsis">
-      kube-apiserver not running
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -916,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../customize-k8s-auditing/" class="md-nav__link">
+      <a href="../../tanzu/tkgs/customize-k8s-auditing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -968,7 +724,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../cf/" class="md-nav__link ">
+            <a href="../../tanzu/cf/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1001,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cf/using-cf/" class="md-nav__link">
+      <a href="../../tanzu/cf/using-cf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1053,7 +809,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../tanzu-packages/" class="md-nav__link ">
+            <a href="../../tanzu/tanzu-packages/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1086,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
+      <a href="../../tanzu/tanzu-packages/deploy-packages-airgapped/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1142,7 +898,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../platform-automation-toolkit/" class="md-nav__link ">
+            <a href="../../tanzu/platform-automation-toolkit/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1175,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/install-concourse-for-platform-automation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1196,7 +952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/deploy-vsphere-with-nsxt-for-tas-tkgi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1217,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
+      <a href="../../tanzu/platform-automation-toolkit/deploy-tas-tkgi-with-concourse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1250,8 +1006,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1262,17 +1020,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1283,7 +1044,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Observability
@@ -1297,7 +1058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../observability/write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-nav__link">
+      <a href="../write-k8s-audit-logs-to-loki-grafana-cloud/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1315,10 +1076,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../observability/otel-demo-kind-grafana-cloud/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Run OpenTelemetry Demo on Kind with Grafana Cloud
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1327,6 +1108,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1369,7 +1188,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../homelab/" class="md-nav__link ">
+            <a href="../../homelab/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1402,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../homelab/airgapped-tkgs/" class="md-nav__link">
+      <a href="../../homelab/airgapped-tkgs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1478,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/hello-world-apps/" class="md-nav__link">
+      <a href="../../misc/hello-world-apps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1499,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/mac-and-tmux-config/" class="md-nav__link">
+      <a href="../../misc/mac-and-tmux-config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1520,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
+      <a href="../../misc/deploy-ubuntu-on-vcenter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1541,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/nsx-rest-api/" class="md-nav__link">
+      <a href="../../misc/nsx-rest-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1589,197 +1408,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#crash-of-a-worker-node-on-a-guest-cluster" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Crash of a Worker Node on a guest cluster
+      Prerequisites
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Crash of a Worker Node on a guest cluster">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#power-off-worker-node-in-vcenter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Power off Worker node in vCenter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-worker-vm-in-vcenter-delete-from-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete Worker VM in vCenter (Delete from Disk)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#crash-of-a-control-plane-node-on-a-guest-cluster" class="md-nav__link">
+  <a href="#deploy" class="md-nav__link">
     <span class="md-ellipsis">
-      Crash of a Control Plane Node on a guest cluster
+      Deploy
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Crash of a Control Plane Node on a guest cluster">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#power-off-control-plane-node-of-guest-cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Power off Control Plane node of guest cluster
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-cp-vm-in-vcenter-delete-from-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete CP VM in vCenter (Delete from Disk)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubelet-crashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet Crashing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet Crashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kubelet-not-running-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet not running on a worker node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet not running on a worker node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stop-kubelet-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stop kubelet on a worker node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#let-kubelet-crash-on-a-worker-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Let kubelet crash on a worker node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kubelet-not-running-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubelet not running on a control plane node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubelet not running on a control plane node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#stop-kubelet-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stop kubelet on a control plane node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#let-kubelet-crash-on-a-control-plane-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Let kubelet crash on a control plane node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etcd-not-working-properly" class="md-nav__link">
-    <span class="md-ellipsis">
-      etcd not working properly
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="etcd not working properly">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#only-1-out-of-3-etcd-instances-running" class="md-nav__link">
-    <span class="md-ellipsis">
-      only 1 out of 3 etcd instances running
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-api-server-crashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kubernetes API-Server Crashing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubernetes API-Server Crashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kube-apiserver-not-running" class="md-nav__link">
-    <span class="md-ellipsis">
-      kube-apiserver not running
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1801,125 +1443,53 @@
   
 
 
-<h1 id="disaster-scenarios">Disaster Scenarios</h1>
-<p>This page explores certain disaster scenarios, how Tanzu behaves and how to repair the environment.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>This page is based on <a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-concepts-planning/GUID-28B0AEA2-2947-4FDD-AA71-51E46E24BF53.html">vSphere IaaS Control Plane</a>, formerly known as vSphere with Tanzu aka TKGS. You should first know about the basic concepts before reading this page.</p>
-</div>
-<h2 id="crash-of-a-worker-node-on-a-guest-cluster">Crash of a Worker Node on a guest cluster</h2>
-<h3 id="power-off-worker-node-in-vcenter">Power off Worker node in vCenter</h3>
-<p>What happens if we manually power off a Virtual Machine in vCenter which is a worker node of a guest cluster?</p>
+<h1 id="deploy-opentelemetry-demo-on-a-kind-cluster">Deploy OpenTelemetry Demo on a Kind cluster</h1>
+<p>We're following a slightly amended version of the <a href="https://opentelemetry.io/docs/platforms/kubernetes/helm/demo/">official OTel Demo App</a> deployment on Kubernetes with the difference of integrating our Cluster with Grafana Cloud using Alloy.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>the corresponding Kubernetes node enters the state <code>NotReady</code></li>
-<li>the Supervisor Cluster still shows the corresponding <code>Machine</code> (see <a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine">Cluster API Machine</a>) to be <code>Running</code> and <code>VirtualMachine</code> (a <a href="https://github.com/kubernetes-sigs/cluster-api-provider-vsphere">CAPV</a> object) to be <code>poweredOn</code></li>
-<li>pods that should be scheduled on that node are in <code>Pending</code> state</li>
+<li><a href="https://grafana.com/docs/grafana-cloud/get-started/">Grafana Cloud stack</a></li>
+</ul>
+<h2 id="deploy">Deploy</h2>
+<ol>
 <li>
-<p>logs in <code>capi-controller-manager</code> (from MachineSet Controller):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Waiting for the Kubernetes node on the machine to report ready state
+<p>Deploy a kind cluster with 3 Control Plane nodes and 3 Worker nodes by using the following <code>config.yaml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kind.x-k8s.io/v1alpha4</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">nodes</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">control-plane</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">control-plane</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">control-plane</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker</span>
 </span></code></pre></div>
 </li>
 <li>
-<p>after 5 minutes, the Supervisor Cluster (actually the Cluster API controllers) deletes the Virtual Machine in vCenter and the Kubernetes nodes gets deleted</p>
-</li>
-<li>finally a new Virtual Machine gets created and the node joins the cluster</li>
-</ul>
-<h3 id="delete-worker-vm-in-vcenter-delete-from-disk">Delete Worker VM in vCenter (Delete from Disk)</h3>
-<p>The behavior is quite similar to powering off the VM:</p>
-<ul>
-<li>corresponding Kubernetes node marked as <code>NotReady</code></li>
-<li>after a few minutes the nodes enter <code>SchedulingDisabled</code>, but the Supervisor Cluster still shows the <code>Machine</code> to be running</li>
-<li>
-<p>after some time, logs in capi-controller-manager:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>reason=&quot;UnhealthyNode&quot; message=&quot;Condition Ready on node is reporting status Unknown for more than 5m0s&quot;
+<p>Deploy the cluster with</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--config<span class="w"> </span>config.yaml<span class="w"> </span>--name<span class="w"> </span>kind-3cp-3worker
 </span></code></pre></div>
 </li>
 <li>
-<p>after some minutes the <code>Machine</code> enters <code>Deleting</code> state</p>
-</li>
-<li>the Supervisor Cluster provisions a new node with the same name</li>
-<li>node persists in state <code>NoteReady,SchedulingDisabled</code> because it is not reachable (as kubelet is not running)</li>
-<li>the <code>Machine</code> is still in <code>Deleting</code> state</li>
-<li>after some time the VM gets successfully deleted by CAPI</li>
-<li>a new VM with new name gets provisioned and node joins the cluster and operating successfully</li>
-<li>we have a functioning cluster again 13 minutes after we have deleted the VM</li>
-</ul>
-<h2 id="crash-of-a-control-plane-node-on-a-guest-cluster">Crash of a Control Plane Node on a guest cluster</h2>
-<h3 id="power-off-control-plane-node-of-guest-cluster">Power off Control Plane node of guest cluster</h3>
-<ul>
-<li>Kubernetes API Server not available for a few seconds. This is because we were connected to that node that we powered off, if we would have powered off another CP node, we wouldn't even have recognized it</li>
-<li>VM powered on immediately after a few seconds</li>
-<li>It is that quick that no pods get terminated</li>
-</ul>
-<h3 id="delete-cp-vm-in-vcenter-delete-from-disk">Delete CP VM in vCenter (Delete from Disk)</h3>
-<ul>
-<li>in less than a minute a new VM with the same name gets deployed in vCenter and powered on</li>
-<li>
-<p>the node is still marked <code>NotReady</code> because kubelet is not running and printing logs:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&quot;command failed&quot; err=&quot;failed to load kubelet config file, error: failed to load Kubelet config file /var/lib/kubelet/config.yaml, error failed to read kubelet config file \&quot;/var/lib/kubelet/config.yaml\&quot;, error: open /var/lib/kubelet/config.yaml: no such file or directory, path: /var/lib/kubelet/config.yaml&quot;
+<p>For the OpenTelemetry Demo create the following <code>values.yaml</code> which disables all kinds of deployments which we don't need because we have Alloy deployed on the cluster already:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">opentelemetry-collector</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">jaeger</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">prometheus</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nt">grafana</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">opensearch</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </span></code></pre></div>
 </li>
 <li>
-<p>this indicates that kubeadm does not join the control plane successfully to the cluster. Indeed, the <code>cloud-init-output.log</code> file prints</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>-info ConfigMap does not yet contain a JWS signature for token ID &quot;5j3q2p&quot;, will try again
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>[2024-09-12 14:52:39] I0912 14:52:39.589511    1244 token.go:223] [discovery] The cluster-info ConfigMap does not yet contain a JWS signature for token ID &quot;5j3q2p&quot;, will try again
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>[2024-09-12 14:52:43] error execution phase preflight: couldn&#39;t validate the identity of the API Server: could not find a JWS signature in the cluster-info ConfigMap for token ID &quot;5j3q2p&quot;
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[2024-09-12 14:52:43] To see the stack trace of this error execute with --v=5 or higher
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[2024-09-12 14:52:43] !!! [2024-09-12T14:52:43+00:00] kubeadm reported failed action(s) for &#39;kubeadm join phase preflight --ignore-preflight-errors=DirAvailable--etc-kubernetes-manifests&#39;
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>[2024-09-12 14:52:58] +++ [2024-09-12T14:52:58+00:00] running &#39;kubeadm join phase preflight --ignore-preflight-errors=DirAvailable--etc-kubernetes-manifests&#39;
+<p>Then deploy the demo:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>open-telemetry<span class="w"> </span>https://open-telemetry.github.io/opentelemetry-helm-charts
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>helm<span class="w"> </span>install<span class="w"> </span>otel-demo<span class="w"> </span>open-telemetry/opentelemetry-demo<span class="w"> </span>--values<span class="w"> </span>values.yaml<span class="w"> </span>-n<span class="w"> </span>otel-demo<span class="w"> </span>--create-namespace
 </span></code></pre></div>
 </li>
-<li>
-<p>deploying pods is still working, although the control plane node is in <code>NotReady</code> state and other etcd pods are not able to connect to this etcd instance. The other two etcd instances are logging</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&quot;dial tcp 10.244.0.34:2380: connect: connection refused&quot;
-</span></code></pre></div>
-</li>
-<li>
-<p>after a few minutes the node enters <code>SchedulingDisabled</code></p>
-</li>
-<li>after some more minutes, the <code>Machine</code> enters <code>Deleting</code> state, but  thge VirtualMachine is still <code>poweredOn</code></li>
-<li>after some time the VM gets deleted and a new one with a new name gets provisioned and joined to the cluster successfully</li>
-<li>we have a functioning cluster again ~15 minutes after we have deleted the VM</li>
-</ul>
-<h2 id="kubelet-crashing">Kubelet Crashing</h2>
-<h3 id="kubelet-not-running-on-a-worker-node">Kubelet not running on a worker node</h3>
-<h4 id="stop-kubelet-on-a-worker-node">Stop kubelet on a worker node</h4>
-<p>In this scenario, we simply stopped kubelet service on a node.</p>
-<p>The behavior is same as if you <a href="#power-off-worker-node-in-vcenter">Power off a Worker node in vCenter</a>.</p>
-<h4 id="let-kubelet-crash-on-a-worker-node">Let kubelet crash on a worker node</h4>
-<p>In this scenario, we removed the kubelet config file.</p>
-<p>The behavior is same as if you <a href="#power-off-worker-node-in-vcenter">Power off a Worker node in vCenter</a>.</p>
-<h3 id="kubelet-not-running-on-a-control-plane-node">Kubelet not running on a control plane node</h3>
-<p>We would guess the behaviour is similar to worker nodes, but it's not surprisingly.</p>
-<h4 id="stop-kubelet-on-a-control-plane-node">Stop kubelet on a control plane node</h4>
-<p>In this scenario, we simply stopped kubelet service on a node.</p>
-<p>The node enters <code>NotReady</code> state and stays there until we fix and start kubelet again. Cluster API does not recreate the node.</p>
-<h4 id="let-kubelet-crash-on-a-control-plane-node">Let kubelet crash on a control plane node</h4>
-<p>In this scenario, we removed the kubelet config file.</p>
-<p>The behaviour is same as if you <a href="#stop-kubelet-on-a-control-plane-node">Stop kubelet on a control plane node</a>.</p>
-<h2 id="etcd-not-working-properly">etcd not working properly</h2>
-<h3 id="only-1-out-of-3-etcd-instances-running">only 1 out of 3 etcd instances running</h3>
-<ul>
-<li>if you have only 2 etcd instances and you kill one of it, etcd tries to do a new leader election, also if you explicitly don't kill the leader</li>
-<li>because etcd doesn't reach a quorum, as there is only 1 out of 3 instances running, the remaining instance will never become a leader</li>
-<li>as a result, <code>kube-apiserver</code> is failing with the error <code>watch chan error: etcdserver: no leader</code> - apparently when apiserver receives this error, it terminates all watchers according to <a href="https://github.com/kubernetes/kubernetes/issues/111116">this description</a></li>
-<li>the apiserver is not able to recreate the watchers because there is no etcd leader</li>
-<li>Tanzu (Cluster API) does not recreate a node with a crashing etcd</li>
-</ul>
-<p>As a result:</p>
-<ul>
-<li>you are not able to communicate with the cluster using <code>kubectl</code> (or else to the API Server)</li>
-<li>because etcd is in readonly mode, the self-healing mechanism in Kubernetes doesn't work anymore</li>
-<li>running apps on the cluster are still working</li>
-<li>ingress to web apps is still functioning</li>
-</ul>
-<h2 id="kubernetes-api-server-crashing">Kubernetes API-Server Crashing</h2>
-<h3 id="kube-apiserver-not-running">kube-apiserver not running</h3>
-<ul>
-<li>we removed the <code>kube-apiserver</code> <a href="https://kubernetes.io/docs/concepts/workloads/pods/#static-pods">static pod</a> on one control plane, which didn't have any effect on the cluster and it was still operational</li>
-<li>we removed the <code>kube-apiserver</code> static pod on the second control plane, which also didn't have any effect on the cluster and it was still operational</li>
-<li>after removing <code>kube-apiserver</code> from the third control plane, then the API Server was not reachable anymore of course, but apps were still running fine.</li>
-</ul>
+</ol>
 
 
 
@@ -1940,7 +1510,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 16, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 5, 2026</span>
   </span>
 
     
@@ -2092,10 +1662,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
